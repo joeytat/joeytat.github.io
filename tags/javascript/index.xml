@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript on Joeytat</title>
+    <link>https://joeytat.github.io/tags/javascript/</link>
+    <description>Recent content in JavaScript on Joeytat</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://joeytat.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>TIL: 如何实现 JavaScript 函数参数必填的支持?</title>
+      <link>https://joeytat.github.io/post/js_required_property/</link>
+      <pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://joeytat.github.io/post/js_required_property/</guid>
+      <description>JS 在 ES6 的中新增了函数参数指定默认值的支持:
+const Greeting = (name=&amp;quot;Joeytat&amp;quot;) =&amp;gt; { console.log(`Hello ${name}`) } Greeting() // Hello Joeytat  那我们就可以利用这一特性, 将一个会抛出异常的方法作为默认参数传递.
+const Greeting = (name=EmptyPropertyException(&amp;quot;name&amp;quot;)) =&amp;gt; { console.log(`Hello ${name}`) } const EmptyPropertyException = (propertyName) =&amp;gt; { throw Error(`${propertyName} 为必填参数`) } Greeting() // 抛出异常: &amp;quot;Error: name 为必填参数&amp;quot;  这样如果没有传递参数就会抛出异常, 并且带有友好的提示了.</description>
+    </item>
+    
+  </channel>
+</rss>
