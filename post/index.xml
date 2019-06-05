@@ -6,10 +6,23 @@
     <description>Recent content in Posts on Joeytat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Jun 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 05 Jun 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://joeytat.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TIL - Platforms State of the Union(WWDC 2019)</title>
+      <link>https://joeytat.github.io/post/wwdc2019_platforms_state_of_the_union/</link>
+      <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://joeytat.github.io/post/wwdc2019_platforms_state_of_the_union/</guid>
+      <description>SwiftUI 在 View 层级提供了四种特性: - Declarative 通过声明式的语句来描述 UI 布局, 样式, 动画等.
+ Automatic 可交互形动画, 动态字号, 夜间模式都可以通过配置来轻松实现.
+ Compositional 组合性. 各种控件都能极其方便地组合在一起, 远比 UIStackView 方便.
+  VStack(alignment: .leading) { Text(item.title) Text(item.subtitle) }   Consistent 自带 Reactive 特性. 将 Model 对象继承自 BindableObject, 并且声明属性为 @State 即可获得当属性改变时, UI 控件自动更新的效果.   真的如果如此美好, 超级吃性能的 xib 和 storyboard 是不是可以退出舞台了.
+Xcode 11  Live Development 直接在 Xcode Preview 中拖动控件即可生成对应的 SwiftUI 代码. 对应的修改 SwiftUI 代码也能实时在 Preview 中响应.</description>
+    </item>
     
     <item>
       <title>TIL: 如何实现 JavaScript 函数参数必填的支持?</title>
