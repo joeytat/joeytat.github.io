@@ -4,14 +4,37 @@
   
   <url>
     <loc>https://joeytat.github.io/</loc>
-    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://joeytat.github.io/post/</loc>
-    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://joeytat.github.io/tags/</loc>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://joeytat.github.io/tags/ios/</loc>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/</loc>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://joeytat.github.io/post/optimizing_images/</loc>
+    <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -23,18 +46,6 @@
   <url>
     <loc>https://joeytat.github.io/post/wwdc2019_platforms_state_of_the_union/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://joeytat.github.io/tags/</loc>
-    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://joeytat.github.io/tags/ios/</loc>
-    <lastmod>2019-06-05T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
