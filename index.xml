@@ -12,6 +12,20 @@
     
     
     <item>
+      <title>VSCode 还能这样做?</title>
+      <link>https://joeytat.github.io/post/vscode_can_do_that/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://joeytat.github.io/post/vscode_can_do_that/</guid>
+      <description>00 强制代码折叠 在代码中放置 #region 和 #endregion 可以让原本无法折叠的代码块支持折叠.
+01 重构 Promise 为 Async/Await VSCode 支持将 TypeScript 中的 Promise 代码转化成 Async/Await. 这个操作支持多层级的 then, Promise.all() 以及 Promise.race(). 需要 TypeScript 3.1.1.
+02 内外平衡 VSCode 中可以通过 balance inward 和 balance outward 两个选项来选择整个 tag.
+&amp;lt;body&amp;gt; &amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script src=&amp;quot;https://unpkg.com/react@16/umd/react.production.min.js&amp;quot; &amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt;  balance inward - 作用是当光标在 &amp;lt;script&amp;gt; 中任意一个位置, 都可以跳到 &amp;lt;script&amp;gt;**这里**&amp;lt;/script&amp;gt;. balance outward - 可以从当前光标所在标签跳到父标签上.
+最好将这两个绑定到某个快捷键上. 比如 Ctrl+Shift+⬆️ | ⬇️
+03 发起 Pull Request 安装 Github Pull Request Extension 可以在 Source Control (Ctrl + Shift + G) 中直接提交 Pull Request.</description>
+    </item>
+    
+    <item>
       <title>翻译 - 图像优化</title>
       <link>https://joeytat.github.io/post/optimizing_images/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
@@ -92,19 +106,6 @@ const Greeting = (name=EmptyPropertyException(&amp;quot;name&amp;quot;)) =&amp;g
  This article introduces dynamic libraries and shows how using dynamic libraries instead of static libraries reduces both the file size and initial memory footprint of the apps that use them.
 这篇文章主要介绍了动态库, 并且展示了通过使用动态库而不是静态库, 是如何缩减了应用的大小和初始内存空间的.
  ┻━┻ (ヽ(`Д ́)ノ( ┻━┻ 这和说好的不一样啊?</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://joeytat.github.io/post/vscode_can_do_that/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://joeytat.github.io/post/vscode_can_do_that/</guid>
-      <description>+++ title = &amp;ldquo;VSCode 还能这样做?&amp;rdquo; date = &amp;ldquo;2019-06-19&amp;rdquo; author = &amp;ldquo;Joeytat&amp;rdquo; tags = [&amp;ldquo;利器&amp;rdquo;, &amp;ldquo;翻译&amp;rdquo;] description = &amp;ldquo;写不动代码的时候就慢慢施工. 技巧源自 https://www.vscodecandothat.com/&amp;quot; +++
-00 强制代码折叠 在代码中放置 #region 和 #endregion 可以让原本无法折叠的代码块支持折叠.
-01 重构 Promise 为 Async/Await VSCode 支持将 TypeScript 中的 Promise 代码转化成 Async/Await. 这个操作支持多层级的 then, Promise.all() 以及 Promise.race(). 需要 TypeScript 3.1.1.
-02 内外平衡 VSCode 中可以通过 balance inward 和 balance outward 两个选项来选择整个 tag.
-&amp;lt;body&amp;gt; &amp;lt;div id=&amp;quot;app&amp;quot;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script src=&amp;quot;https://unpkg.com/react@16/umd/react.production.min.js&amp;quot; &amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt;  balance inward - 作用是当光标在 &amp;lt;script&amp;gt; 中任意一个位置, 都可以跳到 &amp;lt;script&amp;gt;**这里**&amp;lt;/script&amp;gt;.</description>
     </item>
     
   </channel>
