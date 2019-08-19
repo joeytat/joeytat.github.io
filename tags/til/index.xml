@@ -6,10 +6,23 @@
     <description>Recent content in TIL on Joeytat</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://joeytat.github.io/tags/til/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</title>
+      <link>https://joeytat.github.io/post/asynchronous-javascript/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://joeytat.github.io/post/asynchronous-javascript/</guid>
+      <description>先看下面的代码
+function printHello() { console.log(&amp;quot;Hello&amp;quot;); } function printWorld() { console.log(&amp;quot;World&amp;quot;); } printHello(); // 输出 Hello printWorld(); // 输出 World  在 JavaScript 中，存在一个全局调用栈(Global Call Stack)。当我们调用 printHello 时，会将该方法加入到栈中，由于 JavaScript 是单线程执行机制（同一时间只执行一个命令），所以会在执行完成了 printHello 之后再执行 printWorld。
+那么现在就引入标题中的问题，JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？
+function printHello() { console.log(&amp;quot;Hello&amp;quot;); } function printWorld() { console.log(&amp;quot;World&amp;quot;); } setTimeout(printHello, 1000); printWorld();  表面上来看 setTimeout 也是一个方法，他的定义可能是这样：
+function setTimeout(callbackFunc, interval) { // .... }  那么按照 JS 单线程理论来说，应该是先将 setTimeout 方法压入全局调用栈，并且执行该方法，等待 1 秒钟，然后再执行 printWorld 才对。但实际上我们都知道，打印的结果会是 &amp;ldquo;World&amp;rdquo; 然后 &amp;ldquo;Hello&amp;rdquo;，这是为什么？</description>
+    </item>
     
     <item>
       <title>TIL - React 进阶模式之复合组件（Compound Component）</title>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+    <title>TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？ :: Joeytat</title>
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://joeytat.github.io/post/asynchronous-javascript/" />
+
+
+<link rel="stylesheet" href="/assets/style.css">
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Source+Code+Pro' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="/assets/style.css">
+
+
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png">
+<link rel="shortcut icon" href="/img/favicon.png">
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？ :: Joeytat — " />
+<meta name="twitter:description" content="先看下面的代码
+function printHello() { console.log(&amp;quot;Hello&amp;quot;); } function printWorld() { console.log(&amp;quot;World&amp;quot;); } printHello(); // 输出 Hello printWorld(); // 输出 World  在 JavaScript 中，存在一个全局调用栈(Global Call Stack)。当我们调用 printHello 时，会将该方法加入到栈中，由于 JavaScript 是单线程执行机制（同一时间只执行一个命令），所以会在执行完成了 printHello 之后再执行 printWorld。
+那么现在就引入标题中的问题，JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？
+function printHello() { console.log(&amp;quot;Hello&amp;quot;); } function printWorld() { console.log(&amp;quot;World&amp;quot;); } setTimeout(printHello, 1000); printWorld();  表面上来看 setTimeout 也是一个方法，他的定义可能是这样：
+function setTimeout(callbackFunc, interval) { // .... }  那么按照 JS 单线程理论来说，应该是先将 setTimeout 方法压入全局调用栈，并且执行该方法，等待 1 秒钟，然后再执行 printWorld 才对。但实际上我们都知道，打印的结果会是 &amp;ldquo;World&amp;rdquo; 然后 &amp;ldquo;Hello&amp;rdquo;，这是为什么？" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image" content="https://joeytat.github.io/img/default.jpg">
+
+
+<meta property="og:locale" content="en" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？ :: Joeytat — ">
+<meta property="og:description" content="" />
+<meta property="og:url" content="https://joeytat.github.io/post/asynchronous-javascript/" />
+<meta property="og:site_name" content="TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？" />
+<meta property="og:image" content="https://joeytat.github.io/img/default.jpg">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2019-08-19 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+</head>
+<body class="dark-theme">
+<div class="container">
+  <header class="header">
+  <span class="header__inner">
+    <a href="https://joeytat.github.io/" style="text-decoration: none;">
+  <div class="logo">
+    
+      <span class="logo__mark">></span>
+      <span class="logo__text">Joeytat</span>
+      <span class="logo__cursor"></span>
+    
+  </div>
+</a>
+
+    <span class="header__right">
+      
+      <span class="theme-toggle">
+        <svg class="bulb-off" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="24" height="24"/>
+  <path d="M4 19C4 19.55 4.45 20 5 20H9C9.55 20 10 19.55 10 19V18H4V19ZM7 0C3.14 0 0 3.14 0 7C0 9.38 1.19 11.47 3 12.74V15C3 15.55 3.45 16 4 16H10C10.55 16 11 15.55 11 15V12.74C12.81 11.47 14 9.38 14 7C14 3.14 10.86 0 7 0ZM9.85 11.1L9 11.7V14H5V11.7L4.15 11.1C2.8 10.16 2 8.63 2 7C2 4.24 4.24 2 7 2C9.76 2 12 4.24 12 7C12 8.63 11.2 10.16 9.85 11.1Z" transform="translate(5 2)" fill="black"/>
+</svg>
+
+<svg class="bulb-on" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="24" height="24"/>
+  <path class="bulb-on__base" d="M4 19C4 19.55 4.45 20 5 20H9C9.55 20 10 19.55 10 19V18H4V19Z" transform="translate(5 2)" fill="#a9a9b3" />
+  <path class="bulb-on__glass" d="M0 7C0 3.14 3.14 0 7 0C10.86 0 14 3.14 14 7C14 9.38 12.81 11.47 11 12.74V15C11 15.55 10.55 16 10 16H4C3.45 16 3 15.55 3 15V12.74C1.19 11.47 0 9.38 0 7Z" transform="translate(5 2)" fill="#a9a9b3" />
+</svg>
+  
+      </span>
+    </span>
+  </span>
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-131363452-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+</header>
+
+
+  <div class="content">
+    
+  <div class="post">
+    <h2 class="post-title"><a href="https://joeytat.github.io/post/asynchronous-javascript/">TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</a></h2>
+    <div class="post-meta">
+      <span class="post-date">
+        2019-08-19
+      </span>
+      <span class="post-author">Written by Joeytat</span>
+    </div>
+
+    
+      <span class="post-tags">
+        
+          #<a href="https://joeytat.github.io/tags/javascript">JavaScript</a>&nbsp;
+        
+          #<a href="https://joeytat.github.io/tags/til">TIL</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+
+<p>先看下面的代码</p>
+
+<pre><code class="language-javascript">function printHello() {
+  console.log(&quot;Hello&quot;);
+}
+function printWorld() {
+  console.log(&quot;World&quot;);
+}
+printHello(); // 输出 Hello
+printWorld(); // 输出 World 
+</code></pre>
+
+<p>在 JavaScript 中，存在一个全局调用栈(Global Call Stack)。当我们调用 <code>printHello</code> 时，会将该方法加入到栈中，由于 JavaScript 是单线程执行机制（同一时间只执行一个命令），所以会在执行完成了 <code>printHello</code> 之后再执行 <code>printWorld</code>。</p>
+
+<p>那么现在就引入标题中的问题，<strong>JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</strong></p>
+
+<pre><code class="language-javascript">function printHello() {
+  console.log(&quot;Hello&quot;);
+}
+function printWorld() {
+  console.log(&quot;World&quot;);
+}
+setTimeout(printHello, 1000);
+printWorld();
+</code></pre>
+
+<p>表面上来看 <code>setTimeout</code> 也是一个方法，他的定义可能是这样：</p>
+
+<pre><code class="language-javascript">function setTimeout(callbackFunc, interval) {
+  // ....
+}
+</code></pre>
+
+<p>那么按照 JS 单线程理论来说，应该是先将 <code>setTimeout</code> 方法压入全局调用栈，并且执行该方法，等待 1 秒钟，然后再执行 <code>printWorld</code> 才对。但实际上我们都知道，打印的结果会是 &ldquo;World&rdquo; 然后 &ldquo;Hello&rdquo;，这是为什么？</p>
+
+<h3 id="web-browser-api-callback-queue">Web Browser API &amp;  Callback Queue</h3>
+
+<p>事实上 <code>setTimeout</code> 并不是完全是 JS  代码，而是属于 <strong>Web Browser API</strong> 中的方法。就像名字中所指的那样， JS 调用了 <code>setTimeout</code> 之后，浏览器（Web Browser）会去创建一个 timer，同时将我们传入 <code>setTimeout</code> 的方法 - <code>printHello</code> 加入到 <strong>Callback Queue（回调队列）</strong> 中。</p>
+
+<p>1000 毫秒过去后，浏览器会通知 JavaScript 引擎将回调队列中的 <code>printHello</code> 加入到 JS 的全局调用栈中执行。</p>
+
+<p>所以在 JS 的全局调用栈看来，是先有一个 <code>printWorld</code> 加入到了调用栈，过了 1000 毫秒之后，又加入了一个 <code>printHello</code> 方法。</p>
+
+<p>那如果我们的 <code>printWorld</code> 之后还有其他的方法执行时间超过了 1000 毫秒呢？</p>
+
+<pre><code class="language-javascript">/// 省略掉 printHello 和 printWorld 定义
+
+function heavyWork() {
+    for(let i = 0; i &lt; 1000000; i++) {
+      console.log(&quot;Heavy Work&quot;); 
+    }
+}
+
+setTimeout(printHello, 1000);
+printWorld();
+heavyWork(); // 假设会执行 2000ms
+</code></pre>
+
+<p>现在让我们假设 <code>heavyWork</code> 方法会执行 2000ms，可是我们的 <code>setTimeout</code> 只会执行 1000ms，那么按照上面的理论，1000ms 到了之后，<code>printHello</code> 会被加入到 JS 的调用栈中执行，那现在的输出会是一堆“Heavy Work”之中夹带着一个“Hello”吗？</p>
+
+<p>当然不会啦，因为我们有 Event Loop（事件循环机制）。</p>
+
+<h3 id="event-loop">Event Loop</h3>
+
+<p>Event Loop 其实理解起来非常简单，就是一个循环会不停地检查 JS 调用栈。只有在 JS 调用栈<strong>没有任务</strong>的情况下，Callback Queue 中的任务，才会被添加到 JS 调用栈。</p>
+
+<p>所以上面的代码中，<code>setTimeout</code> 虽然指定了 1000ms 之后就执行 <code>printHello</code>，但实际上会被需要执行 2000ms 的 <code>heavyWork</code>阻塞住， 输出的结果会是：</p>
+
+<pre><code class="language-javascript">World
+Heavy Work
+// 长达 2000ms 的 Heavy Work
+Heavy Work
+Hello
+</code></pre>
+
+<h3 id="总结">总结</h3>
+
+<ul>
+<li>Web Browser API
+提供给我们 JavaScript 所没有后台运行任务的能力，除了 <code>setTimeout</code> 和 <code>setInterval</code> 这样创建 timer 的 API 之外，还包括了 Ajax，用户交互，文件读写等操作。</li>
+<li>Callback Queue
+用于持有提交到 Web Browser API 中等待回调的 callback。</li>
+<li>Event Loop
+一个不停地检查 JavaScript 调用栈中是否还有任务的循环。</li>
+</ul>
+
+    </div>
+    
+      <div class="pagination">
+        <div class="pagination__title">
+          <span class="pagination__title-h">Read other posts</span>
+          <hr />
+        </div>
+        <div class="pagination__buttons">
+          
+          
+            <a class="btn previous" href="https://joeytat.github.io/post/compound-component/">TIL - React 进阶模式之复合组件（Compound Component） →</a>
+           
+        </div>
+      </div>
+    
+  </div>
+
+  </div>
+
+  
+    <footer class="footer">
+  <div class="footer__inner">
+    
+      <a href="https://joeytat.github.io/" style="text-decoration: none;">
+  <div class="logo">
+    
+      <span class="logo__mark">></span>
+      <span class="logo__text">Joeytat</span>
+      <span class="logo__cursor"></span>
+    
+  </div>
+</a>
+
+      <div class="copyright">
+        <span>Powered by <a href="http://gohugo.io">Hugo</a></span>
+        <span>Theme created by <a href="https://twitter.com/panr">panr</a> 2018</span>
+      </div>
+    
+  </div>
+</footer>
+
+
+  <script src="/assets/main.js"></script>
+
+  <script src="/assets/prism.js"></script>
+
+
+
+  
+</div>
+
+</body>
+</html>
