@@ -187,6 +187,14 @@ heavyWork(); // 假设会执行 2000ms
 
 <p>现在让我们假设 <code>heavyWork</code> 方法会执行 2000ms，可是我们的 <code>setTimeout</code> 只会执行 1000ms，那么按照上面的理论，1000ms 到了之后，<code>printHello</code> 会被加入到 JS 的调用栈中执行，那现在的输出会是一堆“Heavy Work”之中夹带着一个“Hello”吗？</p>
 
+<pre><code class="language-javascript">World
+Heavy Work
+...
+Hello // 会输出一堆 Heavy Work 中夹带一个 Hello 吗？
+...
+Heavy Work
+</code></pre>
+
 <p>当然不会啦，因为我们有 Event Loop（事件循环机制）。</p>
 
 <h3 id="event-loop">Event Loop</h3>
@@ -197,7 +205,7 @@ heavyWork(); // 假设会执行 2000ms
 
 <pre><code class="language-javascript">World
 Heavy Work
-// 长达 2000ms 的 Heavy Work
+.... // 长达 2000ms 的 Heavy Work
 Heavy Work
 Hello
 </code></pre>
@@ -205,11 +213,11 @@ Hello
 <h3 id="总结">总结</h3>
 
 <ul>
-<li>Web Browser API
+<li>Web Browser API<br />
 提供给我们 JavaScript 所没有后台运行任务的能力，除了 <code>setTimeout</code> 和 <code>setInterval</code> 这样创建 timer 的 API 之外，还包括了 Ajax，用户交互，文件读写等操作。</li>
-<li>Callback Queue
+<li>Callback Queue<br />
 用于持有提交到 Web Browser API 中等待回调的 callback。</li>
-<li>Event Loop
+<li>Event Loop<br />
 一个不停地检查 JavaScript 调用栈中是否还有任务的循环。</li>
 </ul>
 
