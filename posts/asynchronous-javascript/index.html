@@ -1,0 +1,170 @@
+<!doctype html><html lang=en>
+<head>
+<title>
+TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？ ::
+Dev Log
+</title>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="先看下面的代码
+function printHello() { console.log(&amp;#34;Hello&amp;#34;); } function printWorld() { console.log(&amp;#34;World&amp;#34;); } printHello(); // 输出 Hello printWorld(); // 输出 World 在 JavaScript 中，存在一个全局调用栈(Global Call Stack)。当我们调用 printHello 时，会将该方法加入到栈中，由于 JavaScript 是单线程执行机制（同一时间只执行一个命令），所以会在执行完成了 printHello 之后再执行 printWorld。
+那么现在就引入标题中的问题，JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？
+function printHello() { console.log(&amp;#34;Hello&amp;#34;); } function printWorld() { console.log(&amp;#34;World&amp;#34;); } setTimeout(printHello, 1000); printWorld(); 表面上来看 setTimeout 也是一个方法，他的定义可能是这样：
+function setTimeout(callbackFunc, interval) { // .... } 那么按照 JS 单线程理论来说，应该是先将 setTimeout 方法压入全局调用栈，并且执行该方法，等待 1 秒钟，然后再执行 printWorld 才对。但实际上我们都知道，打印的结果会是 &amp;ldquo;World&amp;rdquo; 然后 &amp;ldquo;Hello&amp;rdquo;，这是为什么？">
+<meta name=keywords content>
+<meta name=robots content="noodp">
+<link rel=canonical href=https://joeytat.github.io/posts/asynchronous-javascript/>
+<link rel=stylesheet href=https://joeytat.github.io/assets/style.css>
+<link rel=stylesheet href=https://joeytat.github.io/style.css>
+<link rel=apple-touch-icon-precomposed sizes=144x144 href=https://joeytat.github.io/img/apple-touch-icon-144-precomposed.png>
+<link rel="shortcut icon" href=https://joeytat.github.io/img/favicon.png>
+<link href=https://joeytat.github.io/assets/fonts/Inter-Italic.woff2 rel=preload type=font/woff2 as=font crossorigin>
+<link href=https://joeytat.github.io/assets/fonts/Inter-Regular.woff2 rel=preload type=font/woff2 as=font crossorigin>
+<link href=https://joeytat.github.io/assets/fonts/Inter-Medium.woff2 rel=preload type=font/woff2 as=font crossorigin>
+<link href=https://joeytat.github.io/assets/fonts/Inter-MediumItalic.woff2 rel=preload type=font/woff2 as=font crossorigin>
+<link href=https://joeytat.github.io/assets/fonts/Inter-Bold.woff2 rel=preload type=font/woff2 as=font crossorigin>
+<link href=https://joeytat.github.io/assets/fonts/Inter-BoldItalic.woff2 rel=preload type=font/woff2 as=font crossorigin>
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？">
+<meta name=twitter:description content="一个问题简单地理解 Web Browser API，Callback Queue 与 Event Loop 是如何协作的">
+<meta property="og:title" content="TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？">
+<meta property="og:description" content="一个问题简单地理解 Web Browser API，Callback Queue 与 Event Loop 是如何协作的">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://joeytat.github.io/posts/asynchronous-javascript/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2019-08-19T00:00:00+00:00">
+<meta property="article:modified_time" content="2019-08-19T00:00:00+00:00">
+</head>
+<body>
+<div class=container>
+<header class=header>
+<span class=header__inner>
+<a href=https://joeytat.github.io/ class=logo style=text-decoration:none>
+<span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg>
+</span>
+<span class=logo__text>Yu's 开发者日志</span>
+<span class=logo__cursor></span>
+</a>
+<span class=header__right>
+<span class=theme-toggle><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 41c10.4934.0 19-8.5066 19-19C41 11.5066 32.4934 3 22 3 11.5066 3 3 11.5066 3 22s8.5066 19 19 19zM7 22C7 13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22z"/></svg>
+</span>
+</span>
+</span>
+</header>
+<div class=content>
+<div class=post>
+<h1 class=post-title>TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</h1>
+<div class=post-meta>
+<span class=post-date>
+2019-08-19
+</span>
+<span class=post-author>— Written by Joeytat</span>
+</div>
+<span class=post-tags>
+<a href=https://joeytat.github.io/tags/javascript/>#JavaScript</a>&nbsp;
+<a href=https://joeytat.github.io/tags/til/>#TIL</a>&nbsp;
+</span>
+<div class=post-content>
+<p>先看下面的代码</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>printHello</span>() {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Hello&#34;</span>);
+}
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>printWorld</span>() {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;World&#34;</span>);
+}
+<span style=color:#a6e22e>printHello</span>(); <span style=color:#75715e>// 输出 Hello
+</span><span style=color:#75715e></span><span style=color:#a6e22e>printWorld</span>(); <span style=color:#75715e>// 输出 World 
+</span></code></pre></div><p>在 JavaScript 中，存在一个全局调用栈(Global Call Stack)。当我们调用 <code>printHello</code> 时，会将该方法加入到栈中，由于 JavaScript 是单线程执行机制（同一时间只执行一个命令），所以会在执行完成了 <code>printHello</code> 之后再执行 <code>printWorld</code>。</p>
+<p>那么现在就引入标题中的问题，<strong>JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>printHello</span>() {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Hello&#34;</span>);
+}
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>printWorld</span>() {
+  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;World&#34;</span>);
+}
+<span style=color:#a6e22e>setTimeout</span>(<span style=color:#a6e22e>printHello</span>, <span style=color:#ae81ff>1000</span>);
+<span style=color:#a6e22e>printWorld</span>();
+</code></pre></div><p>表面上来看 <code>setTimeout</code> 也是一个方法，他的定义可能是这样：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>setTimeout</span>(<span style=color:#a6e22e>callbackFunc</span>, <span style=color:#a6e22e>interval</span>) {
+  <span style=color:#75715e>// ....
+</span><span style=color:#75715e></span>}
+</code></pre></div><p>那么按照 JS 单线程理论来说，应该是先将 <code>setTimeout</code> 方法压入全局调用栈，并且执行该方法，等待 1 秒钟，然后再执行 <code>printWorld</code> 才对。但实际上我们都知道，打印的结果会是 &ldquo;World&rdquo; 然后 &ldquo;Hello&rdquo;，这是为什么？</p>
+<h3 id=web-browser-api---callback-queue>Web Browser API & Callback Queue</h3>
+<p>事实上 <code>setTimeout</code> 并不是完全是 JS 代码，而是属于 <strong>Web Browser API</strong> 中的方法。就像名字中所指的那样， JS 调用了 <code>setTimeout</code> 之后，浏览器（Web Browser）会去创建一个 timer，同时将我们传入 <code>setTimeout</code> 的方法 - <code>printHello</code> 加入到 <strong>Callback Queue（回调队列）</strong> 中。</p>
+<p>1000 毫秒过去后，浏览器会通知 JavaScript 引擎将回调队列中的 <code>printHello</code> 加入到 JS 的全局调用栈中执行。</p>
+<p>所以在 JS 的全局调用栈看来，是先有一个 <code>printWorld</code> 加入到了调用栈，过了 1000 毫秒之后，又加入了一个 <code>printHello</code> 方法。</p>
+<p>那如果我们的 <code>printWorld</code> 之后还有其他的方法执行时间超过了 1000 毫秒呢？</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#75715e>/// 省略掉 printHello 和 printWorld 定义
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>function</span> <span style=color:#a6e22e>heavyWork</span>() {
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>let</span> <span style=color:#a6e22e>i</span> <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; <span style=color:#a6e22e>i</span> <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1000000</span>; <span style=color:#a6e22e>i</span><span style=color:#f92672>++</span>) {
+      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#34;Heavy Work&#34;</span>); 
+    }
+}
+
+<span style=color:#a6e22e>setTimeout</span>(<span style=color:#a6e22e>printHello</span>, <span style=color:#ae81ff>1000</span>);
+<span style=color:#a6e22e>printWorld</span>();
+<span style=color:#a6e22e>heavyWork</span>(); <span style=color:#75715e>// 假设会执行 2000ms
+</span></code></pre></div><p>现在让我们假设 <code>heavyWork</code> 方法会执行 2000ms，可是我们的 <code>setTimeout</code> 只会执行 1000ms，那么按照上面的理论，1000ms 到了之后，<code>printHello</code> 会被加入到 JS 的调用栈中执行，那现在的输出会是一堆“Heavy Work”之中夹带着一个“Hello”吗？</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#a6e22e>World</span>
+<span style=color:#a6e22e>Heavy</span> <span style=color:#a6e22e>Work</span>
+...
+<span style=color:#a6e22e>Hello</span> <span style=color:#75715e>// 会输出一堆 Heavy Work 中夹带一个 Hello 吗？
+</span><span style=color:#75715e></span>...
+<span style=color:#a6e22e>Heavy</span> <span style=color:#a6e22e>Work</span>
+</code></pre></div><p>当然不会啦，因为我们有 Event Loop（事件循环机制）。</p>
+<h3 id=event-loop>Event Loop</h3>
+<p>Event Loop 其实理解起来非常简单，就是一个循环会不停地检查 JS 调用栈。只有在 JS 调用栈<strong>没有任务</strong>的情况下，Callback Queue 中的任务，才会被添加到 JS 调用栈。</p>
+<p>所以上面的代码中，<code>setTimeout</code> 虽然指定了 1000ms 之后就执行 <code>printHello</code>，但实际上会被需要执行 2000ms 的 <code>heavyWork</code>阻塞住， 输出的结果会是：</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-javascript data-lang=javascript><span style=color:#a6e22e>World</span>
+<span style=color:#a6e22e>Heavy</span> <span style=color:#a6e22e>Work</span>
+.... <span style=color:#75715e>// 长达 2000ms 的 Heavy Work
+</span><span style=color:#75715e></span><span style=color:#a6e22e>Heavy</span> <span style=color:#a6e22e>Work</span>
+<span style=color:#a6e22e>Hello</span>
+</code></pre></div><h3 id=总结>总结</h3>
+<ul>
+<li>Web Browser API<br>
+提供给我们 JavaScript 所没有后台运行任务的能力，除了 <code>setTimeout</code> 和 <code>setInterval</code> 这样创建 timer 的 API 之外，还包括了 Ajax，用户交互，文件读写等操作。</li>
+<li>Callback Queue<br>
+用于持有提交到 Web Browser API 中等待回调的 callback。</li>
+<li>Event Loop<br>
+一个不停地检查 JavaScript 调用栈中是否还有任务的循环。</li>
+</ul>
+</div>
+<div class=pagination>
+<div class=pagination__title>
+<span class=pagination__title-h>Read other posts</span>
+<hr>
+</div>
+<div class=pagination__buttons>
+<span class="button next">
+<a href=https://joeytat.github.io/posts/compound-component/>
+<span class=button__text>TIL - React 进阶模式之复合组件（Compound Component）</span>
+<span class=button__icon>→</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+<footer class=footer>
+<div class=footer__inner>
+<a href=https://joeytat.github.io/ class=logo style=text-decoration:none>
+<span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg>
+</span>
+<span class=logo__text>Yu's 开发者日志</span>
+<span class=logo__cursor></span>
+</a>
+<div class=copyright>
+<span>© 2021 Powered by
+<a href=https://gohugo.io target=_blank rel=noopener>Hugo</a></span>
+<span>Theme created by
+<a href=https://twitter.com/panr target=_blank rel=noopener>panr</a></span>
+</div>
+</div>
+</footer>
+<script src=https://joeytat.github.io/assets/main.js></script>
+<script src=https://joeytat.github.io/assets/prism.js></script>
+</div>
+<script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(a,e,f,g,b,c,d){a.GoogleAnalyticsObject=b,a[b]=a[b]||function(){(a[b].q=a[b].q||[]).push(arguments)},a[b].l=1*new Date,c=e.createElement(f),d=e.getElementsByTagName(f)[0],c.async=1,c.src=g,d.parentNode.insertBefore(c,d)}(window,document,'script','https://www.google-analytics.com/analytics.js','ga'),ga('create','UA-131363452-1','auto'),ga('send','pageview'))</script>
+</body>
+</html>
