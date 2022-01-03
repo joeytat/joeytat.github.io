@@ -1,4 +1,153 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dev Log</title><link>https://joeytat.github.io/</link><description>Recent content on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</title><link>https://joeytat.github.io/posts/asynchronous-javascript/</link><pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/asynchronous-javascript/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dev Log</title><link>https://joeytat.github.io/</link><description>Recent content on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 03 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>SwiftUI 状态管理 —— Composible Binding</title><link>https://joeytat.github.io/posts/20220103_notes_composible_binding/</link><pubDate>Mon, 03 Jan 2022 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/20220103_notes_composible_binding/</guid><description>
+&lt;h1 id="swiftui-中的状态管理--composible-binding">SwiftUI 中的状态管理 —— Composible Binding&lt;/h1>
+&lt;p>在 SwiftUI 中，需要通过数据来驱动 UI 的变化。数据结构抽象描述的质量也影响着我们对 SwiftUI 界面的维护。&lt;/p>
+&lt;p>通常数据中可能存在很多状态，如果使用很多的 boolean 值来描述这些状态，那么 App 的可维护性可能会大大降低。&lt;/p>
+&lt;h2 id="管理独立状态的问题">管理独立状态的问题&lt;/h2>
+&lt;p>假设我们有一个 App，用户可以在登录与非登录状态下进行操作。所以我们的界面需要兼容这两种状态，其描述可能是这样的：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-swift" data-lang="swift">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">AppState&lt;/span>: ObservableObject {
+@Published &lt;span style="color:#66d9ef">var&lt;/span> user: User? = &lt;span style="color:#66d9ef">nil&lt;/span>
+@Published &lt;span style="color:#66d9ef">var&lt;/span> error: Error? = &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;span style="color:#66d9ef">var&lt;/span> authenticated: Bool { user &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> }
+&lt;span style="color:#66d9ef">var&lt;/span> hasError: Bool { error &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> }
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>基于这样的状态描述，如果我们想创建一个仅展示用户名的组件大概会是这样：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-swift" data-lang="swift"> &lt;span style="color:#66d9ef">var&lt;/span> body: some View {
+Group {
+&lt;span style="color:#66d9ef">if&lt;/span> state.hasError {
+Text(&lt;span style="color:#e6db74">&amp;#34;Oops, sth went wrong: &lt;/span>&lt;span style="color:#e6db74">\(&lt;/span>state.error!.localizedDescription&lt;span style="color:#e6db74">)&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>)
+}
+&lt;span style="color:#66d9ef">if&lt;/span> state.authenticated {
+Text(&lt;span style="color:#e6db74">&amp;#34;Hello &lt;/span>&lt;span style="color:#e6db74">\(&lt;/span>state.user?.name ?? &lt;span style="color:#e6db74">&amp;#34;Unknown&amp;#34;&lt;/span>&lt;span style="color:#e6db74">)&lt;/span>&lt;span style="color:#e6db74">!&amp;#34;&lt;/span>)
+} &lt;span style="color:#66d9ef">else&lt;/span> {
+Text(&lt;span style="color:#e6db74">&amp;#34;Hello, stranger&amp;#34;&lt;/span>)
+}
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>粗看没有什么问题，实际上在维护这样的数据结构时就需要格外小心了。比如第一次我们登录失败，为了展示错误信息给 &lt;code>error&lt;/code> 设置了值之后。必须在登录成功之后要及时地去清空 error，否则即使 &lt;code>state.authenticated&lt;/code> 等于 &lt;code>true&lt;/code>，用户依然无法看到正确的信息。&lt;/p>
+&lt;p>这还仅仅是有两个状态的情况下，像这样独立状态属性会带来很大的维护成本，开发者需要牢记各个属性之间的依赖关系，甚至编写界面的时候，还需要注意代码执行顺序。&lt;/p>
+&lt;h2 id="引入状态机">引入状态机&lt;/h2>
+&lt;p>把状态抽象成带有 associated values 的 enum 是个更好的选择，比如:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-swift" data-lang="swift">&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">AppState&lt;/span>: ObservableObject {
+&lt;span style="color:#66d9ef">enum&lt;/span> &lt;span style="color:#a6e22e">AccountState&lt;/span> {
+&lt;span style="color:#66d9ef">case&lt;/span> authenticated(User)
+&lt;span style="color:#66d9ef">case&lt;/span> unauthenticated
+&lt;span style="color:#66d9ef">case&lt;/span> error(Error)
+}
+@Published &lt;span style="color:#66d9ef">var&lt;/span> accountState: AccountState = .unauthenticated
+}
+&lt;span style="color:#75715e">// 界面中的使用&lt;/span>
+&lt;span style="color:#66d9ef">var&lt;/span> body: some View {
+VStack {
+&lt;span style="color:#66d9ef">switch&lt;/span> state.accountState {
+&lt;span style="color:#66d9ef">case&lt;/span> .authenticated(&lt;span style="color:#66d9ef">let&lt;/span> user):
+Text(&lt;span style="color:#e6db74">&amp;#34;Hello &lt;/span>&lt;span style="color:#e6db74">\(&lt;/span>user.name&lt;span style="color:#e6db74">)&lt;/span>&lt;span style="color:#e6db74">!&amp;#34;&lt;/span>)
+&lt;span style="color:#66d9ef">case&lt;/span> .unauthenticated:
+Text(&lt;span style="color:#e6db74">&amp;#34;unregister&amp;#34;&lt;/span>)
+&lt;span style="color:#66d9ef">case&lt;/span> .error(&lt;span style="color:#66d9ef">let&lt;/span> error):
+Text(&lt;span style="color:#e6db74">&amp;#34;Oops, sth went wrong: &lt;/span>&lt;span style="color:#e6db74">\(&lt;/span>error.localizedDescription&lt;span style="color:#e6db74">)&lt;/span>&lt;span style="color:#e6db74">&amp;#34;&lt;/span>)
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样被状态机驱动的界面看起来要直观多了。并且在每个状态中对数据的操作，也由 enum 赋予了隔离能力。&lt;/p>
+&lt;h2 id="双向绑定怎么办">双向绑定怎么办？&lt;/h2>
+&lt;p>但这样做又来带个新的问题，现在没办法直接通过 &lt;code>$&lt;/code> 来获取 Binding wrapper 来修改状态：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-swift" data-lang="swift">&lt;span style="color:#66d9ef">switch&lt;/span> state.accountState {
+&lt;span style="color:#66d9ef">case&lt;/span> .authenticated(&lt;span style="color:#66d9ef">let&lt;/span> user):
+Text(&lt;span style="color:#e6db74">&amp;#34;Hello &lt;/span>&lt;span style="color:#e6db74">\(&lt;/span>user.name&lt;span style="color:#e6db74">)&lt;/span>&lt;span style="color:#e6db74">!&amp;#34;&lt;/span>)
+TextField(&lt;span style="color:#e6db74">&amp;#34;Change username&amp;#34;&lt;/span>, text: &amp;lt;Binding&amp;lt;String&amp;gt;&lt;span style="color:#f92672">&amp;gt;&lt;/span>)
+&lt;span style="color:#75715e">// 不支持填入 self.$state.accountState.name 👆&lt;/span>
+...
+&lt;/code>&lt;/pre>&lt;/div>&lt;blockquote>
+&lt;p>Xcode 会提示: dynamic member &amp;lsquo;name&amp;rsquo; using key path from root type &amp;lsquo;AppState.AccountState&amp;rsquo;&lt;/p>
+&lt;/blockquote>
+&lt;p>为什么当操作对象是 class 时，是可以做到通过
+&lt;code>self.$state.user.name&lt;/code> 来获取到 name 属性的 Binding 封装的？&lt;/p>
+&lt;h2 id="实现动态成员查找dynamic-member-lookup">实现动态成员查找(dynamic member lookup)&lt;/h2>
+&lt;p>因为 Enum 还不支持动态成员查找特性。什么是动态成员查找？简而言之就是通过 &lt;code>\&lt;/code> 来获取到成员属性的 &lt;code>KeyPath&lt;/code> 封装（&lt;a href="https://www.swiftbysundell.com/articles/the-power-of-key-paths-in-swift/">什么又是 KeyPath&lt;/a>？），然后将其转化为对应的 Binding 封装。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-swift" data-lang="swift">&lt;span style="color:#66d9ef">extension&lt;/span> &lt;span style="color:#a6e22e">Binding&lt;/span> {
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">transform&lt;/span>&amp;lt;LocalValue&amp;gt;(
+&lt;span style="color:#66d9ef">_&lt;/span> keyPath: WritableKeyPath&amp;lt;Value, LocalValue&amp;gt;
+) -&amp;gt; Binding&amp;lt;LocalValue&amp;gt; {
+Binding&amp;lt;LocalValue&amp;gt;(
+&lt;span style="color:#66d9ef">get&lt;/span>: {
+&lt;span style="color:#66d9ef">self&lt;/span>.wrappedValue[keyPath: keyPath]
+},
+&lt;span style="color:#66d9ef">set&lt;/span>: { localValue &lt;span style="color:#66d9ef">in&lt;/span>
+&lt;span style="color:#66d9ef">self&lt;/span>.wrappedValue[keyPath: keyPath] = localValue
+}
+)
+}
+}
+&lt;span style="color:#66d9ef">self&lt;/span>.&lt;span style="color:#960050;background-color:#1e0010">$&lt;/span>state.accountState.username
+&lt;span style="color:#75715e">// 等价于 &lt;/span>
+&lt;span style="color:#66d9ef">self&lt;/span>.&lt;span style="color:#960050;background-color:#1e0010">$&lt;/span>state.transform(&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>accountState).transform(&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>username)
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>所以接下来只需要为 enum 添加动态成员查找的支持就可以了&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-swift" data-lang="swift">&lt;span style="color:#66d9ef">extension&lt;/span> &lt;span style="color:#a6e22e">Binding&lt;/span> {
+&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">unwrap&lt;/span>&amp;lt;Wrapped&amp;gt;() -&amp;gt; Binding&amp;lt;Wrapped&amp;gt;? &lt;span style="color:#66d9ef">where&lt;/span> Value == Wrapped? {
+&lt;span style="color:#66d9ef">guard&lt;/span> &lt;span style="color:#66d9ef">let&lt;/span> value = &lt;span style="color:#66d9ef">self&lt;/span>.wrappedValue &lt;span style="color:#66d9ef">else&lt;/span> { &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> }
+&lt;span style="color:#66d9ef">return&lt;/span> Binding&amp;lt;Wrapped&amp;gt;(
+&lt;span style="color:#66d9ef">get&lt;/span>: { value },
+&lt;span style="color:#66d9ef">set&lt;/span>: { &lt;span style="color:#66d9ef">self&lt;/span>.wrappedValue = $0 }
+)
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后再到 enum 里添加一个计算属性方便我们获取&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-swift" data-lang="swift">&lt;span style="color:#66d9ef">enum&lt;/span> &lt;span style="color:#a6e22e">AccountState&lt;/span> {
+&lt;span style="color:#66d9ef">case&lt;/span> loggedIn(User)
+&lt;span style="color:#66d9ef">case&lt;/span> unregister
+&lt;span style="color:#75715e">//&lt;/span>
+&lt;span style="color:#66d9ef">var&lt;/span> username: String? {
+&lt;span style="color:#66d9ef">get&lt;/span> {
+&lt;span style="color:#66d9ef">guard&lt;/span> &lt;span style="color:#66d9ef">case&lt;/span> .loggedIn(&lt;span style="color:#66d9ef">let&lt;/span> user) = &lt;span style="color:#66d9ef">self&lt;/span> &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>
+}
+&lt;span style="color:#66d9ef">return&lt;/span> user.username
+}
+&lt;span style="color:#66d9ef">set&lt;/span> {
+&lt;span style="color:#66d9ef">guard&lt;/span> &lt;span style="color:#66d9ef">case&lt;/span> .loggedIn(&lt;span style="color:#66d9ef">let&lt;/span> user) = &lt;span style="color:#66d9ef">self&lt;/span>,
+&lt;span style="color:#66d9ef">let&lt;/span> newValue = newValue &lt;span style="color:#66d9ef">else&lt;/span> { &lt;span style="color:#66d9ef">return&lt;/span> }
+user.username = newValue
+&lt;span style="color:#66d9ef">self&lt;/span> = .loggedIn(user)
+}
+}
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>现在就可以在 SwiftUI 中对 enum 使用绑定了&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-swift" data-lang="swift">&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#66d9ef">let&lt;/span> username = &lt;span style="color:#66d9ef">self&lt;/span>.&lt;span style="color:#960050;background-color:#1e0010">$&lt;/span>state.accountState.username.unwrap() {
+TextField(&lt;span style="color:#e6db74">&amp;#34;Change username&amp;#34;&lt;/span>, text: username)
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>看起来还是有些麻烦，对于每个要使用 Binding 的属性都需要去写一个计算属性来包装一层。这样显然这并不如 &lt;code>KeyPath&lt;/code> 那样，直接通过 &lt;code>self.$state.accountState[\.authenticated]&lt;/code> 来获取到 enum 中 associated value 的 Binding 包装来得方便。&lt;/p>
+&lt;p>虽然 Swift 目前不支持，但我们还是可以通过引入 &lt;a href="https://github.com/pointfreeco/swift-case-paths">CasePaths&lt;/a> 这个第三方依赖来实现。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-swift" data-lang="swift">&lt;span style="color:#66d9ef">import&lt;/span> &lt;span style="color:#a6e22e">CasePaths&lt;/span>
+&lt;span style="color:#66d9ef">enum&lt;/span> &lt;span style="color:#a6e22e">AccountState&lt;/span> {
+&lt;span style="color:#66d9ef">case&lt;/span> authenticated(User)
+&lt;span style="color:#66d9ef">case&lt;/span> unauthenticated
+&lt;span style="color:#66d9ef">case&lt;/span> error(Error)
+&lt;span style="color:#75715e">// 计算属性可以删除掉了&lt;/span>
+&lt;span style="color:#75715e">// var username: String? {&lt;/span>
+&lt;span style="color:#75715e">// get {&lt;/span>
+&lt;span style="color:#75715e">// guard case .authenticated(let user) = self else {&lt;/span>
+&lt;span style="color:#75715e">// return nil&lt;/span>
+&lt;span style="color:#75715e">// }&lt;/span>
+&lt;span style="color:#75715e">// return user.name&lt;/span>
+&lt;span style="color:#75715e">// }&lt;/span>
+&lt;span style="color:#75715e">// set {&lt;/span>
+&lt;span style="color:#75715e">// guard case .authenticated(let user) = self,&lt;/span>
+&lt;span style="color:#75715e">// let newValue = newValue else { return }&lt;/span>
+&lt;span style="color:#75715e">// user.name = newValue&lt;/span>
+&lt;span style="color:#75715e">// self = .authenticated(user)&lt;/span>
+&lt;span style="color:#75715e">// }&lt;/span>
+&lt;span style="color:#75715e">// }&lt;/span>
+}
+&lt;span style="color:#75715e">// 界面中直接使用 CasePath&lt;/span>
+&lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#66d9ef">let&lt;/span> user = &lt;span style="color:#66d9ef">self&lt;/span>.&lt;span style="color:#960050;background-color:#1e0010">$&lt;/span>state.accountState.matching(&lt;span style="color:#f92672">/&lt;/span>.authenticated) {
+TextField(&lt;span style="color:#e6db74">&amp;#34;Change username&amp;#34;&lt;/span>, text: user.name)
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>由此为 Enum 也增加了与 Struct、Class 等效的 KeyPath 支持，从而使得文章开头用 Enum 作为 SwiftUI 的状态机管理工具更便捷了一些。&lt;/p>
+&lt;h2 id="参考资料">参考资料&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://kentcdodds.com/blog/stop-using-isloading-booleans">Stop using isLoading booleans&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.swiftbysundell.com/articles/the-power-of-key-paths-in-swift/">The power of key paths in Swift&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.pointfree.co/collections/swiftui/composable-bindings/ep107-composable-swiftui-bindings-the-problem">Composable SwiftUI Bindings: The Problem&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</title><link>https://joeytat.github.io/posts/190819_asynchronous-javascript/</link><pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190819_asynchronous-javascript/</guid><description>
 &lt;p>先看下面的代码&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">printHello&lt;/span>() {
 &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Hello&amp;#34;&lt;/span>);
@@ -62,7 +211,7 @@
 用于持有提交到 Web Browser API 中等待回调的 callback。&lt;/li>
 &lt;li>Event Loop&lt;br>
 一个不停地检查 JavaScript 调用栈中是否还有任务的循环。&lt;/li>
-&lt;/ul></description></item><item><title>TIL - React 进阶模式之复合组件（Compound Component）</title><link>https://joeytat.github.io/posts/compound-component/</link><pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/compound-component/</guid><description>
+&lt;/ul></description></item><item><title>TIL - React 进阶模式之复合组件（Compound Component）</title><link>https://joeytat.github.io/posts/190812_compound-component/</link><pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190812_compound-component/</guid><description>
 &lt;h3 id="复合组件是什么">复合组件是什么&lt;/h3>
 &lt;p>编写页面时，经常存在多个子组件的展示，是依赖于同一个数据源的情况。
 比如单选框：&lt;/p>
@@ -133,7 +282,7 @@
 &lt;ul>
 &lt;li>&lt;a href="https://frontendmasters.com/courses/advanced-react-patterns/">Frontend Masters - Advanced React Patterns&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://reactjs.org/docs/context.html#when-to-use-context">React Context&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>翻译 - 图像优化</title><link>https://joeytat.github.io/posts/optimizing_images/</link><pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/optimizing_images/</guid><description>
+&lt;/ul></description></item><item><title>翻译 - 图像优化</title><link>https://joeytat.github.io/posts/190619_optimizing_images/</link><pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190619_optimizing_images/</guid><description>
 &lt;p>翻译自 &lt;a href="https://www.swiftjectivec.com/optimizing-images/">Optimizing Images&lt;/a> by &lt;a href="https://twitter.com/jordanmorgan10">Jordan Morgan&lt;/a>&lt;/p>
 &lt;p>有句话说：最好的照相机就是在你身边的那台。 如果这句俗语是对的，那么毫无疑问地— iPhone 是这个星球上最重要的相机， 并且我们的业界也证明了这一点。&lt;/p>
 &lt;p>在度假中? 如果没有在你的 Instagram Story 中留下几张照片，那就不算发生过。&lt;/p>
@@ -302,7 +451,7 @@ self.listItem.downsampledMediaImage &lt;span style="color:#f92672">=&lt;/span> s
 &lt;p>你无法察觉你不知道的东西。 就编程来说，你基本上相当于报名参加了一个需要持续跑每小时 10，000 米以跟上创新和变革的职业生涯。 这意味着&amp;hellip;有大量的 API，框架，设计模式或者优化方案你并不知晓。&lt;/p>
 &lt;p>在图像领域尤其是这样。 大多数时间，你可能只是初始化了一个 &lt;code>UIImageView&lt;/code> 然后放进了一些好看的像素，就过了。 我知道啦，摩尔定理什么的。 现在这些电话运行速度很快，而且有数 G 的内存，并且我们把人类运送到了月球上，都只用了一台不到 100K 内存的电脑。&lt;/p>
 &lt;p>但是和魔鬼共舞不会长久，他必然需要滋养他的角。 别让系统杀掉你的应用，只是因为你用了 1G 内存来展示一张自拍照。 但愿这些知识和技巧可以将你拯救于崩溃日志。&lt;/p>
-&lt;p>下次见 ✌️。&lt;/p></description></item><item><title>TIL - Platforms State of the Union(WWDC 2019)</title><link>https://joeytat.github.io/posts/wwdc2019_platforms_state_of_the_union/</link><pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/wwdc2019_platforms_state_of_the_union/</guid><description>
+&lt;p>下次见 ✌️。&lt;/p></description></item><item><title>TIL - Platforms State of the Union(WWDC 2019)</title><link>https://joeytat.github.io/posts/190605_wwdc2019_platforms_state_of_the_union/</link><pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190605_wwdc2019_platforms_state_of_the_union/</guid><description>
 &lt;h2 id="swiftui">SwiftUI&lt;/h2>
 &lt;p>在 View 层级提供了四种特性:&lt;/p>
 &lt;ul>
@@ -364,7 +513,7 @@ Swift 终于有自己的 Package manage 了. 并且和 Xcode 进行了深度整�
 &lt;p>还对 catalina 的一些系统修改进行了介绍, 比如各种资源权限的收紧, 并且文件资源权限分成了两部分, 系统文件对于三方 app 变成了只读.&lt;/p>
 &lt;blockquote>
 &lt;p>后面都是各平台系统或新功能的介绍, 还是不继续施工了.&lt;/p>
-&lt;/blockquote></description></item><item><title>TIL: 如何实现 JavaScript 函数参数必填的支持?</title><link>https://joeytat.github.io/posts/js_required_property/</link><pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/js_required_property/</guid><description>
+&lt;/blockquote></description></item><item><title>TIL: 如何实现 JavaScript 函数参数必填的支持?</title><link>https://joeytat.github.io/posts/190603_js_required_property/</link><pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190603_js_required_property/</guid><description>
 &lt;p>JS 在 ES6 的中新增了函数参数指定默认值的支持:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-js" data-lang="js">&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">Greeting&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">name&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Joeytat&amp;#34;&lt;/span>) =&amp;gt; {
 &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">`Hello &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">name&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>)
@@ -378,7 +527,7 @@ Swift 终于有自己的 Package manage 了. 并且和 Xcode 进行了深度整�
 &lt;span style="color:#66d9ef">throw&lt;/span> Error(&lt;span style="color:#e6db74">`&lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">propertyName&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74"> 为必填参数`&lt;/span>)
 }
 &lt;span style="color:#a6e22e">Greeting&lt;/span>() &lt;span style="color:#75715e">// 抛出异常: &amp;#34;Error: name 为必填参数&amp;#34;
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样如果没有传递参数就会抛出异常, 并且带有友好的提示了.&lt;/p></description></item><item><title>2018</title><link>https://joeytat.github.io/posts/2018_overview/</link><pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/2018_overview/</guid><description>
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样如果没有传递参数就会抛出异常, 并且带有友好的提示了.&lt;/p></description></item><item><title>2018</title><link>https://joeytat.github.io/posts/181218_overview/</link><pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/181218_overview/</guid><description>
 &lt;p>刚毕业那阵儿还每年都写好长的总结, 然后这两年变懒了. 今年又想再记录一下了嘿 | ᐕ)⁾⁾&lt;/p>
 &lt;ul>
 &lt;li>
@@ -421,7 +570,7 @@ Swift 终于有自己的 Package manage 了. 并且和 Xcode 进行了深度整�
 &lt;p>用来拍了不少视频, 照片. 人像模式拍出的照片, 会让我这个摄影门外汉产生一种「自己拍的还不错嘛」的错觉, 从而达到了要经常掏出手机记录生活的目标.&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>希望明年也能多创造一些东西, 能够在 19 年的年终总结中, 选出自己满意的年度 XXX 吧&lt;/p></description></item><item><title>为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?</title><link>https://joeytat.github.io/posts/cocoapods-1.5-static-library/</link><pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/cocoapods-1.5-static-library/</guid><description>
+&lt;p>希望明年也能多创造一些东西, 能够在 19 年的年终总结中, 选出自己满意的年度 XXX 吧&lt;/p></description></item><item><title>为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?</title><link>https://joeytat.github.io/posts/181227_cocoapods-1.5-static-library/</link><pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/181227_cocoapods-1.5-static-library/</guid><description>
 &lt;p>昨天在 Twitter 上看到 TualatriX 说&lt;a href="https://twitter.com/tualatrix/status/1077166131956264960">把私有库都通过 Cocoapods 编译成静态库之后很爽&lt;/a>, 就有点好奇到底是爽在哪里.&lt;/p>
 &lt;p>于是去搜了一下, 原来是前段时间(大半年前吧&amp;hellip;), Cocoapods 发布了 1.5 的 &lt;a href="http://blog.cocoapods.org/CocoaPods-1.5.0/">release note&lt;/a>, 宣布支持 Swift 静态库编译. 并且文中提到了对于担心动态二进制文件影响应用启动速度的人来说, 这是个了不起的更新.
 jh
