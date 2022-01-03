@@ -1,5 +1,5 @@
 +++
-title = "TIL - Platforms State of the Union(WWDC 2019)"
+title = "Platforms State of the Union(WWDC 2019)"
 date = "2019-06-05"
 author = "Joeytat"
 tags = ["iOS"]

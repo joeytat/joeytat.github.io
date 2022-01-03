@@ -1,5 +1,5 @@
 +++
-title = "TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？"
+title = "JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？"
 date = "2019-08-19"
 author = "Joeytat"
 tags = ["JavaScript"]

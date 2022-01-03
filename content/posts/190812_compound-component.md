@@ -1,5 +1,5 @@
 +++
-title = "TIL - React 进阶模式之复合组件（Compound Component）"
+title = "React 进阶模式之复合组件（Compound Component）"
 date = "2019-08-12"
 author = "Joeytat"
 tags = ["React"]

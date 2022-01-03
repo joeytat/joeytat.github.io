@@ -5,9 +5,6 @@ author="Joeytat"
 description = "如何利用 Enum 以及自定义 KeyPath 来更好地管理 SwiftUI 的状态"
 tags = ["SwiftUI"]
 +++
-
-# SwiftUI 中的状态管理 —— Composible Binding
-
 在 SwiftUI 中，需要通过数据来驱动 UI 的变化。数据结构抽象描述的质量也影响着我们对 SwiftUI 界面的维护。
 
 通常数据中可能存在很多状态，如果使用很多的 boolean 值来描述这些状态，那么 App 的可维护性可能会大大降低。

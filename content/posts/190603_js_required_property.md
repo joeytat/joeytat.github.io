@@ -1,5 +1,5 @@
 +++
-title = "TIL: 如何实现 JavaScript 函数参数必填的支持?"
+title = "如何实现 JavaScript 函数参数必填的支持?"
 date = "2019-06-03"
 author = "Joeytat"
 tags = ["JavaScript"]
