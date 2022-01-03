@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Dev Log</title><link>https://joeytat.github.io/posts/</link><description>Recent content in Posts on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 03 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>SwiftUI 状态管理 —— Composible Binding</title><link>https://joeytat.github.io/posts/20220103_notes_composible_binding/</link><pubDate>Mon, 03 Jan 2022 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/20220103_notes_composible_binding/</guid><description>
-&lt;h1 id="swiftui-中的状态管理--composible-binding">SwiftUI 中的状态管理 —— Composible Binding&lt;/h1>
 &lt;p>在 SwiftUI 中，需要通过数据来驱动 UI 的变化。数据结构抽象描述的质量也影响着我们对 SwiftUI 界面的维护。&lt;/p>
 &lt;p>通常数据中可能存在很多状态，如果使用很多的 boolean 值来描述这些状态，那么 App 的可维护性可能会大大降低。&lt;/p>
 &lt;h2 id="管理独立状态的问题">管理独立状态的问题&lt;/h2>
@@ -147,7 +146,7 @@ TextField(&lt;span style="color:#e6db74">&amp;#34;Change username&amp;#34;&lt;/s
 &lt;li>&lt;a href="https://kentcdodds.com/blog/stop-using-isloading-booleans">Stop using isLoading booleans&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.swiftbysundell.com/articles/the-power-of-key-paths-in-swift/">The power of key paths in Swift&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://www.pointfree.co/collections/swiftui/composable-bindings/ep107-composable-swiftui-bindings-the-problem">Composable SwiftUI Bindings: The Problem&lt;/a>&lt;/li>
-&lt;/ul></description></item><item><title>TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</title><link>https://joeytat.github.io/posts/190819_asynchronous-javascript/</link><pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190819_asynchronous-javascript/</guid><description>
+&lt;/ul></description></item><item><title>JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</title><link>https://joeytat.github.io/posts/190819_asynchronous-javascript/</link><pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190819_asynchronous-javascript/</guid><description>
 &lt;p>先看下面的代码&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-javascript" data-lang="javascript">&lt;span style="color:#66d9ef">function&lt;/span> &lt;span style="color:#a6e22e">printHello&lt;/span>() {
 &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Hello&amp;#34;&lt;/span>);
@@ -211,7 +210,7 @@ TextField(&lt;span style="color:#e6db74">&amp;#34;Change username&amp;#34;&lt;/s
 用于持有提交到 Web Browser API 中等待回调的 callback。&lt;/li>
 &lt;li>Event Loop&lt;br>
 一个不停地检查 JavaScript 调用栈中是否还有任务的循环。&lt;/li>
-&lt;/ul></description></item><item><title>TIL - React 进阶模式之复合组件（Compound Component）</title><link>https://joeytat.github.io/posts/190812_compound-component/</link><pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190812_compound-component/</guid><description>
+&lt;/ul></description></item><item><title>React 进阶模式之复合组件（Compound Component）</title><link>https://joeytat.github.io/posts/190812_compound-component/</link><pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190812_compound-component/</guid><description>
 &lt;h3 id="复合组件是什么">复合组件是什么&lt;/h3>
 &lt;p>编写页面时，经常存在多个子组件的展示，是依赖于同一个数据源的情况。
 比如单选框：&lt;/p>
@@ -451,7 +450,7 @@ self.listItem.downsampledMediaImage &lt;span style="color:#f92672">=&lt;/span> s
 &lt;p>你无法察觉你不知道的东西。 就编程来说，你基本上相当于报名参加了一个需要持续跑每小时 10，000 米以跟上创新和变革的职业生涯。 这意味着&amp;hellip;有大量的 API，框架，设计模式或者优化方案你并不知晓。&lt;/p>
 &lt;p>在图像领域尤其是这样。 大多数时间，你可能只是初始化了一个 &lt;code>UIImageView&lt;/code> 然后放进了一些好看的像素，就过了。 我知道啦，摩尔定理什么的。 现在这些电话运行速度很快，而且有数 G 的内存，并且我们把人类运送到了月球上，都只用了一台不到 100K 内存的电脑。&lt;/p>
 &lt;p>但是和魔鬼共舞不会长久，他必然需要滋养他的角。 别让系统杀掉你的应用，只是因为你用了 1G 内存来展示一张自拍照。 但愿这些知识和技巧可以将你拯救于崩溃日志。&lt;/p>
-&lt;p>下次见 ✌️。&lt;/p></description></item><item><title>TIL - Platforms State of the Union(WWDC 2019)</title><link>https://joeytat.github.io/posts/190605_wwdc2019_platforms_state_of_the_union/</link><pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190605_wwdc2019_platforms_state_of_the_union/</guid><description>
+&lt;p>下次见 ✌️。&lt;/p></description></item><item><title>Platforms State of the Union(WWDC 2019)</title><link>https://joeytat.github.io/posts/190605_wwdc2019_platforms_state_of_the_union/</link><pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190605_wwdc2019_platforms_state_of_the_union/</guid><description>
 &lt;h2 id="swiftui">SwiftUI&lt;/h2>
 &lt;p>在 View 层级提供了四种特性:&lt;/p>
 &lt;ul>
@@ -513,7 +512,7 @@ Swift 终于有自己的 Package manage 了. 并且和 Xcode 进行了深度整�
 &lt;p>还对 catalina 的一些系统修改进行了介绍, 比如各种资源权限的收紧, 并且文件资源权限分成了两部分, 系统文件对于三方 app 变成了只读.&lt;/p>
 &lt;blockquote>
 &lt;p>后面都是各平台系统或新功能的介绍, 还是不继续施工了.&lt;/p>
-&lt;/blockquote></description></item><item><title>TIL: 如何实现 JavaScript 函数参数必填的支持?</title><link>https://joeytat.github.io/posts/190603_js_required_property/</link><pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190603_js_required_property/</guid><description>
+&lt;/blockquote></description></item><item><title>如何实现 JavaScript 函数参数必填的支持?</title><link>https://joeytat.github.io/posts/190603_js_required_property/</link><pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190603_js_required_property/</guid><description>
 &lt;p>JS 在 ES6 的中新增了函数参数指定默认值的支持:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-js" data-lang="js">&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">Greeting&lt;/span> &lt;span style="color:#f92672">=&lt;/span> (&lt;span style="color:#a6e22e">name&lt;/span>&lt;span style="color:#f92672">=&lt;/span>&lt;span style="color:#e6db74">&amp;#34;Joeytat&amp;#34;&lt;/span>) =&amp;gt; {
 &lt;span style="color:#a6e22e">console&lt;/span>.&lt;span style="color:#a6e22e">log&lt;/span>(&lt;span style="color:#e6db74">`Hello &lt;/span>&lt;span style="color:#e6db74">${&lt;/span>&lt;span style="color:#a6e22e">name&lt;/span>&lt;span style="color:#e6db74">}&lt;/span>&lt;span style="color:#e6db74">`&lt;/span>)

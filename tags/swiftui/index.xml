@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SwiftUI on Dev Log</title><link>https://joeytat.github.io/tags/swiftui/</link><description>Recent content in SwiftUI on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 03 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/tags/swiftui/index.xml" rel="self" type="application/rss+xml"/><item><title>SwiftUI 状态管理 —— Composible Binding</title><link>https://joeytat.github.io/posts/20220103_notes_composible_binding/</link><pubDate>Mon, 03 Jan 2022 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/20220103_notes_composible_binding/</guid><description>
-&lt;h1 id="swiftui-中的状态管理--composible-binding">SwiftUI 中的状态管理 —— Composible Binding&lt;/h1>
 &lt;p>在 SwiftUI 中，需要通过数据来驱动 UI 的变化。数据结构抽象描述的质量也影响着我们对 SwiftUI 界面的维护。&lt;/p>
 &lt;p>通常数据中可能存在很多状态，如果使用很多的 boolean 值来描述这些状态，那么 App 的可维护性可能会大大降低。&lt;/p>
 &lt;h2 id="管理独立状态的问题">管理独立状态的问题&lt;/h2>

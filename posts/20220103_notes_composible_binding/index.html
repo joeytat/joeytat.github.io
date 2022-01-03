@@ -6,11 +6,11 @@ Dev Log
 </title>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="SwiftUI 中的状态管理 —— Composible Binding 在 SwiftUI 中，需要通过数据来驱动 UI 的变化。数据结构抽象描述的质量也影响着我们对 SwiftUI 界面的维护。
+<meta name=description content="在 SwiftUI 中，需要通过数据来驱动 UI 的变化。数据结构抽象描述的质量也影响着我们对 SwiftUI 界面的维护。
 通常数据中可能存在很多状态，如果使用很多的 boolean 值来描述这些状态，那么 App 的可维护性可能会大大降低。
 管理独立状态的问题 假设我们有一个 App，用户可以在登录与非登录状态下进行操作。所以我们的界面需要兼容这两种状态，其描述可能是这样的：
 class AppState: ObservableObject { @Published var user: User? = nil @Published var error: Error? = nil var authenticated: Bool { user != nil } var hasError: Bool { error != nil } } 基于这样的状态描述，如果我们想创建一个仅展示用户名的组件大概会是这样：
-var body: some View { Group { if state.hasError { Text(&amp;#34;Oops, sth went wrong: \(state.error!.localizedDescription)&amp;#34;) } if state.">
+var body: some View { Group { if state.hasError { Text(&amp;#34;Oops, sth went wrong: \(state.error!.localizedDescription)&amp;#34;) } if state.authenticated { Text(&amp;#34;Hello \(state.user?.name ?">
 <meta name=keywords content>
 <meta name=robots content="noodp">
 <link rel=canonical href=https://joeytat.github.io/posts/20220103_notes_composible_binding/>
@@ -63,7 +63,6 @@ var body: some View { Group { if state.hasError { Text(&amp;#34;Oops, sth went w
 <a href=https://joeytat.github.io/tags/swiftui/>#SwiftUI</a>&nbsp;
 </span>
 <div class=post-content>
-<h1 id=swiftui-中的状态管理--composible-binding>SwiftUI 中的状态管理 —— Composible Binding</h1>
 <p>在 SwiftUI 中，需要通过数据来驱动 UI 的变化。数据结构抽象描述的质量也影响着我们对 SwiftUI 界面的维护。</p>
 <p>通常数据中可能存在很多状态，如果使用很多的 boolean 值来描述这些状态，那么 App 的可维护性可能会大大降低。</p>
 <h2 id=管理独立状态的问题>管理独立状态的问题</h2>
@@ -227,7 +226,7 @@ var body: some View { Group { if state.hasError { Text(&amp;#34;Oops, sth went w
 <div class=pagination__buttons>
 <span class="button next">
 <a href=https://joeytat.github.io/posts/190819_asynchronous-javascript/>
-<span class=button__text>TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</span>
+<span class=button__text>JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</span>
 <span class=button__icon>→</span>
 </a>
 </span>

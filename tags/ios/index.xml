@@ -167,7 +167,7 @@ self.listItem.downsampledMediaImage &lt;span style="color:#f92672">=&lt;/span> s
 &lt;p>你无法察觉你不知道的东西。 就编程来说，你基本上相当于报名参加了一个需要持续跑每小时 10，000 米以跟上创新和变革的职业生涯。 这意味着&amp;hellip;有大量的 API，框架，设计模式或者优化方案你并不知晓。&lt;/p>
 &lt;p>在图像领域尤其是这样。 大多数时间，你可能只是初始化了一个 &lt;code>UIImageView&lt;/code> 然后放进了一些好看的像素，就过了。 我知道啦，摩尔定理什么的。 现在这些电话运行速度很快，而且有数 G 的内存，并且我们把人类运送到了月球上，都只用了一台不到 100K 内存的电脑。&lt;/p>
 &lt;p>但是和魔鬼共舞不会长久，他必然需要滋养他的角。 别让系统杀掉你的应用，只是因为你用了 1G 内存来展示一张自拍照。 但愿这些知识和技巧可以将你拯救于崩溃日志。&lt;/p>
-&lt;p>下次见 ✌️。&lt;/p></description></item><item><title>TIL - Platforms State of the Union(WWDC 2019)</title><link>https://joeytat.github.io/posts/190605_wwdc2019_platforms_state_of_the_union/</link><pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190605_wwdc2019_platforms_state_of_the_union/</guid><description>
+&lt;p>下次见 ✌️。&lt;/p></description></item><item><title>Platforms State of the Union(WWDC 2019)</title><link>https://joeytat.github.io/posts/190605_wwdc2019_platforms_state_of_the_union/</link><pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/190605_wwdc2019_platforms_state_of_the_union/</guid><description>
 &lt;h2 id="swiftui">SwiftUI&lt;/h2>
 &lt;p>在 View 层级提供了四种特性:&lt;/p>
 &lt;ul>
