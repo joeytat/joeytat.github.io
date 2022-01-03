@@ -2,7 +2,7 @@
 title = "TIL - JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？"
 date = "2019-08-19"
 author = "Joeytat"
-tags = ["JavaScript", "TIL"]
+tags = ["JavaScript"]
 description = "一个问题简单地理解 Web Browser API，Callback Queue 与 Event Loop 是如何协作的"
 +++
 

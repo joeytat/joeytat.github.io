@@ -2,6 +2,7 @@
 title = "2018"
 date = "2018-12-28"
 author = "Joeytat"
+tags = ["chitchat"]
 description = "年终总结"
 +++
 

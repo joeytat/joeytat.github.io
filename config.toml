@@ -28,7 +28,7 @@ googleAnalytics = "UA-131363452-1"
   rssFullText = true
 
 [params.logo]
-	logoText = "Yu's 开发者日志"
+	logoText = "Joeytat's Devlog"
 #   or
 #
 #   path = "/img/your-example-logo.svg"

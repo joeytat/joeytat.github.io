@@ -2,7 +2,7 @@
 title = "TIL - React 进阶模式之复合组件（Compound Component）"
 date = "2019-08-12"
 author = "Joeytat"
-tags = ["React", "TIL"]
+tags = ["React"]
 description = "什么是复合组件，以及如何让子组件隐式地共享父组件的 props"
 +++
 

@@ -2,7 +2,7 @@
 title = "TIL: 如何实现 JavaScript 函数参数必填的支持?"
 date = "2019-06-03"
 author = "Joeytat"
-tags = ["JavaScript", "TIL"]
+tags = ["JavaScript"]
 +++
 
 JS 在 ES6 的中新增了函数参数指定默认值的支持:
