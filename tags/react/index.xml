@@ -1,71 +1,84 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>React on Dev Log</title><link>https://joeytat.github.io/tags/react/</link><description>Recent content in React on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/tags/react/index.xml" rel="self" type="application/rss+xml"/><item><title>React 进阶模式之复合组件（Compound Component）</title><link>https://joeytat.github.io/posts/compound-component/</link><pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/compound-component/</guid><description>
-&lt;h3 id="复合组件是什么">复合组件是什么&lt;/h3>
+&lt;h3 id="复合组件是什么">
+复合组件是什么
+&lt;a href="#%e5%a4%8d%e5%90%88%e7%bb%84%e4%bb%b6%e6%98%af%e4%bb%80%e4%b9%88" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
 &lt;p>编写页面时，经常存在多个子组件的展示，是依赖于同一个数据源的情况。
 比如单选框：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-jsx" data-lang="jsx">&amp;lt;&lt;span style="color:#f92672">Switcher&lt;/span>&amp;gt;
-&amp;lt;&lt;span style="color:#f92672">Switch&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;React&amp;#39;&lt;/span>}&amp;gt;&lt;span style="color:#a6e22e">React&lt;/span>&amp;lt;/&lt;span style="color:#f92672">Switch&lt;/span>&amp;gt;
-&amp;lt;&lt;span style="color:#f92672">Switch&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;Vue&amp;#39;&lt;/span>}&amp;gt;&lt;span style="color:#a6e22e">Vue&lt;/span>&amp;lt;/&lt;span style="color:#f92672">Switch&lt;/span>&amp;gt;
-&amp;lt;/&lt;span style="color:#f92672">Switcher&lt;/span>&amp;gt;
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>我们可以看到，所有的 &lt;code>Switch&lt;/code> 的数据都需要对 &lt;code>selecting&lt;/code> 的值进行判断，并且代码中其实只有 &lt;code>this.props.selecting ==&lt;/code> 后面的部分不同，如果能改写成这样：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#a6e22e">Switcher&lt;/span>.&lt;span style="color:#a6e22e">React&lt;/span> &lt;span style="color:#f92672">=&lt;/span> ({&lt;span style="color:#a6e22e">selecting&lt;/span>}) =&amp;gt; (
-&amp;lt;&lt;span style="color:#f92672">Switch&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;React&amp;#39;&lt;/span>}&amp;gt;&lt;span style="color:#a6e22e">React&lt;/span>&amp;lt;/&lt;span style="color:#f92672">Switch&lt;/span>&amp;gt;
-)
-&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#a6e22e">Switcher&lt;/span>.&lt;span style="color:#a6e22e">Vue&lt;/span> &lt;span style="color:#f92672">=&lt;/span> ({&lt;span style="color:#a6e22e">selecting&lt;/span>}) =&amp;gt; (
-&amp;lt;&lt;span style="color:#f92672">Switch&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;Vue&amp;#39;&lt;/span>}&amp;gt;&lt;span style="color:#a6e22e">Vue&lt;/span>&amp;lt;/&lt;span style="color:#f92672">Switch&lt;/span>&amp;gt;
-)
-&amp;lt;&lt;span style="color:#f92672">Switcher&lt;/span> &lt;span style="color:#a6e22e">selecting&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span>}&amp;gt;
-&amp;lt;&lt;span style="color:#f92672">Switcher.React&lt;/span>/&amp;gt;
-&amp;lt;&lt;span style="color:#f92672">Switcher.Vue&lt;/span>/&amp;gt;
-&amp;lt;/&lt;span style="color:#f92672">Switcher&lt;/span>&amp;gt;
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>隐式地将父组件的数据传递给子组件，其显示逻辑交由给子组件自行处理，代码的组织结构将会清晰很多。后续即使需求变动，数据的传递改变也并不需要我们操心（不需要一个子组件一个子组件地添加传递），只需要修改 &lt;code>Switcher&lt;/code> 子控件内部处理逻辑即可。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">Switcher&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switch&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;React&amp;#39;&lt;/span>}&amp;gt;&lt;span style="color:#a6e22e">React&lt;/span>&amp;lt;/&lt;span style="color:#f92672">Switch&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switch&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#e6db74">&amp;#39;Vue&amp;#39;&lt;/span>}&amp;gt;&lt;span style="color:#a6e22e">Vue&lt;/span>&amp;lt;/&lt;span style="color:#f92672">Switch&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">Switcher&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我们可以看到，所有的 &lt;code>Switch&lt;/code> 的数据都需要对 &lt;code>selecting&lt;/code> 的值进行判断，并且代码中其实只有 &lt;code>this.props.selecting ==&lt;/code> 后面的部分不同，如果能改写成这样：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#a6e22e">Switcher&lt;/span>.&lt;span style="color:#a6e22e">React&lt;/span> &lt;span style="color:#f92672">=&lt;/span> ({&lt;span style="color:#a6e22e">selecting&lt;/span>}) =&amp;gt; (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switch&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;React&amp;#39;&lt;/span>}&amp;gt;&lt;span style="color:#a6e22e">React&lt;/span>&amp;lt;/&lt;span style="color:#f92672">Switch&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#a6e22e">Switcher&lt;/span>.&lt;span style="color:#a6e22e">Vue&lt;/span> &lt;span style="color:#f92672">=&lt;/span> ({&lt;span style="color:#a6e22e">selecting&lt;/span>}) =&amp;gt; (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switch&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;Vue&amp;#39;&lt;/span>}&amp;gt;&lt;span style="color:#a6e22e">Vue&lt;/span>&amp;lt;/&lt;span style="color:#f92672">Switch&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">Switcher&lt;/span> &lt;span style="color:#a6e22e">selecting&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span>}&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switcher.React&lt;/span>/&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switcher.Vue&lt;/span>/&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">Switcher&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>隐式地将父组件的数据传递给子组件，其显示逻辑交由给子组件自行处理，代码的组织结构将会清晰很多。后续即使需求变动，数据的传递改变也并不需要我们操心（不需要一个子组件一个子组件地添加传递），只需要修改 &lt;code>Switcher&lt;/code> 子控件内部处理逻辑即可。&lt;/p>
 &lt;p>那么要怎么实现这个&lt;strong>隐式数据传递&lt;/strong>呢？ 可以通过 &lt;a href="https://reactjs.org/docs/react-api.html#reactchildren">&lt;code>React.Children.map&lt;/code>&lt;/a> 和 &lt;a href="https://reactjs.org/docs/react-api.html#cloneelement">&lt;code>React.cloneElement&lt;/code>&lt;/a> 这两个 API 来实现。&lt;/p>
-&lt;h3 id="reactchildrenmap-与-reactcloneelement">React.Children.map 与 React.cloneElement&lt;/h3>
+&lt;h3 id="reactchildrenmap-与-reactcloneelement">
+React.Children.map 与 React.cloneElement
+&lt;a href="#reactchildrenmap-%e4%b8%8e-reactcloneelement" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
 &lt;p>在 &lt;code>render&lt;/code> 中我们可以使用 &lt;code>React.Children.map&lt;/code> 来获取到 &lt;code>Switcher&lt;/code> 中的子组件，然后通过 &lt;code>React.cloneElement&lt;/code> 对组件进行克隆及数据传递：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="color:#a6e22e">render&lt;/span>() {
-&lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">React&lt;/span>.&lt;span style="color:#a6e22e">Children&lt;/span>.&lt;span style="color:#a6e22e">map&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">children&lt;/span>, &lt;span style="color:#a6e22e">child&lt;/span> =&amp;gt;
-&lt;span style="color:#a6e22e">React&lt;/span>.&lt;span style="color:#a6e22e">cloneElement&lt;/span>(&lt;span style="color:#a6e22e">child&lt;/span>, {
-&lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">state&lt;/span>.&lt;span style="color:#a6e22e">on&lt;/span>,
-&lt;span style="color:#a6e22e">toggle&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">toggle&lt;/span>,
-}),
-)
-}
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样，即使我们在使用 &lt;code>Switcher.React&lt;/code> 和 &lt;code>Switcher.Vue&lt;/code> 时，没有显式地传递参数，子组件也能获取数据。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">render&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">React&lt;/span>.&lt;span style="color:#a6e22e">Children&lt;/span>.&lt;span style="color:#a6e22e">map&lt;/span>(&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">children&lt;/span>, &lt;span style="color:#a6e22e">child&lt;/span> =&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">React&lt;/span>.&lt;span style="color:#a6e22e">cloneElement&lt;/span>(&lt;span style="color:#a6e22e">child&lt;/span>, {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">state&lt;/span>.&lt;span style="color:#a6e22e">on&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">toggle&lt;/span>&lt;span style="color:#f92672">:&lt;/span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">toggle&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样，即使我们在使用 &lt;code>Switcher.React&lt;/code> 和 &lt;code>Switcher.Vue&lt;/code> 时，没有显式地传递参数，子组件也能获取数据。&lt;/p>
 &lt;blockquote>
 &lt;p>这里 &lt;code>React.Children.map&lt;/code> 与 &lt;code>this.props.children.map&lt;/code> 并不等价，后者在只有一个子组件的时候，返回的不是数组，而是唯一的那个组件。&lt;/p>
 &lt;/blockquote>
-&lt;h3 id="reactchildrenmap-的局限性">React.Children.map 的局限性&lt;/h3>
+&lt;h3 id="reactchildrenmap-的局限性">
+React.Children.map 的局限性
+&lt;a href="#reactchildrenmap-%e7%9a%84%e5%b1%80%e9%99%90%e6%80%a7" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
 &lt;p>上面代码有个问题是，如果出现了更多层级的子组件，那么参数传递只会到第一层。&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-jsx" data-lang="jsx">&amp;lt;&lt;span style="color:#f92672">Switcher&lt;/span> &lt;span style="color:#a6e22e">selecting&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span>}&amp;gt;
-&amp;lt;&lt;span style="color:#f92672">Switcher.React&lt;/span>/&amp;gt;
-&amp;lt;&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
-&amp;lt;&lt;span style="color:#f92672">Switcher.Vue&lt;/span>/&amp;gt;
-&amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
-&amp;lt;/&lt;span style="color:#f92672">Switcher&lt;/span>&amp;gt;
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样写会提示传递了错误的参数给 &lt;code>div&lt;/code>，因为我们 &lt;code>React.Children.map&lt;/code> 只能获取到第一层子组件（&lt;code>[Switcher.React, div]&lt;/code>）。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">Switcher&lt;/span> &lt;span style="color:#a6e22e">selecting&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span>}&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switcher.React&lt;/span>/&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switcher.Vue&lt;/span>/&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">Switcher&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样写会提示传递了错误的参数给 &lt;code>div&lt;/code>，因为我们 &lt;code>React.Children.map&lt;/code> 只能获取到第一层子组件（&lt;code>[Switcher.React, div]&lt;/code>）。&lt;/p>
 &lt;p>那怎么办，难道要用递归？React 16.x 提供了新的 &lt;a href="https://reactjs.org/docs/context.html#when-to-use-context">Context&lt;/a> 可以很好地解决这个问题。&lt;/p>
 &lt;p>Context 的使用方法很简单，首先创建一个 Context：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>
-&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">SwitcherContext&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">React&lt;/span>.&lt;span style="color:#a6e22e">createContext&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>)
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>接着是 &lt;code>render&lt;/code>，既然我们不确定会有多少层的子组件，那么就直接将 &lt;code>this.props.children&lt;/code> 包裹在 &lt;code>Context.Provider&lt;/code> 中：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-jsx" data-lang="jsx">&amp;lt;&lt;span style="color:#f92672">SwitcherContext.Provider&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span>}&amp;gt;
-{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">children&lt;/span>}
-&amp;lt;/&lt;span style="color:#f92672">SwitcherContext.Provider&lt;/span>&amp;gt;
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后改写我们的子组件数据获取方式，之前是通过 &lt;code>React.cloneElement&lt;/code> 来将数据通过 &lt;code>props&lt;/code> 传递到组件中，现在可以直接从 &lt;code>Context.Consumer&lt;/code> 中获取：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#a6e22e">Switcher&lt;/span>.&lt;span style="color:#a6e22e">React&lt;/span> &lt;span style="color:#f92672">=&lt;/span>() =&amp;gt; (
-&amp;lt;&lt;span style="color:#f92672">SwitcherContext.Consumer&lt;/span>&amp;gt;
-{ &lt;span style="color:#a6e22e">selecting&lt;/span> =&amp;gt; (
-&amp;lt;&lt;span style="color:#f92672">Switch&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;React&amp;#39;&lt;/span>}&amp;gt;&lt;span style="color:#a6e22e">React&lt;/span>&amp;lt;/&lt;span style="color:#f92672">Switch&lt;/span>&amp;gt;)
-}
-&amp;lt;/&lt;span style="color:#f92672">SwitcherContext.Consumer&lt;/span>&amp;gt;
-)
-&lt;/code>&lt;/pre>&lt;/div>&lt;p>如此一来就完成了我们的改造。外部使用到 &lt;code>Switcher&lt;/code> 的地方没有任何变动，依然是：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-jsx" data-lang="jsx">&amp;lt;&lt;span style="color:#f92672">Switcher&lt;/span> &lt;span style="color:#a6e22e">selecting&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span>}&amp;gt;
-&amp;lt;&lt;span style="color:#f92672">Switcher.React&lt;/span>/&amp;gt;
-&amp;lt;&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
-&amp;lt;&lt;span style="color:#f92672">Switcher.Vue&lt;/span>/&amp;gt;
-&amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
-&amp;lt;/&lt;span style="color:#f92672">Switcher&lt;/span>&amp;gt;
-&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="相关资料">相关资料&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">const&lt;/span> &lt;span style="color:#a6e22e">SwitcherContext&lt;/span> &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#a6e22e">React&lt;/span>.&lt;span style="color:#a6e22e">createContext&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>接着是 &lt;code>render&lt;/code>，既然我们不确定会有多少层的子组件，那么就直接将 &lt;code>this.props.children&lt;/code> 包裹在 &lt;code>Context.Provider&lt;/code> 中：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">SwitcherContext.Provider&lt;/span> &lt;span style="color:#a6e22e">value&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span>}&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">children&lt;/span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">SwitcherContext.Provider&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后改写我们的子组件数据获取方式，之前是通过 &lt;code>React.cloneElement&lt;/code> 来将数据通过 &lt;code>props&lt;/code> 传递到组件中，现在可以直接从 &lt;code>Context.Consumer&lt;/code> 中获取：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#a6e22e">Switcher&lt;/span>.&lt;span style="color:#a6e22e">React&lt;/span> &lt;span style="color:#f92672">=&lt;/span>() =&amp;gt; (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">SwitcherContext.Consumer&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> { &lt;span style="color:#a6e22e">selecting&lt;/span> =&amp;gt; (
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switch&lt;/span> &lt;span style="color:#a6e22e">on&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#a6e22e">selecting&lt;/span> &lt;span style="color:#f92672">===&lt;/span> &lt;span style="color:#e6db74">&amp;#39;React&amp;#39;&lt;/span>}&amp;gt;&lt;span style="color:#a6e22e">React&lt;/span>&amp;lt;/&lt;span style="color:#f92672">Switch&lt;/span>&amp;gt;)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">SwitcherContext.Consumer&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如此一来就完成了我们的改造。外部使用到 &lt;code>Switcher&lt;/code> 的地方没有任何变动，依然是：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-jsx" data-lang="jsx">&lt;span style="display:flex;">&lt;span>&amp;lt;&lt;span style="color:#f92672">Switcher&lt;/span> &lt;span style="color:#a6e22e">selecting&lt;/span>&lt;span style="color:#f92672">=&lt;/span>{&lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">props&lt;/span>.&lt;span style="color:#a6e22e">selecting&lt;/span>}&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switcher.React&lt;/span>/&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;&lt;span style="color:#f92672">Switcher.Vue&lt;/span>/&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &amp;lt;/&lt;span style="color:#f92672">div&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&amp;lt;/&lt;span style="color:#f92672">Switcher&lt;/span>&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="相关资料">
+相关资料
+&lt;a href="#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h4>
 &lt;ul>
 &lt;li>&lt;a href="https://frontendmasters.com/courses/advanced-react-patterns/">Frontend Masters - Advanced React Patterns&lt;/a>&lt;/li>
 &lt;li>&lt;a href="https://reactjs.org/docs/context.html#when-to-use-context">React Context&lt;/a>&lt;/li>
