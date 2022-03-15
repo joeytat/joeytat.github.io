@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Swift on Dev Log</title><link>https://joeytat.github.io/tags/swift/</link><description>Recent content in Swift on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 16 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/tags/swift/index.xml" rel="self" type="application/rss+xml"/><item><title>Swift 状态管理 —— 如何拆分庞大的 reducer</title><link>https://joeytat.github.io/posts/combining_reducers/</link><pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/combining_reducers/</guid><description>
+&lt;p>因为项目需要使用 SwiftUI，想起来之前买过喵神的 &lt;a href="https://objccn.io/products/swift-ui">《SwiftUI 与 Combine 编程》&lt;/a> 。书中介绍了 &lt;a href="https://redux.js.org">Redux&lt;/a> 这一在 Web 前端领域广泛被验证过的数据管理模式是如何通过 Swift 来实现的，非常推荐 SwiftUI 初见者阅读。&lt;/p>
+&lt;p>在学习过程中还产生了一个疑问，如果 reducer 越来越大，有什么更 “swift” 的办法能解决这一问题呢？（在 Redux.js 中的原生解决方案是 &lt;a href="https://redux.js.org/usage/structuring-reducers/beyond-combinereducers">&lt;code>combineReducers&lt;/code>&lt;/a>）&lt;/p>
+&lt;h2 id="拆分-reducer">
+拆分 Reducer
+&lt;a href="#%e6%8b%86%e5%88%86-reducer" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>首先看看问题在代码中的表现是什么样的，假设我们有这样一个 reducer：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">appReducer&lt;/span>(appState: &lt;span style="color:#66d9ef">inout&lt;/span> AppState, action: AppAction) -&amp;gt; Void {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">switch&lt;/span> action {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .emailValid(&lt;span style="color:#66d9ef">let&lt;/span> isValid):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.settings.isEmailValid = isValid
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .register(&lt;span style="color:#66d9ef">let&lt;/span> email, &lt;span style="color:#66d9ef">let&lt;/span> password):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.settings.loginUser = User(email, password)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .login(&lt;span style="color:#66d9ef">let&lt;/span> email, &lt;span style="color:#66d9ef">let&lt;/span> password):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.settings.loginUser = User(email, password)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .logout:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.settings.loginUser = &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .loadPokemon(&lt;span style="color:#66d9ef">let&lt;/span> result):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.pokemonList.pokemons = result
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .favoratePokemon(&lt;span style="color:#66d9ef">let&lt;/span> pokemon):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.favoritePokemons.append(pokemon)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .removeFavoritePokemon(&lt;span style="color:#66d9ef">let&lt;/span> pokemon):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> index = appState.favoritePokemons.indexOf(pokemon)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.favoritePokemons.remove(at: index)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>应用的 action 主要包含三个模块：&lt;/p>
+&lt;ul>
+&lt;li>账号登录注册注销&lt;/li>
+&lt;li>对神奇宝贝数据进行加载&lt;/li>
+&lt;li>处理对神奇宝贝数据的收藏和取消收藏&lt;/li>
+&lt;/ul>
+&lt;p>从这段代码我们很快就能发现，即使只是非常简单的示例也已经包含了不短的代码了。这里还省略掉了处理状态时可能还需要的异步 action 的处理（数据加载等）。这还仅仅只有两个非常简单的界面状态，当面对真实的 app 所需要处理的数十个页面状态会更恐怖。&lt;/p>
+&lt;p>将 reducer 拆分成如下三个独立 reducer：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">accountReducer&lt;/span>(appState: &lt;span style="color:#66d9ef">inout&lt;/span> AppState, action: AppAction) -&amp;gt; Void {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">switch&lt;/span> action {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .emailValid(&lt;span style="color:#66d9ef">let&lt;/span> isValid):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.settings.isEmailValid = isValid
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .register(&lt;span style="color:#66d9ef">let&lt;/span> email, &lt;span style="color:#66d9ef">let&lt;/span> password):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.settings.loginUser = User(email, password)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .login(&lt;span style="color:#66d9ef">let&lt;/span> email, &lt;span style="color:#66d9ef">let&lt;/span> password):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.settings.loginUser = User(email, password)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .logout:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.settings.loginUser = &lt;span style="color:#66d9ef">nil&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">default&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">pokemonListReducer&lt;/span>(appState: &lt;span style="color:#66d9ef">inout&lt;/span> AppState, action: AppAction) -&amp;gt; Void {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">switch&lt;/span> action {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .loadPokemon(&lt;span style="color:#66d9ef">let&lt;/span> result):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.pokemonList.pokemons = result
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">default&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">favoritePokemonReducer&lt;/span>(appState: &lt;span style="color:#66d9ef">inout&lt;/span> AppState, action: AppAction) -&amp;gt; Void {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">switch&lt;/span> action {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .favoratePokemon(&lt;span style="color:#66d9ef">let&lt;/span> pokemon):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.favoritePokemons.append(pokemon)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .removeFavoritePokemon(&lt;span style="color:#66d9ef">let&lt;/span> pokemon):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> index = appState.favoritePokemons.indexOf(pokemon)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.favoritePokemons.remove(at: index)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">default&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>因为对 reducer 的数量并不确定，所以这里使用可变参数来构建 &lt;code>combine&lt;/code> 方法，对传入的 reducer 进行遍历调用处理 appState。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">combine&lt;/span>&amp;lt;Value, Action&amp;gt;(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">_&lt;/span> reducers: (&lt;span style="color:#66d9ef">inout&lt;/span> Value, Action) -&amp;gt; Void...
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>) -&amp;gt; (&lt;span style="color:#66d9ef">inout&lt;/span> Value, Action) -&amp;gt; Void {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> { value, action &lt;span style="color:#66d9ef">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> reducer &lt;span style="color:#66d9ef">in&lt;/span> reducers {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> reducer(&amp;amp;value, action)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> appReducer = combine(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> accountReducer,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pokemonListReducer,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> favoritePokemonReducer
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>完成，我们的巨大 reducer 被拆分成了独立的 reducer，再通过自己实现的 combine 方法完成了组装。&lt;/p>
+&lt;h2 id="隔离-reducer-数据">
+隔离 reducer 数据
+&lt;a href="#%e9%9a%94%e7%a6%bb-reducer-%e6%95%b0%e6%8d%ae" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>但仔细观看代码还会发现一个问题，每个 reducer 都只需要处理 &lt;code>appState&lt;/code> 上的部分数据，比如 &lt;code>pokemonListReducer&lt;/code> 明明只操作了 &lt;code>appState.pokemonList&lt;/code>，我们却把整个 state 都丢给了它：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">pokemonListReducer&lt;/span>(appState: &lt;span style="color:#66d9ef">inout&lt;/span> AppState, action: AppAction) -&amp;gt; Void {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">switch&lt;/span> action {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .loadPokemon(&lt;span style="color:#66d9ef">let&lt;/span> result):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> appState.pokemonList.pokemons = result
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">default&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这会增加代码维护上的困难，不熟悉代码的人在不浏览整个 reducer 之前，很难知道这个 reducer 到底操作了哪些数据。更理想的 reducer 可能长这样：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">pokemonListReducer&lt;/span>(value: &lt;span style="color:#66d9ef">inout&lt;/span> PokemonList, action: AppAction) -&amp;gt; Void {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">switch&lt;/span> action {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .loadPokemon(&lt;span style="color:#66d9ef">let&lt;/span> result):
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> value.pokemons = result &lt;span style="color:#75715e">// 👈 只能操作 pokemonList&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">default&lt;/span>:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>只是这样改动之后，之前定义的 combine 就无法编译通过，pokemonListReducer 的签名已经不符合 combine 的要求了。&lt;/p>
+&lt;blockquote>
+&lt;p>Cannot convert value of type ‘(inout PokemonList, AppAction) -&amp;gt; ()’ to expected argument&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="拉回">
+拉回
+&lt;a href="#%e6%8b%89%e5%9b%9e" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h3>
+&lt;p>解决这个问题可以引入一个数学中的概念 —— 拉回。&lt;/p>
+&lt;blockquote>
+&lt;p>引用 wikipedia 上的解释：“简单地说，设 &lt;em>f&lt;/em> 是一个变量 &lt;em>y&lt;/em> 的函数，这里 &lt;em>y&lt;/em> 自身又是另一个变量 &lt;em>x&lt;/em> 的函数，那么 &lt;em>f&lt;/em> 可以写成 &lt;em>x&lt;/em> 的函数，这即 &lt;em>f&lt;/em> 被函数 &lt;em>y&lt;/em>(&lt;em>x&lt;/em>) 拉回。”&lt;/p>
+&lt;/blockquote>
+&lt;p>在 reducer 中的例子里，也可以套用相同的概念。只需要将持有了部分状态数据的 reducer，转化成一个拥有着全部状态数据的 reducer 签名即可：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">pullback&lt;/span>&amp;lt;LocalValue, GlobalValue, Action&amp;gt;(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">_&lt;/span> reducer: @escaping (&lt;span style="color:#66d9ef">inout&lt;/span> LocalValue, Action) -&amp;gt; Void,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">get&lt;/span>: @escaping (GlobalValue) -&amp;gt; LocalValue,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">set&lt;/span>: @escaping (&lt;span style="color:#66d9ef">inout&lt;/span> GlobalValue, LocalValue) -&amp;gt; Void
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>) -&amp;gt; (&lt;span style="color:#66d9ef">inout&lt;/span> GlobalValue, Action) -&amp;gt; Void {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> { globalValue, action &lt;span style="color:#66d9ef">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> localValue = &lt;span style="color:#66d9ef">get&lt;/span>(globalValue)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> reducer(&amp;amp;localValue, action)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">set&lt;/span>(&amp;amp;globalValue, localValue)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>该函数包含三个入参：&lt;/p>
+&lt;ol>
+&lt;li>用于处理局部状态的 reducer&lt;/li>
+&lt;li>提供从全部状态中提取部分状态的函数&lt;/li>
+&lt;li>提供将局部状态设置到全部状态中的函数&lt;/li>
+&lt;/ol>
+&lt;p>这样就得到了一个可以用来转化用于处理局部状态 reducer 到全部状态 reducer 的 pullback 函数：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>pullback(pokemonListReducer,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">get&lt;/span>: { $0.pokemonList },
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">set&lt;/span>: { $0.pokemonList = $1 }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>再进一步还可以通过 keyPath 来优化 pullback 函数：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">pullback&lt;/span>&amp;lt;LocalValue, GlobalValue, Action&amp;gt;(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">_&lt;/span> reducer: @escaping (&lt;span style="color:#66d9ef">inout&lt;/span> LocalValue, Action) -&amp;gt; Void,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> value: WritableKeyPath&amp;lt;GlobalValue, LocalValue&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>) -&amp;gt; (&lt;span style="color:#66d9ef">inout&lt;/span> GlobalValue, Action) -&amp;gt; Void {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> { globalValue, action &lt;span style="color:#66d9ef">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> reducer(&amp;amp;globalValue[keyPath: value], action)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>pullback(pokemonListReducer, value: &lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>AppState.pokemonList)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样就实现了 reducer 的拆分以及对处理状态的隔离&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> appReducer = combine(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pullback(accountReducer, value: &lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>.pokemonList),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pullback(pokemonListReducer, value: &lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>.settings),
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pullback(favoritePokemonReducer, value: &lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>.favoritePokemons)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="参考资料">
+参考资料
+&lt;a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://objccn.io/products/swift-ui">ObjC 中国 - SwiftUI 与 Combine 编程&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.pointfree.co/collections/composable-architecture/reducers-and-stores/ep69-composable-state-management-state-pullbacks#downloads">Point Free - State Pullbacks&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://www.swiftbysundell.com/articles/the-power-of-key-paths-in-swift/">Swift by Sundell - The power of key paths in Swift&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>

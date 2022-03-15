@@ -1,67 +1,13 @@
-<!doctype html><html lang=en>
-<head>
-<title>
-React 进阶模式之复合组件（Compound Component） ::
-Dev Log
-</title><meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="复合组件是什么 #  编写页面时，经常存在多个子组件的展示，是依赖于同一个数据源的情况。 比如单选框：
+<!doctype html><html lang=en><head><title>React 进阶模式之复合组件（Compound Component） ::
+Dev Log</title><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="复合组件是什么 #  编写页面时，经常存在多个子组件的展示，是依赖于同一个数据源的情况。 比如单选框：
 &amp;lt;Switcher&amp;gt;  &amp;lt;Switch on={this.props.selecting == &amp;#39;React&amp;#39;}&amp;gt;React&amp;lt;/Switch&amp;gt;  &amp;lt;Switch on={this.props.selecting == &amp;#39;Vue&amp;#39;}&amp;gt;Vue&amp;lt;/Switch&amp;gt; &amp;lt;/Switcher&amp;gt; 我们可以看到，所有的 Switch 的数据都需要对 selecting 的值进行判断，并且代码中其实只有 this.props.selecting == 后面的部分不同，如果能改写成这样：
 static Switcher.React = ({selecting}) =&amp;gt; (  &amp;lt;Switch on={selecting === &amp;#39;React&amp;#39;}&amp;gt;React&amp;lt;/Switch&amp;gt; ) static Switcher.Vue = ({selecting}) =&amp;gt; (  &amp;lt;Switch on={selecting === &amp;#39;Vue&amp;#39;}&amp;gt;Vue&amp;lt;/Switch&amp;gt; )  &amp;lt;Switcher selecting={this.props.selecting}&amp;gt;  &amp;lt;Switcher.React/&amp;gt;  &amp;lt;Switcher.Vue/&amp;gt; &amp;lt;/Switcher&amp;gt; 隐式地将父组件的数据传递给子组件，其显示逻辑交由给子组件自行处理，代码的组织结构将会清晰很多。后续即使需求变动，数据的传递改变也并不需要我们操心（不需要一个子组件一个子组件地添加传递），只需要修改 Switcher 子控件内部处理逻辑即可。
 那么要怎么实现这个隐式数据传递呢？ 可以通过 React.Children.map 和 React.cloneElement 这两个 API 来实现。
-React.Children.map 与 React.">
-<meta name=keywords content>
-<meta name=robots content="noodp">
-<link rel=canonical href=https://joeytat.github.io/posts/compound-component/>
-<link rel=stylesheet href=https://joeytat.github.io/assets/style.css>
-<link rel=stylesheet href=https://joeytat.github.io/style.css>
-<link rel=apple-touch-icon-precomposed sizes=144x144 href=https://joeytat.github.io/img/apple-touch-icon-144-precomposed.png>
-<link rel="shortcut icon" href=https://joeytat.github.io/img/favicon.png>
-<link href=https://joeytat.github.io/assets/fonts/Inter-Italic.woff2 rel=preload type=font/woff2 as=font crossorigin>
-<link href=https://joeytat.github.io/assets/fonts/Inter-Regular.woff2 rel=preload type=font/woff2 as=font crossorigin>
-<link href=https://joeytat.github.io/assets/fonts/Inter-Medium.woff2 rel=preload type=font/woff2 as=font crossorigin>
-<link href=https://joeytat.github.io/assets/fonts/Inter-MediumItalic.woff2 rel=preload type=font/woff2 as=font crossorigin>
-<link href=https://joeytat.github.io/assets/fonts/Inter-Bold.woff2 rel=preload type=font/woff2 as=font crossorigin>
-<link href=https://joeytat.github.io/assets/fonts/Inter-BoldItalic.woff2 rel=preload type=font/woff2 as=font crossorigin>
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="React 进阶模式之复合组件（Compound Component）">
-<meta name=twitter:description content="什么是复合组件，以及如何让子组件隐式地共享父组件的 props">
-<meta property="og:title" content="React 进阶模式之复合组件（Compound Component）">
-<meta property="og:description" content="什么是复合组件，以及如何让子组件隐式地共享父组件的 props">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://joeytat.github.io/posts/compound-component/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-08-12T00:00:00+00:00">
-<meta property="article:modified_time" content="2019-08-12T00:00:00+00:00">
-</head><body>
-<div class=container>
-<header class=header>
-<span class=header__inner>
-<a href=https://joeytat.github.io/ class=logo style=text-decoration:none>
-<span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg>
-</span>
-<span class=logo__text>Joeytat's Devlog</span>
-<span class=logo__cursor></span>
-</a>
-<span class=header__right>
-<span class=theme-toggle><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 41c10.4934.0 19-8.5066 19-19C41 11.5066 32.4934 3 22 3 11.5066 3 3 11.5066 3 22s8.5066 19 19 19zM7 22C7 13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22z"/></svg>
-</span>
-</span>
-</span>
-</header><div class=content>
-<div class=post>
-<h1 class=post-title>React 进阶模式之复合组件（Compound Component）</h1><div class=post-meta>
-<span class=post-date>
-2019-08-12
-</span>
-<span class=post-author>— Written by Joeytat</span>
-</div><span class=post-tags>
-<a href=https://joeytat.github.io/tags/react/>#React</a>&nbsp;
-</span>
-<div class=post-content>
-<h3 id=复合组件是什么>
-复合组件是什么
-<a href=#%e5%a4%8d%e5%90%88%e7%bb%84%e4%bb%b6%e6%98%af%e4%bb%80%e4%b9%88 class=h-anchor aria-hidden=true>#</a>
-</h3><p>编写页面时，经常存在多个子组件的展示，是依赖于同一个数据源的情况。
+React.Children.map 与 React."><meta name=keywords content><meta name=robots content="noodp"><link rel=canonical href=https://joeytat.github.io/posts/compound-component/><link rel=stylesheet href=https://joeytat.github.io/assets/style.css><link rel=stylesheet href=https://joeytat.github.io/style.css><link rel=apple-touch-icon-precomposed sizes=144x144 href=https://joeytat.github.io/img/apple-touch-icon-144-precomposed.png><link rel="shortcut icon" href=https://joeytat.github.io/img/favicon.png><link href=https://joeytat.github.io/assets/fonts/Inter-Italic.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=https://joeytat.github.io/assets/fonts/Inter-Regular.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=https://joeytat.github.io/assets/fonts/Inter-Medium.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=https://joeytat.github.io/assets/fonts/Inter-MediumItalic.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=https://joeytat.github.io/assets/fonts/Inter-Bold.woff2 rel=preload type=font/woff2 as=font crossorigin><link href=https://joeytat.github.io/assets/fonts/Inter-BoldItalic.woff2 rel=preload type=font/woff2 as=font crossorigin><meta name=twitter:card content="summary"><meta name=twitter:title content="React 进阶模式之复合组件（Compound Component）"><meta name=twitter:description content="什么是复合组件，以及如何让子组件隐式地共享父组件的 props"><meta property="og:title" content="React 进阶模式之复合组件（Compound Component）"><meta property="og:description" content="什么是复合组件，以及如何让子组件隐式地共享父组件的 props"><meta property="og:type" content="article"><meta property="og:url" content="https://joeytat.github.io/posts/compound-component/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-08-12T00:00:00+00:00"><meta property="article:modified_time" content="2019-08-12T00:00:00+00:00"></head><body><div class=container><header class=header><span class=header__inner><a href=https://joeytat.github.io/ class=logo style=text-decoration:none><span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg></span><span class=logo__text>Joeytat's Devlog</span>
+<span class=logo__cursor></span></a>
+<span class=header__right><span class=theme-toggle><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M22 41c10.4934.0 19-8.5066 19-19C41 11.5066 32.4934 3 22 3 11.5066 3 3 11.5066 3 22s8.5066 19 19 19zM7 22C7 13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22z"/></svg></span></span></span></header><div class=content><div class=post><h1 class=post-title>React 进阶模式之复合组件（Compound Component）</h1><div class=post-meta><span class=post-date>2019-08-12</span>
+<span class=post-author>— Written by Joeytat</span></div><span class=post-tags><a href=https://joeytat.github.io/tags/react/>#React</a>&nbsp;</span><div class=post-content><h3 id=复合组件是什么>复合组件是什么
+<a href=#%e5%a4%8d%e5%90%88%e7%bb%84%e4%bb%b6%e6%98%af%e4%bb%80%e4%b9%88 class=h-anchor aria-hidden=true>#</a></h3><p>编写页面时，经常存在多个子组件的展示，是依赖于同一个数据源的情况。
 比如单选框：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span>&lt;<span style=color:#f92672>Switcher</span>&gt;
 </span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>Switch</span> <span style=color:#a6e22e>on</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>selecting</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;React&#39;</span>}&gt;<span style=color:#a6e22e>React</span>&lt;/<span style=color:#f92672>Switch</span>&gt;
 </span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>Switch</span> <span style=color:#a6e22e>on</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>selecting</span> <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;Vue&#39;</span>}&gt;<span style=color:#a6e22e>Vue</span>&lt;/<span style=color:#f92672>Switch</span>&gt;
@@ -77,10 +23,8 @@ React.Children.map 与 React.">
 </span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>Switcher.React</span>/&gt;
 </span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>Switcher.Vue</span>/&gt;
 </span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>Switcher</span>&gt;
-</span></span></code></pre></div><p>隐式地将父组件的数据传递给子组件，其显示逻辑交由给子组件自行处理，代码的组织结构将会清晰很多。后续即使需求变动，数据的传递改变也并不需要我们操心（不需要一个子组件一个子组件地添加传递），只需要修改 <code>Switcher</code> 子控件内部处理逻辑即可。</p><p>那么要怎么实现这个<strong>隐式数据传递</strong>呢？ 可以通过 <a href=https://reactjs.org/docs/react-api.html#reactchildren><code>React.Children.map</code></a> 和 <a href=https://reactjs.org/docs/react-api.html#cloneelement><code>React.cloneElement</code></a> 这两个 API 来实现。</p><h3 id=reactchildrenmap-与-reactcloneelement>
-React.Children.map 与 React.cloneElement
-<a href=#reactchildrenmap-%e4%b8%8e-reactcloneelement class=h-anchor aria-hidden=true>#</a>
-</h3><p>在 <code>render</code> 中我们可以使用 <code>React.Children.map</code> 来获取到 <code>Switcher</code> 中的子组件，然后通过 <code>React.cloneElement</code> 对组件进行克隆及数据传递：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#a6e22e>render</span>() {
+</span></span></code></pre></div><p>隐式地将父组件的数据传递给子组件，其显示逻辑交由给子组件自行处理，代码的组织结构将会清晰很多。后续即使需求变动，数据的传递改变也并不需要我们操心（不需要一个子组件一个子组件地添加传递），只需要修改 <code>Switcher</code> 子控件内部处理逻辑即可。</p><p>那么要怎么实现这个<strong>隐式数据传递</strong>呢？ 可以通过 <a href=https://reactjs.org/docs/react-api.html#reactchildren><code>React.Children.map</code></a> 和 <a href=https://reactjs.org/docs/react-api.html#cloneelement><code>React.cloneElement</code></a> 这两个 API 来实现。</p><h3 id=reactchildrenmap-与-reactcloneelement>React.Children.map 与 React.cloneElement
+<a href=#reactchildrenmap-%e4%b8%8e-reactcloneelement class=h-anchor aria-hidden=true>#</a></h3><p>在 <code>render</code> 中我们可以使用 <code>React.Children.map</code> 来获取到 <code>Switcher</code> 中的子组件，然后通过 <code>React.cloneElement</code> 对组件进行克隆及数据传递：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#a6e22e>render</span>() {
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>Children</span>.<span style=color:#a6e22e>map</span>(<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>children</span>, <span style=color:#a6e22e>child</span> =&gt;
 </span></span><span style=display:flex><span>      <span style=color:#a6e22e>React</span>.<span style=color:#a6e22e>cloneElement</span>(<span style=color:#a6e22e>child</span>, {
 </span></span><span style=display:flex><span>        <span style=color:#a6e22e>on</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>state</span>.<span style=color:#a6e22e>on</span>,
@@ -88,11 +32,8 @@ React.Children.map 与 React.cloneElement
 </span></span><span style=display:flex><span>      }),
 </span></span><span style=display:flex><span>    )
 </span></span><span style=display:flex><span>  }
-</span></span></code></pre></div><p>这样，即使我们在使用 <code>Switcher.React</code> 和 <code>Switcher.Vue</code> 时，没有显式地传递参数，子组件也能获取数据。</p><blockquote>
-<p>这里 <code>React.Children.map</code> 与 <code>this.props.children.map</code> 并不等价，后者在只有一个子组件的时候，返回的不是数组，而是唯一的那个组件。</p></blockquote><h3 id=reactchildrenmap-的局限性>
-React.Children.map 的局限性
-<a href=#reactchildrenmap-%e7%9a%84%e5%b1%80%e9%99%90%e6%80%a7 class=h-anchor aria-hidden=true>#</a>
-</h3><p>上面代码有个问题是，如果出现了更多层级的子组件，那么参数传递只会到第一层。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span>&lt;<span style=color:#f92672>Switcher</span> <span style=color:#a6e22e>selecting</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>selecting</span>}&gt;
+</span></span></code></pre></div><p>这样，即使我们在使用 <code>Switcher.React</code> 和 <code>Switcher.Vue</code> 时，没有显式地传递参数，子组件也能获取数据。</p><blockquote><p>这里 <code>React.Children.map</code> 与 <code>this.props.children.map</code> 并不等价，后者在只有一个子组件的时候，返回的不是数组，而是唯一的那个组件。</p></blockquote><h3 id=reactchildrenmap-的局限性>React.Children.map 的局限性
+<a href=#reactchildrenmap-%e7%9a%84%e5%b1%80%e9%99%90%e6%80%a7 class=h-anchor aria-hidden=true>#</a></h3><p>上面代码有个问题是，如果出现了更多层级的子组件，那么参数传递只会到第一层。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span>&lt;<span style=color:#f92672>Switcher</span> <span style=color:#a6e22e>selecting</span><span style=color:#f92672>=</span>{<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>selecting</span>}&gt;
 </span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>Switcher.React</span>/&gt;
 </span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span>&gt;
 </span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>Switcher.Vue</span>/&gt;
@@ -116,41 +57,13 @@ React.Children.map 的局限性
 </span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>Switcher.Vue</span>/&gt;
 </span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
 </span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>Switcher</span>&gt;
-</span></span></code></pre></div><h4 id=相关资料>
-相关资料
-<a href=#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99 class=h-anchor aria-hidden=true>#</a>
-</h4><ul>
-<li><a href=https://frontendmasters.com/courses/advanced-react-patterns/>Frontend Masters - Advanced React Patterns</a></li><li><a href=https://reactjs.org/docs/context.html#when-to-use-context>React Context</a></li></ul></div><div class=pagination>
-<div class=pagination__title>
-<span class=pagination__title-h>Read other posts</span>
-<hr>
-</div><div class=pagination__buttons>
-<span class="button previous">
-<a href=https://joeytat.github.io/posts/asynchronous-javascript/>
-<span class=button__icon>←</span>
-<span class=button__text>JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</span>
-</a>
-</span>
-<span class="button next">
-<a href=https://joeytat.github.io/posts/optimizing_images/>
-<span class=button__text>翻译 - 图像优化</span>
-<span class=button__icon>→</span>
-</a>
-</span>
-</div></div></div></div><footer class=footer>
-<div class=footer__inner>
-<a href=https://joeytat.github.io/ class=logo style=text-decoration:none>
-<span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg>
-</span>
-<span class=logo__text>Joeytat's Devlog</span>
-<span class=logo__cursor></span>
-</a>
-<div class=copyright>
-<span>© 2022 Powered by
+</span></span></code></pre></div><h4 id=相关资料>相关资料
+<a href=#%e7%9b%b8%e5%85%b3%e8%b5%84%e6%96%99 class=h-anchor aria-hidden=true>#</a></h4><ul><li><a href=https://frontendmasters.com/courses/advanced-react-patterns/>Frontend Masters - Advanced React Patterns</a></li><li><a href=https://reactjs.org/docs/context.html#when-to-use-context>React Context</a></li></ul></div><div class=pagination><div class=pagination__title><span class=pagination__title-h>Read other posts</span><hr></div><div class=pagination__buttons><span class="button previous"><a href=https://joeytat.github.io/posts/asynchronous-javascript/><span class=button__icon>←</span>
+<span class=button__text>JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</span></a></span>
+<span class="button next"><a href=https://joeytat.github.io/posts/optimizing_images/><span class=button__text>翻译 - 图像优化</span>
+<span class=button__icon>→</span></a></span></div></div></div></div><footer class=footer><div class=footer__inner><a href=https://joeytat.github.io/ class=logo style=text-decoration:none><span class=logo__mark><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44"><path fill="none" d="M15 8l14.729 14.382L15 35.367"/></svg></span><span class=logo__text>Joeytat's Devlog</span>
+<span class=logo__cursor></span></a><div class=copyright><span>© 2022 Powered by
 <a href=https://gohugo.io target=_blank rel=noopener>Hugo</a></span>
 <span>Theme created by
-<a href=https://twitter.com/panr target=_blank rel=noopener>panr</a></span>
-</div></div></footer><script src=https://joeytat.github.io/assets/main.js></script>
-<script src=https://joeytat.github.io/assets/prism.js></script>
-</div><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(e,o,i,a,t,n,s){e.GoogleAnalyticsObject=t,e[t]=e[t]||function(){(e[t].q=e[t].q||[]).push(arguments)},e[t].l=1*new Date,n=o.createElement(i),s=o.getElementsByTagName(i)[0],n.async=1,n.src=a,s.parentNode.insertBefore(n,s)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-131363452-1","auto"),ga("send","pageview"))</script>
-</body></html>
+<a href=https://twitter.com/panr target=_blank rel=noopener>panr</a></span></div></div></footer><script src=https://joeytat.github.io/assets/main.js></script>
+<script src=https://joeytat.github.io/assets/prism.js></script></div><script type=application/javascript>var doNotTrack=!1;doNotTrack||(function(e,o,i,a,t,n,s){e.GoogleAnalyticsObject=t,e[t]=e[t]||function(){(e[t].q=e[t].q||[]).push(arguments)},e[t].l=1*new Date,n=o.createElement(i),s=o.getElementsByTagName(i)[0],n.async=1,n.src=a,s.parentNode.insertBefore(n,s)}(window,document,"script","https://www.google-analytics.com/analytics.js","ga"),ga("create","UA-131363452-1","auto"),ga("send","pageview"))</script></body></html>
