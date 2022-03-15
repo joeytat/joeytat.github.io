@@ -151,7 +151,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> XCTAssertEqual(sut.state, .success)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>对于方法多分支的逻辑，则可以独立实现一份，而不是重新创建整个 &lt;code>MockRepository&lt;/code> 类或者是用一些变量来控制分支逻辑：&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">shouldSignUpSuccessWhenXXX&lt;/span>() {
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">shouldSignUpFailWhenXXX&lt;/span>() {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Given&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> sut = SignUpViewModel(
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> current: Environment(
@@ -165,7 +165,7 @@
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sut.onSubmit(...) &lt;span style="color:#75715e">// 非法输入&lt;/span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Then&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> XCTAssertEqual(sut.state, .success)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> XCTAssertEqual(sut.state, .failed)
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这种方式来注入依赖的优势在于：&lt;/p>
 &lt;ul>
