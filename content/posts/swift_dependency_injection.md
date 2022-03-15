@@ -204,7 +204,7 @@ func shouldSignUpSuccessWhenXXX() {
 对于方法多分支的逻辑，则可以独立实现一份，而不是重新创建整个  `MockRepository`  类或者是用一些变量来控制分支逻辑：
 
 ```swift
-func shouldSignUpSuccessWhenXXX() {
+func shouldSignUpFailWhenXXX() {
     // Given
     let sut = SignUpViewModel(
         current: Environment(
@@ -218,7 +218,7 @@ func shouldSignUpSuccessWhenXXX() {
     sut.onSubmit(...) // 非法输入
   
     // Then
-    XCTAssertEqual(sut.state, .success)
+    XCTAssertEqual(sut.state, .failed)
 }
 ```
 
