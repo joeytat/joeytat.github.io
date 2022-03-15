@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SwiftUI on Dev Log</title>
+    
+    
+    
+    <link>https://joeytat.github.io/tags/swiftui/</link>
+    <description>Recent content in SwiftUI on Dev Log</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Jan 2022 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://joeytat.github.io/tags/swiftui/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SwiftUI 状态管理 —— Composible Binding</title>
+      <link>https://joeytat.github.io/posts/composible_binding/</link>
+      <pubDate>Mon, 03 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://joeytat.github.io/posts/composible_binding/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        &lt;p&gt;在 SwiftUI 中，需要通过数据来驱动 UI 的变化。数据结构抽象描述的质量也影响着我们对 SwiftUI 界面的维护。&lt;/p&gt;
+&lt;p&gt;通常数据中可能存在很多状态，如果使用很多的 boolean 值来描述这些状态，那么 App 的可维护性可能会大大降低。&lt;/p&gt;
+&lt;h2 id=&#34;管理独立状态的问题&#34;&gt;
+  管理独立状态的问题
+  &lt;a href=&#34;#%e7%ae%a1%e7%90%86%e7%8b%ac%e7%ab%8b%e7%8a%b6%e6%80%81%e7%9a%84%e9%97%ae%e9%a2%98&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;假设我们有一个 App，用户可以在登录与非登录状态下进行操作。所以我们的界面需要兼容这两种状态，其描述可能是这样的：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AppState&lt;/span&gt;: ObservableObject {
+  @Published &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; user: User? = &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+  @Published &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; error: Error? = &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+  
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; authenticated: Bool { user &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; }
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; hasError: Bool { error &lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;基于这样的状态描述，如果我们想创建一个仅展示用户名的组件大概会是这样：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;  &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; body: some View {
+    Group {
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; state.hasError {
+        Text(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Oops, sth went wrong: &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;\(&lt;/span&gt;state.error!.localizedDescription&lt;span style=&#34;color:#e6db74&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+      }
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; state.authenticated {
+        Text(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;\(&lt;/span&gt;state.user?.name ?? &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Unknown&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;!&amp;#34;&lt;/span&gt;)
+      } &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+        Text(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello, stranger&amp;#34;&lt;/span&gt;)
+      }
+    }
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;粗看没有什么问题，实际上在维护这样的数据结构时就需要格外小心了。比如第一次我们登录失败，为了展示错误信息给 &lt;code&gt;error&lt;/code&gt; 设置了值之后。必须在登录成功之后要及时地去清空 error，否则即使 &lt;code&gt;state.authenticated&lt;/code&gt; 等于 &lt;code&gt;true&lt;/code&gt;，用户依然无法看到正确的信息。&lt;/p&gt;
+&lt;p&gt;这还仅仅是有两个状态的情况下，像这样独立状态属性会带来很大的维护成本，开发者需要牢记各个属性之间的依赖关系，甚至编写界面的时候，还需要注意代码执行顺序。&lt;/p&gt;
+&lt;h2 id=&#34;引入状态机&#34;&gt;
+  引入状态机
+  &lt;a href=&#34;#%e5%bc%95%e5%85%a5%e7%8a%b6%e6%80%81%e6%9c%ba&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;把状态抽象成带有 associated values 的 enum 是个更好的选择，比如:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AppState&lt;/span&gt;: ObservableObject  {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AccountState&lt;/span&gt; {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; authenticated(User)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; unauthenticated
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; error(Error)
+  }
+  @Published &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; accountState: AccountState = .unauthenticated
+}
+
+&lt;span style=&#34;color:#75715e&#34;&gt;// 界面中的使用&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; body: some View {
+  VStack {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; state.accountState {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; .authenticated(&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; user):
+      Text(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;\(&lt;/span&gt;user.name&lt;span style=&#34;color:#e6db74&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;!&amp;#34;&lt;/span&gt;)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; .unauthenticated:
+      Text(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;unregister&amp;#34;&lt;/span&gt;)
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; .error(&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; error):
+      Text(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Oops, sth went wrong: &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;\(&lt;/span&gt;error.localizedDescription&lt;span style=&#34;color:#e6db74&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;这样被状态机驱动的界面看起来要直观多了。并且在每个状态中对数据的操作，也由 enum 赋予了隔离能力。&lt;/p&gt;
+&lt;h2 id=&#34;双向绑定怎么办&#34;&gt;
+  双向绑定怎么办？
+  &lt;a href=&#34;#%e5%8f%8c%e5%90%91%e7%bb%91%e5%ae%9a%e6%80%8e%e4%b9%88%e5%8a%9e&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;但这样做又来带个新的问题，现在没办法直接通过 &lt;code&gt;$&lt;/code&gt; 来获取 Binding wrapper 来修改状态：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;switch&lt;/span&gt; state.accountState {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; .authenticated(&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; user):
+      Text(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Hello &lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;\(&lt;/span&gt;user.name&lt;span style=&#34;color:#e6db74&#34;&gt;)&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;!&amp;#34;&lt;/span&gt;)
+	  TextField(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Change username&amp;#34;&lt;/span&gt;, text: &amp;lt;Binding&amp;lt;String&amp;gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;) 
+      &lt;span style=&#34;color:#75715e&#34;&gt;// 不支持填入 self.$state.accountState.name 👆&lt;/span&gt;
+	...
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;Xcode 会提示: dynamic member &amp;lsquo;name&amp;rsquo; using key path from root type &amp;lsquo;AppState.AccountState&amp;rsquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;为什么当操作对象是 class 时，是可以做到通过
+&lt;code&gt;self.$state.user.name&lt;/code&gt; 来获取到 name 属性的 Binding 封装的？&lt;/p&gt;
+&lt;h2 id=&#34;实现动态成员查找dynamic-member-lookup&#34;&gt;
+  实现动态成员查找(dynamic member lookup)
+  &lt;a href=&#34;#%e5%ae%9e%e7%8e%b0%e5%8a%a8%e6%80%81%e6%88%90%e5%91%98%e6%9f%a5%e6%89%bedynamic-member-lookup&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;p&gt;因为 Enum 还不支持动态成员查找特性。什么是动态成员查找？简而言之就是通过  &lt;code&gt;\&lt;/code&gt; 来获取到成员属性的 &lt;code&gt;KeyPath&lt;/code&gt; 封装（&lt;a href=&#34;https://www.swiftbysundell.com/articles/the-power-of-key-paths-in-swift/&#34;&gt;什么又是 KeyPath&lt;/a&gt;？），然后将其转化为对应的 Binding 封装。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;extension&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Binding&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;transform&lt;/span&gt;&amp;lt;LocalValue&amp;gt;(
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;_&lt;/span&gt; keyPath: WritableKeyPath&amp;lt;Value, LocalValue&amp;gt;
+  ) -&amp;gt; Binding&amp;lt;LocalValue&amp;gt; {
+    Binding&amp;lt;LocalValue&amp;gt;(
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;get&lt;/span&gt;: { 
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;.wrappedValue[keyPath: keyPath]
+      },
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt;: { localValue &lt;span style=&#34;color:#66d9ef&#34;&gt;in&lt;/span&gt;
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;.wrappedValue[keyPath: keyPath] = localValue 
+      }
+    )
+  }
+}
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;$&lt;/span&gt;state.accountState.username
+&lt;span style=&#34;color:#75715e&#34;&gt;// 等价于 &lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;$&lt;/span&gt;state.transform(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;accountState).transform(&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;\&lt;/span&gt;username)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;所以接下来只需要为 enum 添加动态成员查找的支持就可以了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;extension&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Binding&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;unwrap&lt;/span&gt;&amp;lt;Wrapped&amp;gt;() -&amp;gt; Binding&amp;lt;Wrapped&amp;gt;? &lt;span style=&#34;color:#66d9ef&#34;&gt;where&lt;/span&gt; Value == Wrapped? {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;guard&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; value = &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;.wrappedValue &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; { &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt; }
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; Binding&amp;lt;Wrapped&amp;gt;(
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;get&lt;/span&gt;: { value },
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt;: { &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;.wrappedValue = $0 }
+    )
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后再到 enum 里添加一个计算属性方便我们获取&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AccountState&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; loggedIn(User)
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; unregister
+  &lt;span style=&#34;color:#75715e&#34;&gt;//&lt;/span&gt;
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; username: String? {
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;get&lt;/span&gt; {
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;guard&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; .loggedIn(&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; user) = &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; {
+        &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;nil&lt;/span&gt;
+      }
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; user.username
+    }
+    &lt;span style=&#34;color:#66d9ef&#34;&gt;set&lt;/span&gt; {
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;guard&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; .loggedIn(&lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; user) = &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;,
+            &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; newValue = newValue &lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; { &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; }
+      user.username = newValue
+      &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt; = .loggedIn(user)
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;现在就可以在 SwiftUI 中对 enum 使用绑定了&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; username = &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;$&lt;/span&gt;state.accountState.username.unwrap() {
+  TextField(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Change username&amp;#34;&lt;/span&gt;, text: username)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;看起来还是有些麻烦，对于每个要使用 Binding 的属性都需要去写一个计算属性来包装一层。这样显然这并不如 &lt;code&gt;KeyPath&lt;/code&gt; 那样，直接通过 &lt;code&gt;self.$state.accountState[\.authenticated]&lt;/code&gt; 来获取到 enum 中 associated value 的 Binding 包装来得方便。&lt;/p&gt;
+&lt;p&gt;虽然 Swift 目前不支持，但我们还是可以通过引入 &lt;a href=&#34;https://github.com/pointfreeco/swift-case-paths&#34;&gt;CasePaths&lt;/a&gt; 这个第三方依赖来实现。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;CasePaths&lt;/span&gt;
+
+&lt;span style=&#34;color:#66d9ef&#34;&gt;enum&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;AccountState&lt;/span&gt; {
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; authenticated(User)
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; unauthenticated
+  &lt;span style=&#34;color:#66d9ef&#34;&gt;case&lt;/span&gt; error(Error)
+&lt;span style=&#34;color:#75715e&#34;&gt;// 计算属性可以删除掉了&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//    var username: String? {&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//      get {&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//        guard case .authenticated(let user) = self else {&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//          return nil&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//        }&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//        return user.name&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//      }&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//      set {&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//        guard case .authenticated(let user) = self,&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//              let newValue = newValue else { return }&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//        user.name = newValue&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//        self = .authenticated(user)&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//      }&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;//    }&lt;/span&gt;
+}
+
+&lt;span style=&#34;color:#75715e&#34;&gt;// 界面中直接使用 CasePath&lt;/span&gt;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; user = &lt;span style=&#34;color:#66d9ef&#34;&gt;self&lt;/span&gt;.&lt;span style=&#34;color:#960050;background-color:#1e0010&#34;&gt;$&lt;/span&gt;state.accountState.matching(&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;.authenticated) {
+  TextField(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Change username&amp;#34;&lt;/span&gt;, text: user.name)
+}
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;由此为 Enum 也增加了与 Struct、Class 等效的 KeyPath 支持，从而使得文章开头用 Enum 作为 SwiftUI 的状态机管理工具更便捷了一些。&lt;/p&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;
+  参考资料
+  &lt;a href=&#34;#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
+&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://kentcdodds.com/blog/stop-using-isloading-booleans&#34;&gt;Stop using isLoading booleans&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.swiftbysundell.com/articles/the-power-of-key-paths-in-swift/&#34;&gt;The power of key paths in Swift&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.pointfree.co/collections/swiftui/composable-bindings/ep107-composable-swiftui-bindings-the-problem&#34;&gt;Composable SwiftUI Bindings: The Problem&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -2,7 +2,7 @@
 title = "Swift 状态管理 —— 如何拆分庞大的 reducer"
 date = "2022-01-16"
 description = "利用 keyPath 构建 pullback 来处理 reducer 状态隔离的问题"
-tags = [""]
+tags = ["Swift"]
 +++
 
 因为项目需要使用 SwiftUI，想起来之前买过喵神的 [《SwiftUI 与 Combine 编程》](https://objccn.io/products/swift-ui) 。书中介绍了 [Redux](https://redux.js.org) 这一在 Web 前端领域广泛被验证过的数据管理模式是如何通过 Swift 来实现的，非常推荐 SwiftUI 初见者阅读。
