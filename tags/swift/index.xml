@@ -1,4 +1,178 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Swift on Dev Log</title><link>https://joeytat.github.io/tags/swift/</link><description>Recent content in Swift on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 16 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/tags/swift/index.xml" rel="self" type="application/rss+xml"/><item><title>Swift 状态管理 —— 如何拆分庞大的 reducer</title><link>https://joeytat.github.io/posts/combining_reducers/</link><pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/combining_reducers/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Swift on Dev Log</title><link>https://joeytat.github.io/tags/swift/</link><description>Recent content in Swift on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 15 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/tags/swift/index.xml" rel="self" type="application/rss+xml"/><item><title>iOS 架构之另一种依赖注入的思路</title><link>https://joeytat.github.io/posts/swift_dependency_injection/</link><pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/swift_dependency_injection/</guid><description>
+&lt;p>在 iOS 业务开发过程经常面对网络请求，数据持久化这样带有副作用的操作。为了能够在测试中 mock 这些操作，通常的做法就是抽象一层 protocol 出来，然后编写不同的实现。&lt;/p>
+&lt;p>比如需要处理一个简陋的注册业务（示例省略了一点细节），需要用户输入信息后发送网络请求，成功后返回对应用户对象。&lt;/p>
+&lt;p>首先为网络请求定义一个 protocol：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">protocol&lt;/span> &lt;span style="color:#a6e22e">SignUpRepositoryProtocol&lt;/span>: RepositoryProtocol {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">handleSignUp&lt;/span>(name: String, email: String, pwd: String) -&amp;gt; AnyPublisher&amp;lt;User, Error&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>对其进行实现：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">SignUpRepository&lt;/span>: SignUpRepositoryProtocol {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">handleSignUp&lt;/span>(name: String, email: String, pwd: String) -&amp;gt; AnyPublisher&amp;lt;User, Error&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> client(.signUp(name, email, pwd))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .map
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .decode
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .eraseToAnyPublisher()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>将其注入到 &lt;code>ViewModel&lt;/code> 或是 &lt;code>Interactor&lt;/code> 中（取决于你采取的架构是什么 :p ），并且调用对应方法：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">SignUpViewModel&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">enum&lt;/span> &lt;span style="color:#a6e22e">State&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> loading
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> success
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> failed
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> repository: SignUpRepositoryPortocol
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> state: State = .loading
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">init&lt;/span>(repository: SignUpRepositoryPortocol) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">self&lt;/span>.repository = repository
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">onSubmit&lt;/span>(name: String, email: String, pwd: String) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> repository.hanldeSignUp(name: name, email: email, pwd: pwd)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .sink {[&lt;span style="color:#66d9ef">weak&lt;/span> &lt;span style="color:#66d9ef">self&lt;/span>] completion &lt;span style="color:#66d9ef">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">switch&lt;/span> completion {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .failure:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">self&lt;/span>.?state = .failed
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .finished: &lt;span style="color:#66d9ef">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } receiveValue: {[&lt;span style="color:#66d9ef">weak&lt;/span> &lt;span style="color:#66d9ef">self&lt;/span>] result &lt;span style="color:#66d9ef">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">self&lt;/span>?.state = .success
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }.store(&lt;span style="color:#66d9ef">in&lt;/span>: &amp;amp;bag)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>由此如果需要测试对应的方法，只需要再创建一份 &lt;code>MockSignUpRepository&lt;/code> 的实现即可，比如想要测试注册成功或失败场景下的处理：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">MockSignUpRepository&lt;/span>: SignUpRepositoryPortocol {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> shouldSignUpSuccess: Bool
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">handleSignUp&lt;/span>(name: String, email: String, pwd: String) -&amp;gt; AnyPublisher&amp;lt;User, Error&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> shouldSignUpSuccess {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Just(User.mock)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .mapError{ &lt;span style="color:#66d9ef">_&lt;/span> &lt;span style="color:#66d9ef">in&lt;/span> SignUpError.someError }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .eraseToAnyPublisher()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Fail(error: SignUpError.someError)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .eraseToAnyPublisher()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在编写测试的时候，传入 &lt;code>SignUpViewModel&lt;/code> 的依赖替换成我们想要测试的 Mock 实现：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">shouldSignUpSuccessWhenXXX&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Given&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> sut = SignUpViewModel(repository: MockSignUpSuccessRepository(shouldSignUpSuccess: &lt;span style="color:#66d9ef">true&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// When&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sut.onSubmit(...) &lt;span style="color:#75715e">// 合法输入&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Then&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> XCTAssertEqual(sut.state, .success)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">shouldSignUpFailWhenXXX&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Given&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> sut = SignUpViewModel(repository: MockSignUpSuccessRepository(shouldSignUpSuccess: &lt;span style="color:#66d9ef">false&lt;/span>))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// When&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sut.onSubmit(...) &lt;span style="color:#75715e">// 非法输入&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Then&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> XCTAssertEqual(sut.state, .failed)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这时候似乎一切都很美好，但现在再补充一些业务需求，如果需要返回不同的错误类型怎么办？比如用户名错误，那就需要额外的布尔值来表示；再比如邮箱错误，那又需要增加新的布尔值。而这还仅仅只是一个方法的几个分支逻辑处理。当出现较多的逻辑分支之后，如果我们实际的业务再发生变动需要重构，那还得去对 Mock 类也进行重构，同时还需要确保这些控制逻辑分支的布尔值也得到了正确的更新。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> sut = SignUpViewModel(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> repository: MockSignUpSuccessRepository(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> shouldSignUpSuccess: &lt;span style="color:#66d9ef">false&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> shouldShowUsernameError: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> shouldShowEmailError: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> shouldUsernamePassValidation: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> shouldEmailPassValidation: &lt;span style="color:#66d9ef">true&lt;/span>,
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// ...😱&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这时候就可以介绍另一种依赖注入方式了。首先定义一个 &lt;code>Repository&lt;/code> 对象，这个对象就像之前的 &lt;code>Repository&lt;/code> 一样，区别是网络请求通过一个属性来持有，同时会提供一个标记为 private 的默认实现：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">Repository&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> handleSignUp = handleSignUp(name:, email:, pwd:)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">private&lt;/span> &lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">handleSignUp&lt;/span>(name: String, email: String, pwd: String) -&amp;gt; AnyPublisher&amp;lt;User, Error&amp;gt; {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> client(.signUp(name, email, pwd))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .map
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .decode
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .eraseToAnyPublisher()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后将这个 &lt;code>Repository&lt;/code> 实例放到一个 &lt;code>Environment&lt;/code> 对象中：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">struct&lt;/span> &lt;span style="color:#a6e22e">Environment&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> repo = Repository()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>同时替换 ViewModel 中之前对 &lt;code>Repository&lt;/code> 的引用：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">SignUpViewModel&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">enum&lt;/span> &lt;span style="color:#a6e22e">State&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> loading
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> success
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> failed
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// let repository: SignUpRepositoryPortocol&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> current: Environment &lt;span style="color:#75715e">// 👈&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">var&lt;/span> state: State = .loading
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">init&lt;/span>(current: Environment) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">self&lt;/span>.current = current &lt;span style="color:#75715e">// 👈&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">onSubmit&lt;/span>(name: String, email: String, pwd: String) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> current.repo.hanldeSignUp(name, email, pwd) &lt;span style="color:#75715e">// 👈&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .sink { completion &lt;span style="color:#66d9ef">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">switch&lt;/span> completion {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .failure:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">self&lt;/span>.state = .failed
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">case&lt;/span> .finished: &lt;span style="color:#66d9ef">break&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } receiveValue: {[&lt;span style="color:#66d9ef">weak&lt;/span> &lt;span style="color:#66d9ef">self&lt;/span>] result &lt;span style="color:#66d9ef">in&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">self&lt;/span>?.state = .success
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }.store(&lt;span style="color:#66d9ef">in&lt;/span>: &amp;amp;bag)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>代码几乎和之前相同，但保持了更高的可替换性，怎么体现的呢？需要 mock 网络请求 时，可以给 Repository 创建一个 extension：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">extension&lt;/span> &lt;span style="color:#a6e22e">Repository&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">static&lt;/span> &lt;span style="color:#66d9ef">let&lt;/span> mock = Repository(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> handleSignUp: Just(User.mock)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .mapError{ &lt;span style="color:#66d9ef">_&lt;/span> &lt;span style="color:#66d9ef">in&lt;/span> SignUpError.someError }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .eraseToAnyPublisher()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>然后在测试代码构建 ViewModel 的时候就可以将 Mock 传递进去：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">shouldSignUpSuccessWhenXXX&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Given&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> sut = SignUpViewModel(current: Environment(repo: Repository.mock))
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// When&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sut.onSubmit(...) &lt;span style="color:#75715e">// 合法输入&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Then&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> XCTAssertEqual(sut.state, .success)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>对于方法多分支的逻辑，则可以独立实现一份，而不是重新创建整个 &lt;code>MockRepository&lt;/code> 类或者是用一些变量来控制分支逻辑：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">shouldSignUpSuccessWhenXXX&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Given&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">let&lt;/span> sut = SignUpViewModel(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> current: Environment(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> repo: Repository(handleSignUp:
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Fail(error: SignUpError.someError).eraseToAnyPublisher()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> )
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// When&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sut.onSubmit(...) &lt;span style="color:#75715e">// 非法输入&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Then&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> XCTAssertEqual(sut.state, .success)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这种方式来注入依赖的优势在于：&lt;/p>
+&lt;ul>
+&lt;li>不需要像 protocol 那样写太多模版代码&lt;/li>
+&lt;li>mock 的逻辑分支很容易可以实现相互独立的版本&lt;/li>
+&lt;li>依赖的副作用会更容易 mock，特别是系统类&lt;/li>
+&lt;/ul></description></item><item><title>Swift 状态管理 —— 如何拆分庞大的 reducer</title><link>https://joeytat.github.io/posts/combining_reducers/</link><pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/combining_reducers/</guid><description>
 &lt;p>因为项目需要使用 SwiftUI，想起来之前买过喵神的 &lt;a href="https://objccn.io/products/swift-ui">《SwiftUI 与 Combine 编程》&lt;/a> 。书中介绍了 &lt;a href="https://redux.js.org">Redux&lt;/a> 这一在 Web 前端领域广泛被验证过的数据管理模式是如何通过 Swift 来实现的，非常推荐 SwiftUI 初见者阅读。&lt;/p>
 &lt;p>在学习过程中还产生了一个疑问，如果 reducer 越来越大，有什么更 “swift” 的办法能解决这一问题呢？（在 Redux.js 中的原生解决方案是 &lt;a href="https://redux.js.org/usage/structuring-reducers/beyond-combinereducers">&lt;code>combineReducers&lt;/code>&lt;/a>）&lt;/p>
 &lt;h2 id="拆分-reducer">
