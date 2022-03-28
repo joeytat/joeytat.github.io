@@ -1,4 +1,55 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dev Log</title><link>https://joeytat.github.io/</link><description>Recent content on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 15 Mar 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>iOS 架构之另一种依赖注入的思路</title><link>https://joeytat.github.io/posts/swift_dependency_injection/</link><pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/swift_dependency_injection/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dev Log</title><link>https://joeytat.github.io/</link><description>Recent content on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 28 Mar 2022 00:00:35 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>参加 Apple 开发者线上活动是什么样的体验？</title><link>https://joeytat.github.io/posts/apple_swiftui_workshop/</link><pubDate>Mon, 28 Mar 2022 00:00:35 +0000</pubDate><guid>https://joeytat.github.io/posts/apple_swiftui_workshop/</guid><description>
+&lt;p>从朋友圈看到思琦发了一个《使用 SwiftUI 打造卓越体验》的 Apple 开发者线上活动的报名链接，刚好最近参与的项目也在大规模使用 SwiftUI 就报名了，即使时间很不凑巧是工作日（另一报名要求是必须要有中国区的开发者账号）。&lt;/p>
+&lt;p>活动分两天第一天主要是一些 SwiftUI 的介绍，SwiftUI 对数据的处理和布局的一些要点。第二天是社区开发者交流。&lt;/p>
+&lt;p>技术细节后面可以分好几篇博客来描述，但总的来说技术相关的收获其实和自己去看 WWDC 差不多。并且由于长期以 2x 速度观看这类视频，刚开始还出现了一些不适应。但想着这是来自苹果的开发者的分享，还是管住了想拿起手机的手，毕竟机会难得。&lt;/p>
+&lt;p>事实证明确实认真观看还是有收获，主要是以下几点：&lt;/p>
+&lt;ul>
+&lt;li>知道了一些 SwiftUI 相关的 Xcode 快捷操作，比如 Preview 和代码其实是可以相互影响的。Library 中可以搜索 &lt;code>ViewModifier&lt;/code> 等等。&lt;/li>
+&lt;li>来自苹果的工程师对 SwiftUI 这样响应式 UI 编写方式的数据流思考的建议。&lt;/li>
+&lt;li>一些编写 SwiftUI 代码时能够让渲染引擎更高效的建议。&lt;/li>
+&lt;/ul>
+&lt;p>除了上面开发者分享的内容之外，最重要的是可以提出一些自己在使用 SwiftUI 时遇到的问题，感觉只要描述得够清楚并且和本次活动主题相关，那么都能够得到苹果开发者的解答，虽然受形式或时间限制，答案并不一定完整，但当一个 SwiftUI 的疑问是由苹果的工程师解答时，即使只是关键字的指引也能起到画龙点睛的作用（比如 &lt;code>StateObject&lt;/code> 与 &lt;code>ObservedObject&lt;/code> 的差异）。&lt;/p>
+&lt;p>第二天更多的是听社区开发者的一些交流，收获到了不少之前并不知道的资料。一并列在下方。&lt;/p>
+&lt;p>ps：感觉参加这次活动对自己来说还有一个副作用就是，由于资料的推荐者有足够的可信度，并且提供了一个可靠的学习路线，所以会用格外的认真来对待它们。&lt;/p>
+&lt;p>Swift UI 的入门指引&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://developer.apple.com/videos/play/wwdc2020/10119/">WWDC - Introduction to SwiftUI&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/videos/play/wwdc2019/216/">WWDC - SwiftUI Essentials&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/tutorials/sample-apps">十个很有代表性的 Playground&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/tutorials/swiftui">交互式的 SwiftUI 入门教程&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/tutorials/app-dev-training">使用 SwiftUI 构建完整 App 的交互式教程&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>SwiftUI 数据处理要素&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://developer.apple.com/videos/play/wwdc2020/10040/">WWDC - Data Essentials in SwiftUI&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/videos/play/wwdc2021/10022">WWDC - Demystify SwiftUI&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/documentation/SwiftUI/State-and-Data-Flow">状态与数据流&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/documentation/swiftui/managing-model-data-in-your-app">如何管理 App 中的模型数据&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/documentation/swiftui/managing-user-interface-state">如何管理 UI 状态&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>SwiftUI 布局和渲染&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://developer.apple.com/videos/play/wwdc2021/10018/">WWDC - What&amp;rsquo;s new in SwiftUI&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/videos/play/wwdc2020/10031/">WWDC - Stacks, Grids, and Outlines in SwiftUI&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/videos/play/wwdc2021/10021/">WWDC - Add rich graphics to your SwiftUI app&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/videos/play/wwdc2019/237/">WWDC - Building Custom Views with SwiftUI&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/documentation/swiftui/layout-containers">布局容器&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/documentation/swiftui/collection-containers">集合布局容器&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/documentation/swiftui/drawing-and-graphics">图像与绘制&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>用 SwiftUI 打造 watchOS app&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://developer.apple.com/videos/play/wwdc2019/219/">WWDC - SwiftUI on watchOS&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/videos/play/wwdc2020/10048/">WWDC - Build complications in SwiftUI&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/documentation/example-articles/building_a_watchos_app">打造 watchOS App&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://developer.apple.com/documentation/watchosapps/developing_a_user_interface_with_swiftui">如何利用 SwiftUI 以及手表特定功能打造复杂 app 的代码示例&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;p>社区开发者提及&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://developer.apple.com/documentation/docc#Overview">文档生成工具 - DocC&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://swiftui-lab.com/random-lessons/">WWDC Digital Lounges 中的开发者问答整理&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://swiftui-lab.com/companion/">SwiftUI Companion - 交互式 SwiftUI API 文档工具&lt;/a>&lt;/li>
+&lt;/ul></description></item><item><title>iOS 架构之另一种依赖注入的思路</title><link>https://joeytat.github.io/posts/swift_dependency_injection/</link><pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/swift_dependency_injection/</guid><description>
 &lt;p>在 iOS 业务开发过程经常面对网络请求，数据持久化这样带有副作用的操作。为了能够在测试中 mock 这些操作，通常的做法就是抽象一层 protocol 出来，然后编写不同的实现。&lt;/p>
 &lt;p>比如需要处理一个简陋的注册业务（示例省略了一点细节），需要用户输入信息后发送网络请求，成功后返回对应用户对象。&lt;/p>
 &lt;p>首先为网络请求定义一个 protocol：&lt;/p>
