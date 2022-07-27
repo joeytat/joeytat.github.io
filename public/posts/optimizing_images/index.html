@@ -17,11 +17,11 @@
 爆炸新闻? 立刻打开 Twitter 来查看哪些媒体在通过照片实时报道事件。
 等等。
 由于图像在各个平台无处不在的出现，在低性能且内存紧张的情况下展示它们，会很容易地造成失控。 如果我们知道 UIKit 底层到底发生了什么，为什么以及如何处理图像，那么我们可以节省大量的资源开销，并且逃脱无情的系统清除制裁。
-理论上来说 #  突击测验 - 这张我女儿的 266 KB 字节大小（并且还蛮时尚的）的照片，在一个 iOS App 中会展示需要用到多少内存?
+理论上来说 # 突击测验 - 这张我女儿的 266 KB 字节大小（并且还蛮时尚的）的照片，在一个 iOS App 中会展示需要用到多少内存?
 剧透一下 - 不是 266 KB，也不是 2.66 MB，而是大概 14 MB。
 为什么?
 本质上来说 iOS 申请内存是根据图像的尺寸 - 而图像的文件大小反而影响不大。 这张图片的尺寸是 1718 x 2048 像素。 假设每个像素会占用 4 个字节:
- 1718 * 2048 * 4 / 1024 / 1024 = 13."
+1718 * 2048 * 4 / 1024 / 1024 = 13.42 MB 大约"
 />
 <meta
   name="keywords"
@@ -75,7 +75,7 @@
 
 
   </head>
-  <body class="">
+  <body class="light-theme">
     <div class="container">
       <header class="header">
   <span class="header__inner">
@@ -200,34 +200,34 @@
   <a href="#%e5%a4%a7%e5%b0%8f%e7%9c%9f%e7%9a%84%e5%be%88%e9%87%8d%e8%a6%81" class="h-anchor" aria-hidden="true">#</a>
 </h2>
 <p>我们其实可以很轻松地观察到这步处理以及内存时如何被消耗掉的。 我创建了一个实验 app，用 image view 来展示了我女儿的照片。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> filePath = Bundle.main.path(forResource:<span style="color:#e6db74">&#34;baylor&#34;</span><span style="color:#960050;background-color:#1e0010">，</span>ofType: <span style="color:#e6db74">&#34;jpg&#34;</span>)<span style="color:#f92672">!</span>
-<span style="color:#66d9ef">let</span> url = NSURL(fileURLWithPath: filePath)
-<span style="color:#66d9ef">let</span> fileImage = UIImage(contentsOfFile: filePath)
-
-<span style="color:#75715e">// Image view</span>
-<span style="color:#66d9ef">let</span> imageView = UIImageView(image: fileImage)
-imageView.translatesAutoresizingMaskIntoConstraints = <span style="color:#66d9ef">false</span>
-imageView.contentMode = .scaleAspectFit
-imageView.widthAnchor.constraint(equalToConstant: <span style="color:#ae81ff">300</span>).isActive = <span style="color:#66d9ef">true</span>
-imageView.heightAnchor.constraint(equalToConstant: <span style="color:#ae81ff">400</span>).isActive = <span style="color:#66d9ef">true</span>
-
-view.addSubview(imageView)
-imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = <span style="color:#66d9ef">true</span>
-imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = <span style="color:#66d9ef">true</span>
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> filePath = Bundle.main.path(forResource:<span style="color:#e6db74">&#34;baylor&#34;</span><span style="color:#960050;background-color:#1e0010">，</span>ofType: <span style="color:#e6db74">&#34;jpg&#34;</span>)<span style="color:#f92672">!</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> url = NSURL(fileURLWithPath: filePath)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> fileImage = UIImage(contentsOfFile: filePath)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Image view</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> imageView = UIImageView(image: fileImage)
+</span></span><span style="display:flex;"><span>imageView.translatesAutoresizingMaskIntoConstraints = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>imageView.contentMode = .scaleAspectFit
+</span></span><span style="display:flex;"><span>imageView.widthAnchor.constraint(equalToConstant: <span style="color:#ae81ff">300</span>).isActive = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>imageView.heightAnchor.constraint(equalToConstant: <span style="color:#ae81ff">400</span>).isActive = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>view.addSubview(imageView)
+</span></span><span style="display:flex;"><span>imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><blockquote>
 <p>这里我们只是为了演示场景，在生产环境中请谨慎使用强制解包。</p>
 </blockquote>
 <p>上面的代码运行起来时这样:</p>
 <p><img src="https://www.swiftjectivec.com/assets/images/baylorPhone.jpg" alt="Baylor"></p>
 <p>虽然我们使用了一个小得多的 Image View 来展示图片，但通过 LLDB 我们可以查看到图片实际的尺寸。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">&lt;UIImage: <span style="color:#ae81ff">0x600003d41a40</span>&gt;<span style="color:#960050;background-color:#1e0010">，</span>{<span style="color:#ae81ff">1718</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">2048</span>}
-</code></pre></div><p>记住，这是点表示。 所以如果我使用的是 3x 或者 2x 设备，这个数字需要更大一些。  我们可以使用 vmmap 来确定这张图片是否真的占用了 14 MB。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>&lt;UIImage: <span style="color:#ae81ff">0x600003d41a40</span>&gt;<span style="color:#960050;background-color:#1e0010">，</span>{<span style="color:#ae81ff">1718</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">2048</span>}
+</span></span></code></pre></div><p>记住，这是点表示。 所以如果我使用的是 3x 或者 2x 设备，这个数字需要更大一些。  我们可以使用 vmmap 来确定这张图片是否真的占用了 14 MB。</p>
 <pre tabindex="0"><code>vmmap --summary baylor.memgraph
 </code></pre><p>有几个东西引起了注意（为了简洁只截出了部分输出）:</p>
 <pre tabindex="0"><code>Physical footprint:         69.5M
 Physical footprint (peak):  69.7M
 </code></pre><p>接近 70 MB 给了我们一个很好的参考来确定我们的重构是否有效。 如果我们通过 grep 命令来筛选 Image IO，我们也能够看到图片的开销。</p>
-<pre tabindex="0"><code>vmmap --summary baylor.memgraph | grep &quot;Image IO&quot;
+<pre tabindex="0"><code>vmmap --summary baylor.memgraph | grep &#34;Image IO&#34;
 
 Image IO  13.4M   13.4M   13.4M    0K  0K  0K   0K  2 
 </code></pre><p>啊哈 - 这里就有接近 14 MB 的脏内存。 如同我们在餐巾纸背面写下的公式计算的那样。 背景补充一下，这是一个终端的屏幕截图，清楚地显示了每一列的含义。 （由于他们被 grep 命令给省略掉了）</p>
@@ -241,30 +241,30 @@ Image IO  13.4M   13.4M   13.4M    0K  0K  0K   0K  2
 <p>如果你使用的是支持广色域格式的设备（iPhone 8+ 或 iPhone X）进行拍摄，那就可以肯定数字会加倍了。 当然了，反过来也一样，Metal 支持使用 Alpha 8 格式，就像其名字描述的那样只有单一通道。</p>
 <p>这里有非常多需要考虑的东西。 这也是为什么你应该使用 <a href="https://swiftjectivec.com/UIGraphicsImageRenderer">UIGraphicsImageRenderer</a> 而不是 <code>UIGraphicsBeginImageContextWithOptions</code>。 后者会<strong>一直</strong>使用 sRGB，这也意味着你会丢失广色域格式，如果你 <a href="https://instagram-engineering.com/bringing-wide-color-to-instagram-5a5481802d7d">想要的话</a>，或是错失节省开销的机会。  在 iOS 12 之后，<code>UIGraphicsImageRenderer</code> 会自动帮你选择正确的方案。</p>
 <p>最后别忘记了，很多图片并不是拍摄出来的，而是通过绘图绘制的。 这里并不是刻意重复我写过的东西，只是怕你之前错过了:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> circleSize = CGSize(width: <span style="color:#ae81ff">60</span><span style="color:#960050;background-color:#1e0010">，</span>height: <span style="color:#ae81ff">60</span>)
-
-UIGraphicsBeginImageContextWithOptions(circleSize<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">0</span>)
-
-<span style="color:#75715e">// Draw a circle</span>
-<span style="color:#66d9ef">let</span> ctx = UIGraphicsGetCurrentContext()<span style="color:#f92672">!</span>
-UIColor.red.setFill()
-ctx.setFillColor(UIColor.red.cgColor)
-ctx.addEllipse(<span style="color:#66d9ef">in</span>: CGRect(x: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>y: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>width: circleSize.width<span style="color:#960050;background-color:#1e0010">，</span>height: circleSize.height))
-ctx.drawPath(using: .fill)
-
-<span style="color:#66d9ef">let</span> circleImage = UIGraphicsGetImageFromCurrentImageContext()
-UIGraphicsEndImageContext()
-</code></pre></div><p>这个圆形图片使用的是每个像素 4 字节格式。 如果你使用 <code>UIGraphicsImageRenderer</code> 那么渲染器会自动选择合适的格式，为每个像素节省 75% 的内存消耗。</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> circleSize = CGSize(width: <span style="color:#ae81ff">60</span><span style="color:#960050;background-color:#1e0010">，</span>height: <span style="color:#ae81ff">60</span>)
-<span style="color:#66d9ef">let</span> renderer = UIGraphicsImageRenderer(bounds: CGRect(x: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>y: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>width: circleSize.width<span style="color:#960050;background-color:#1e0010">，</span>height: circleSize.height))
-
-<span style="color:#66d9ef">let</span> circleImage = renderer.image{ ctx <span style="color:#66d9ef">in</span>
-    UIColor.red.setFill()
-    ctx.cgContext.setFillColor(UIColor.red.cgColor)
-    ctx.cgContext.addEllipse(<span style="color:#66d9ef">in</span>: CGRect(x: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>y: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>width: circleSize.width<span style="color:#960050;background-color:#1e0010">，</span>height: circleSize.height))
-    ctx.cgContext.drawPath(using: .fill)
-}
-</code></pre></div><h2 id="缩小分辨率-vs-缩小采样">
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> circleSize = CGSize(width: <span style="color:#ae81ff">60</span><span style="color:#960050;background-color:#1e0010">，</span>height: <span style="color:#ae81ff">60</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>UIGraphicsBeginImageContextWithOptions(circleSize<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Draw a circle</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> ctx = UIGraphicsGetCurrentContext()<span style="color:#f92672">!</span>
+</span></span><span style="display:flex;"><span>UIColor.red.setFill()
+</span></span><span style="display:flex;"><span>ctx.setFillColor(UIColor.red.cgColor)
+</span></span><span style="display:flex;"><span>ctx.addEllipse(<span style="color:#66d9ef">in</span>: CGRect(x: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>y: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>width: circleSize.width<span style="color:#960050;background-color:#1e0010">，</span>height: circleSize.height))
+</span></span><span style="display:flex;"><span>ctx.drawPath(using: .fill)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> circleImage = UIGraphicsGetImageFromCurrentImageContext()
+</span></span><span style="display:flex;"><span>UIGraphicsEndImageContext()
+</span></span></code></pre></div><p>这个圆形图片使用的是每个像素 4 字节格式。 如果你使用 <code>UIGraphicsImageRenderer</code> 那么渲染器会自动选择合适的格式，为每个像素节省 75% 的内存消耗。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> circleSize = CGSize(width: <span style="color:#ae81ff">60</span><span style="color:#960050;background-color:#1e0010">，</span>height: <span style="color:#ae81ff">60</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> renderer = UIGraphicsImageRenderer(bounds: CGRect(x: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>y: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>width: circleSize.width<span style="color:#960050;background-color:#1e0010">，</span>height: circleSize.height))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> circleImage = renderer.image{ ctx <span style="color:#66d9ef">in</span>
+</span></span><span style="display:flex;"><span>    UIColor.red.setFill()
+</span></span><span style="display:flex;"><span>    ctx.cgContext.setFillColor(UIColor.red.cgColor)
+</span></span><span style="display:flex;"><span>    ctx.cgContext.addEllipse(<span style="color:#66d9ef">in</span>: CGRect(x: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>y: <span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>width: circleSize.width<span style="color:#960050;background-color:#1e0010">，</span>height: circleSize.height))
+</span></span><span style="display:flex;"><span>    ctx.cgContext.drawPath(using: .fill)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="缩小分辨率-vs-缩小采样">
   缩小分辨率 vs 缩小采样
   <a href="#%e7%bc%a9%e5%b0%8f%e5%88%86%e8%be%a8%e7%8e%87-vs-%e7%bc%a9%e5%b0%8f%e9%87%87%e6%a0%b7" class="h-anchor" aria-hidden="true">#</a>
 </h2>
@@ -273,44 +273,44 @@ UIGraphicsEndImageContext()
 <p>如我们之前讨论渲染路径时提到的，<code>UIImage</code> 会产生内存问题的主要原因是它会将原始图像加载到内存中进行解压。 理想状态下，我们应该减少图像缓存区的大小。</p>
 <p>幸运的是，我们其实可以只以调整图像文件的大小为代价，来影响图像内存大小。 通常人们会假设这就是系统如何实现的，但其实不是。</p>
 <p>让我们用点底层 API 来缩小采样试试:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">let</span> imageSource = CGImageSourceCreateWithURL(url<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#66d9ef">nil</span>)<span style="color:#f92672">!</span>
-<span style="color:#66d9ef">let</span> options: [NSString:Any] = [kCGImageSourceThumbnailMaxPixelSize:<span style="color:#ae81ff">400</span><span style="color:#960050;background-color:#1e0010">，</span>
-                               kCGImageSourceCreateThumbnailFromImageAlways:<span style="color:#66d9ef">true</span>]
-
-<span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> scaledImage = CGImageSourceCreateThumbnailAtIndex(imageSource<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>options <span style="color:#66d9ef">as</span> CFDictionary) {
-    <span style="color:#66d9ef">let</span> imageView = UIImageView(image: UIImage(cgImage: scaledImage))
-    
-    imageView.translatesAutoresizingMaskIntoConstraints = <span style="color:#66d9ef">false</span>
-    imageView.contentMode = .scaleAspectFit
-    imageView.widthAnchor.constraint(equalToConstant: <span style="color:#ae81ff">300</span>).isActive = <span style="color:#66d9ef">true</span>
-    imageView.heightAnchor.constraint(equalToConstant: <span style="color:#ae81ff">400</span>).isActive = <span style="color:#66d9ef">true</span>
-    
-    view.addSubview(imageView)
-    imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = <span style="color:#66d9ef">true</span>
-    imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = <span style="color:#66d9ef">true</span>
-}
-</code></pre></div><p>再次运行，我们得到的显示效果和之前一样。 但在这里，我们使用了 <code>CGImageSourceCreateThumbnailAtIndex()</code> 而不是直接将原始图像放在 image view  中。 真相大白的时刻到了，让我们通过 <code>vmmap</code> 来看看我们的优化是否奏效（再一次，为了简洁只截取了部分）:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> imageSource = CGImageSourceCreateWithURL(url<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#66d9ef">nil</span>)<span style="color:#f92672">!</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> options: [NSString:Any] = [kCGImageSourceThumbnailMaxPixelSize:<span style="color:#ae81ff">400</span><span style="color:#960050;background-color:#1e0010">，</span>
+</span></span><span style="display:flex;"><span>                               kCGImageSourceCreateThumbnailFromImageAlways:<span style="color:#66d9ef">true</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#66d9ef">let</span> scaledImage = CGImageSourceCreateThumbnailAtIndex(imageSource<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">，</span>options <span style="color:#66d9ef">as</span> CFDictionary) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> imageView = UIImageView(image: UIImage(cgImage: scaledImage))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    imageView.translatesAutoresizingMaskIntoConstraints = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>    imageView.contentMode = .scaleAspectFit
+</span></span><span style="display:flex;"><span>    imageView.widthAnchor.constraint(equalToConstant: <span style="color:#ae81ff">300</span>).isActive = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    imageView.heightAnchor.constraint(equalToConstant: <span style="color:#ae81ff">400</span>).isActive = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    view.addSubview(imageView)
+</span></span><span style="display:flex;"><span>    imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>再次运行，我们得到的显示效果和之前一样。 但在这里，我们使用了 <code>CGImageSourceCreateThumbnailAtIndex()</code> 而不是直接将原始图像放在 image view  中。 真相大白的时刻到了，让我们通过 <code>vmmap</code> 来看看我们的优化是否奏效（再一次，为了简洁只截取了部分）:</p>
 <pre tabindex="0"><code>vmmap -summary baylorOptimized.memgraph
 
 Physical footprint:         56.3M
 Physical footprint (peak):  56.7M
 </code></pre><p>节省的开销都统计在了一起。 如果我们将之前的 69.5M 和现在的 56.3M 进行对比，我们节约了 13.2M。 这是个很大的节省，几乎是整个图片的大小。</p>
 <p>再进一步，你可以根据你的需要通过各种选项来打磨。 在 WWDC 2018 Session 219 &ldquo;Images and Graphics Best Practices&rdquo; 中，Apple 工程师 Kyle Sluder 通过使用 <code>kCGImageSourceShouldCacheImmediately</code> 标记来展示了一个很有趣的技巧控制解码:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift"><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downsampleImage</span>(at URL:NSURL<span style="color:#960050;background-color:#1e0010">，</span>maxSize:Float) -&gt; UIImage
-{
-    <span style="color:#66d9ef">let</span> sourceOptions = [kCGImageSourceShouldCache:<span style="color:#66d9ef">false</span>] <span style="color:#66d9ef">as</span> CFDictionary
-    <span style="color:#66d9ef">let</span> source = CGImageSourceCreateWithURL(URL <span style="color:#66d9ef">as</span> CFURL<span style="color:#960050;background-color:#1e0010">，</span>sourceOptions)<span style="color:#f92672">!</span>
-    <span style="color:#66d9ef">let</span> downsampleOptions = [kCGImageSourceCreateThumbnailFromImageAlways:<span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">，</span>
-                             kCGImageSourceThumbnailMaxPixelSize:maxSize
-                             kCGImageSourceShouldCacheImmediately:<span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">，</span>
-                             kCGImageSourceCreateThumbnailWithTransform:<span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">，</span>
-                             ] <span style="color:#66d9ef">as</span> CFDictionary
-    
-    <span style="color:#66d9ef">let</span> downsampledImage = CGImageSourceCreateThumbnailAtIndex(source,  <span style="color:#ae81ff">0</span>, downsampleOptions)<span style="color:#f92672">!</span>
-    
-    <span style="color:#66d9ef">return</span> UIImage(cgImage: downsampledImage)
-}
-</code></pre></div><p>Core Graphics 并不会参与解码图片，直到你明确需要使用缩略图的时候。 并且需要注意传入 <code>kCGImageSourceCreateThumbnailMaxPixelSize</code>，就像我们做的上面两个例子那样。 如果你不传，那么你会得到一个和原始图像一样大小的缩略图。 据文档描述:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">downsampleImage</span>(at URL:NSURL<span style="color:#960050;background-color:#1e0010">，</span>maxSize:Float) -&gt; UIImage
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> sourceOptions = [kCGImageSourceShouldCache:<span style="color:#66d9ef">false</span>] <span style="color:#66d9ef">as</span> CFDictionary
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> source = CGImageSourceCreateWithURL(URL <span style="color:#66d9ef">as</span> CFURL<span style="color:#960050;background-color:#1e0010">，</span>sourceOptions)<span style="color:#f92672">!</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> downsampleOptions = [kCGImageSourceCreateThumbnailFromImageAlways:<span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">，</span>
+</span></span><span style="display:flex;"><span>                             kCGImageSourceThumbnailMaxPixelSize:maxSize
+</span></span><span style="display:flex;"><span>                             kCGImageSourceShouldCacheImmediately:<span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">，</span>
+</span></span><span style="display:flex;"><span>                             kCGImageSourceCreateThumbnailWithTransform:<span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">，</span>
+</span></span><span style="display:flex;"><span>                             ] <span style="color:#66d9ef">as</span> CFDictionary
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> downsampledImage = CGImageSourceCreateThumbnailAtIndex(source,  <span style="color:#ae81ff">0</span>, downsampleOptions)<span style="color:#f92672">!</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> UIImage(cgImage: downsampledImage)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Core Graphics 并不会参与解码图片，直到你明确需要使用缩略图的时候。 并且需要注意传入 <code>kCGImageSourceCreateThumbnailMaxPixelSize</code>，就像我们做的上面两个例子那样。 如果你不传，那么你会得到一个和原始图像一样大小的缩略图。 据文档描述:</p>
 <blockquote>
 <p>“…如果没有指定最大像素大小，那么缩略图就会是完整的图片大小，这可能不是你想要的。”
 “…if a maximum pixel size isn’t specified,  then the thumbnail will be the size of the full image, which probably isn’t what you want.”</p>
@@ -324,33 +324,33 @@ Physical footprint (peak):  56.7M
 <p>我个人在 Tandem 中配合着 <a href="https://developer.apple.com/documentation/uikit/uitableviewdatasourceprefetching?language=swift">prefetch API</a> （iOS 11） 使用了这种技术。 但要记住即使我们在真正使用 table view 或者 collection view 之前这样做，我们在解码图片的时候，内部依然会带来的一个 CPU 使用量的高峰。</p>
 <p>尽管 iOS 在面对持续性能消耗时有很高效的处理方案，但在我们的例子中，可能是时不时才会产生这样的高峰。 所以在处理这种问题的时候，最好把希望寄予你自己创建的队列。 另一个优势是，这样还能将解码移动到后台处理。</p>
 <p>快遮住眼睛，我业余项目中的 Objective-C 代码要出来了:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-objc" data-lang="objc"><span style="color:#75715e">//  用你自己的队列而不是 global 队列可以避免潜在的线程爆炸
-</span><span style="color:#75715e"></span>
-- (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">tableView:</span>(UITableView <span style="color:#f92672">*</span>)tableView <span style="color:#a6e22e">prefetchRowsAtIndexPaths:</span>(NSArray<span style="color:#f92672">&lt;</span>NSIndexPath <span style="color:#f92672">*&gt;</span> <span style="color:#f92672">*</span>)indexPaths
-{
-    <span style="color:#66d9ef">if</span> (self.downsampledImage <span style="color:#f92672">!=</span> nil <span style="color:#f92672">||</span> 
-        self.listItem.mediaAssetData <span style="color:#f92672">==</span> nil) <span style="color:#66d9ef">return</span>;
-    
-    NSIndexPath <span style="color:#f92672">*</span>mediaIndexPath <span style="color:#f92672">=</span> [NSIndexPath indexPathForRow:<span style="color:#ae81ff">0</span>
-                                                     inSection:SECTION_MEDIA];
-    <span style="color:#66d9ef">if</span> ([indexPaths containsObject:mediaIndexPath])
-    {
-        CGFloat scale <span style="color:#f92672">=</span> tableView.traitCollection.displayScale;
-        CGFloat maxPixelSize <span style="color:#f92672">=</span> (tableView.width <span style="color:#f92672">-</span> SSSpacingJumboMargin) <span style="color:#f92672">*</span> scale;
-        
-        dispatch_async(self.downsampleQueue<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#f92672">^</span>{
-            <span style="color:#75715e">// 缩减采样
-</span><span style="color:#75715e"></span>            self.downsampledImage <span style="color:#f92672">=</span> [UIImage downsampledImageFromData:self.listItem.mediaAssetData
-                               scale:scale
-                        maxPixelSize:maxPixelSize];
-            
-            dispatch_async(dispatch_get_main_queue()<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#f92672">^</span> {
-                self.listItem.downsampledMediaImage <span style="color:#f92672">=</span> self.downsampledImage;
-            });
-        });
-    }
-}
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-objc" data-lang="objc"><span style="display:flex;"><span><span style="color:#75715e">//  用你自己的队列而不是 global 队列可以避免潜在的线程爆炸
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>- (<span style="color:#66d9ef">void</span>)<span style="color:#a6e22e">tableView:</span>(UITableView <span style="color:#f92672">*</span>)tableView <span style="color:#a6e22e">prefetchRowsAtIndexPaths:</span>(NSArray<span style="color:#f92672">&lt;</span>NSIndexPath <span style="color:#f92672">*&gt;</span> <span style="color:#f92672">*</span>)indexPaths
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (self.downsampledImage <span style="color:#f92672">!=</span> nil <span style="color:#f92672">||</span> 
+</span></span><span style="display:flex;"><span>        self.listItem.mediaAssetData <span style="color:#f92672">==</span> nil) <span style="color:#66d9ef">return</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    NSIndexPath <span style="color:#f92672">*</span>mediaIndexPath <span style="color:#f92672">=</span> [NSIndexPath indexPathForRow:<span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>                                                     inSection:SECTION_MEDIA];
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> ([indexPaths containsObject:mediaIndexPath])
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>        CGFloat scale <span style="color:#f92672">=</span> tableView.traitCollection.displayScale;
+</span></span><span style="display:flex;"><span>        CGFloat maxPixelSize <span style="color:#f92672">=</span> (tableView.width <span style="color:#f92672">-</span> SSSpacingJumboMargin) <span style="color:#f92672">*</span> scale;
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        dispatch_async(self.downsampleQueue<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#f92672">^</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 缩减采样
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>            self.downsampledImage <span style="color:#f92672">=</span> [UIImage downsampledImageFromData:self.listItem.mediaAssetData
+</span></span><span style="display:flex;"><span>                               scale:scale
+</span></span><span style="display:flex;"><span>                        maxPixelSize:maxPixelSize];
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            dispatch_async(dispatch_get_main_queue()<span style="color:#960050;background-color:#1e0010">，</span><span style="color:#f92672">^</span> {
+</span></span><span style="display:flex;"><span>                self.listItem.downsampledMediaImage <span style="color:#f92672">=</span> self.downsampledImage;
+</span></span><span style="display:flex;"><span>            });
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
 <p>注意在你有大量的原始图像（raw image）资源时使用资源管理（asset catalogs）。
 因为它会帮你管理缓存大小（还有其他很多的优势）</p>
 </blockquote>

@@ -3,21 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://joeytat.github.io/</loc>
-    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+    <lastmod>2022-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/tags/knownenoughtobedangerous/</loc>
+    <lastmod>2022-07-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joeytat.github.io/posts/</loc>
-    <lastmod>2022-01-16T00:00:00+00:00</lastmod>
+    <lastmod>2022-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/tags/</loc>
+    <lastmod>2022-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/posts/differences_between_scheme_and_universal_links/</loc>
+    <lastmod>2022-07-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/tags/swiftui/</loc>
+    <lastmod>2022-03-28T00:00:35+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/posts/apple_swiftui_workshop/</loc>
+    <lastmod>2022-03-28T00:00:35+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/posts/swift_dependency_injection/</loc>
+    <lastmod>2022-03-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/tags/swift/</loc>
+    <lastmod>2022-03-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joeytat.github.io/posts/combining_reducers/</loc>
     <lastmod>2022-01-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/swiftui/</loc>
-    <lastmod>2022-01-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://joeytat.github.io/posts/composible_binding/</loc>
-    <lastmod>2022-01-03T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://joeytat.github.io/tags/</loc>
     <lastmod>2022-01-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joeytat.github.io/tags/javascript/</loc>

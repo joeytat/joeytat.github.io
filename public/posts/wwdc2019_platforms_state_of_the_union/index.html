@@ -11,13 +11,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="SwiftUI #  在 View 层级提供了四种特性:
-  Declarative 通过声明式的语句来描述 UI 布局, 样式, 动画等.
-  Automatic 可交互形动画, 动态字号, 夜间模式都可以通过配置来轻松实现.
-  Compositional 组合性. 各种控件都能极其方便地组合在一起, 远比 UIStackView 方便.
-VStack(alignment: .leading) { Text(item.title) Text(item.subtitle) }   Consistent 自带 Reactive 特性. 将 Model 对象继承自 BindableObject, 并且声明属性为 @State 即可获得当属性改变时, UI 控件自动更新的效果.
-  真的如果如此美好, 超级吃性能的 xib 和 storyboard 是不是可以退出舞台了.
-Xcode 11 #    Live Development 直接在 Xcode Preview 中拖动控件即可生成对应的 SwiftUI 代码."
+  content="SwiftUI # 在 View 层级提供了四种特性:
+Declarative 通过声明式的语句来描述 UI 布局, 样式, 动画等.
+Automatic 可交互形动画, 动态字号, 夜间模式都可以通过配置来轻松实现.
+Compositional 组合性. 各种控件都能极其方便地组合在一起, 远比 UIStackView 方便.
+VStack(alignment: .leading) { Text(item.title) Text(item.subtitle) } Consistent 自带 Reactive 特性. 将 Model 对象继承自 BindableObject, 并且声明属性为 @State 即可获得当属性改变时, UI 控件自动更新的效果.
+真的如果如此美好, 超级吃性能的 xib 和 storyboard 是不是可以退出舞台了.
+Xcode 11 # Live Development 直接在 Xcode Preview 中拖动控件即可生成对应的 SwiftUI 代码. 对应的修改 SwiftUI 代码也能实时在 Preview 中响应.
+Preview 还能通过提供一个 PreviewProvider 来为其提供数据填充展示, 样式更改甚至循环语句来生成多个 Preview 同时查看控件在夜间模式和白日模式下不同的效果."
 />
 <meta
   name="keywords"
@@ -71,7 +72,7 @@ Xcode 11 #    Live Development 直接在 Xcode Preview 中拖动控件即可生�
 
 
   </head>
-  <body class="">
+  <body class="light-theme">
     <div class="container">
       <header class="header">
   <span class="header__inner">
@@ -172,11 +173,11 @@ Xcode 11 #    Live Development 直接在 Xcode Preview 中拖动控件即可生�
 <li>
 <p>Compositional
 组合性. 各种控件都能极其方便地组合在一起, 远比 <code>UIStackView</code> 方便.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-swift" data-lang="swift">VStack(alignment: .leading) {
-    Text(item.title)
-    Text(item.subtitle)
-}
-</code></pre></div></li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span>VStack(alignment: .leading) {
+</span></span><span style="display:flex;"><span>    Text(item.title)
+</span></span><span style="display:flex;"><span>    Text(item.subtitle)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
 <li>
 <p>Consistent
 自带 Reactive 特性.  将 Model 对象继承自 <code>BindableObject</code>, 并且声明属性为 <code>@State</code> 即可获得当属性改变时, UI 控件自动更新的效果.</p>

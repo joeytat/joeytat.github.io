@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        移动开发中实现 Deep Linking 的 URL Scheme 和 Universal Links 的区别是什么？ ::
+        Dev Log
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="经历过的 Mobile 项目基本上都有支持 Deep Linking 的需求，每次新项目都会经历向其他端同事和 BA 解释实现 Deep Linking 两种方案的区别，于是就有了这一篇短文。主要是介绍两种方案的优缺点和实现成本差异，并不涉及如何实现的代码步骤。
+首先什么是 Deep Linking，简单来说就是让一个 App 可以通过 URL 打开其他的 App，以提供更便捷高效的用户体验。
+如果想跳到别人那去 # BA 老刘：「如果想在 App 里打开人家的 App 应该怎么做呢？」
+开发小曾：「目前有两种选项，URL Scheme 和 Universal Links。」
+BA 老刘：「区别是啥？」
+开发小曾：「主要看你想不想处理用户没有安装对方 App 的情况。」
+ps: Android 中这两种选项是 Deep Links 和 App Links，运作原理大体相同，实现方式 iOS 和 Android 有些许差异。为少打字，下文将统一使用 URL Scheme 和 Universal Links。
+URL Scheme # 通常长这样： example://destination?param1=hello。
+想通过 URL Scheme 跳转到某个 App，我们需要知道对方 App 定义的 Scheme 是什么（这不算是废话）。
+以 Twitter 为例，如果当前设备安装了 Twitter："
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://joeytat.github.io/posts/differences_between_scheme_and_universal_links/" />
+
+
+
+
+
+<link rel="stylesheet" href="https://joeytat.github.io/assets/style.css" />
+
+<link rel="stylesheet" href="https://joeytat.github.io/style.css" />
+
+
+<link
+  rel="apple-touch-icon-precomposed"
+  sizes="144x144"
+  href="https://joeytat.github.io/img/apple-touch-icon-144-precomposed.png"
+/>
+<link rel="shortcut icon" href="https://joeytat.github.io/img/favicon.png" />
+
+
+<link href="https://joeytat.github.io/assets/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://joeytat.github.io/assets/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://joeytat.github.io/assets/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://joeytat.github.io/assets/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://joeytat.github.io/assets/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="https://joeytat.github.io/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="移动开发中实现 Deep Linking 的 URL Scheme 和 Universal Links 的区别是什么？"/>
+<meta name="twitter:description" content="经历过的 Mobile 项目基本上都有支持 Deep Linking 的需求，每次新项目都会经历向其他端同事和 BA 解释实现 Deep Linking 两种方案的区别，于是就有了这一篇短文。主要是介绍两种方案的优缺点和实现成本差异，并不涉及如何实现的代码步骤。"/>
+
+
+
+<meta property="og:title" content="移动开发中实现 Deep Linking 的 URL Scheme 和 Universal Links 的区别是什么？" />
+<meta property="og:description" content="经历过的 Mobile 项目基本上都有支持 Deep Linking 的需求，每次新项目都会经历向其他端同事和 BA 解释实现 Deep Linking 两种方案的区别，于是就有了这一篇短文。主要是介绍两种方案的优缺点和实现成本差异，并不涉及如何实现的代码步骤。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://joeytat.github.io/posts/differences_between_scheme_and_universal_links/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-07-27T00:00:00+00:00" />
+
+
+
+
+
+
+
+  </head>
+  <body class="light-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="https://joeytat.github.io/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Joeytat&#39;s Devlog</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+    <span class="header__right">
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <div class="post">
+    <h1 class="post-title">移动开发中实现 Deep Linking 的 URL Scheme 和 Universal Links 的区别是什么？</h1>
+    <div class="post-meta">
+      
+        <span class="post-date">
+          2022-07-27
+        </span>
+
+        
+          
+        
+      
+
+      
+        <span class="post-author"
+          >— Written by Joeytat</span
+        >
+
+
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="https://joeytat.github.io/tags/knownenoughtobedangerous/">#KnownEnoughToBeDangerous</a>&nbsp;
+        
+      </span>
+    
+
+    
+
+    <div class="post-content">
+      
+      <p>经历过的 Mobile 项目基本上都有支持 Deep Linking 的需求，每次新项目都会经历向其他端同事和 BA 解释实现 Deep Linking 两种方案的区别，于是就有了这一篇短文。主要是介绍两种方案的优缺点和实现成本差异，并不涉及如何实现的代码步骤。</p>
+<p>首先什么是 Deep Linking，简单来说就是让一个 App 可以通过 URL 打开其他的 App，以提供更便捷高效的用户体验。</p>
+<h2 id="如果想跳到别人那去">
+  如果想跳到别人那去
+  <a href="#%e5%a6%82%e6%9e%9c%e6%83%b3%e8%b7%b3%e5%88%b0%e5%88%ab%e4%ba%ba%e9%82%a3%e5%8e%bb" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>BA 老刘：「如果想在 App 里打开人家的 App 应该怎么做呢？」<br>
+开发小曾：「目前有两种选项，URL Scheme 和 Universal Links。」<br>
+BA 老刘：「区别是啥？」<br>
+开发小曾：「主要看你想不想处理用户没有安装对方 App 的情况。」</p>
+<p><em>ps: Android 中这两种选项是 Deep Links 和 App Links，运作原理大体相同，实现方式 iOS 和 Android 有些许差异。为少打字，下文将统一使用 URL Scheme 和 Universal Links。</em></p>
+<h3 id="url-scheme">
+  URL Scheme
+  <a href="#url-scheme" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>通常长这样： <code>example://destination?param1=hello</code>。</p>
+<p>想通过 URL Scheme 跳转到某个 App，我们需要知道对方 App 定义的 Scheme 是什么（这不算是废话）。</p>
+<p>以 Twitter 为例，如果当前设备<strong>安装了 Twitter</strong>：<br>
+通过 <code>twitter://user?screen_name=elonmusk</code> 这样一个 URL Scheme，就可以打开 Twitter 并且跳转到 Elon Musk 的主页（scheme 可以输入 Safari 地址栏进行测试）。</p>
+<p>如果当前设备<strong>没有安装 Twitter</strong>：<br>
+可以通过代码得到无法解析 URL 的错误，接下来要如何处理，就需要工程师自己去实现了。
+比如可以加上判断，如果打不开 Twitter 的 Scheme，就去打开 App Store 的 Scheme 引导用户下载 Twitter，或者去打开微博。</p>
+<h3 id="universal-links">
+  Universal Links
+  <a href="#universal-links" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Universal Links 则是使用了 HTTP 或 HTTPS（iOS 只支持 HTTPS）Scheme 的 URL。</p>
+<p>依然用 Twitter 举例：</p>
+<p>如果当前设备<strong>安装了 Twitter</strong>：<br>
+通过打开 URL <code>https://twitter.com/elonmusk</code> 可以跳转到 Twitter App 中 Elon Musk 的主页。</p>
+<p>如果用户<strong>没有安装 Twitter</strong>：<br>
+会打开网页版 Elon Musk 的主页。</p>
+<h3 id="方案对比">
+  方案对比
+  <a href="#%e6%96%b9%e6%a1%88%e5%af%b9%e6%af%94" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>有安装对应 App</th>
+<th>没有安装对应 App</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URL Scheme</td>
+<td>直接打开对应 App</td>
+<td>需要自行处理设备没有安装对应 App 的情况，但处理方案可以非常灵活多变</td>
+</tr>
+<tr>
+<td>Universal Links</td>
+<td>直接打开对应 App</td>
+<td>无需额外处理，通常 Universal Link 就对应了一个网页，在当前设备没有安装 App 的情况下，会跳转到对应网页</td>
+</tr>
+</tbody>
+</table>
+<h2 id="如果想让别人跳过来">
+  如果想让别人跳过来
+  <a href="#%e5%a6%82%e6%9e%9c%e6%83%b3%e8%ae%a9%e5%88%ab%e4%ba%ba%e8%b7%b3%e8%bf%87%e6%9d%a5" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>BA 老刘：「那如果想让我们的 App 支持跳转呢？」。<br>
+开发小曾：「还是那两种选项，URL Scheme 和 Universal Links。」<br>
+BA 老刘：「区别是啥？」<br>
+开发小曾：「主要是实现成本和想支持跳转的范围。」</p>
+<h3 id="url-scheme-1">
+  URL Scheme
+  <a href="#url-scheme-1" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>在 App 中设置一个自定义 Scheme 即可。当三方 App 通过代码调用尝试跳转某个 Scheme，系统会检测当前设备是否安装了有定义该 Scheme 的 App。</p>
+<p>如果想要支持对方跳转到某个特定界面，只需要在 App 中增加解析 URL 的方法即可。
+具体实现细节可以参考：</p>
+<ul>
+<li><a href="https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app">iOS - Defining a custom URL scheme for your app</a></li>
+<li><a href="https://developer.android.com/training/app-links#deep-links">Android - Hanling Android App Link - Deep Links</a></li>
+</ul>
+<h3 id="universal-links-1">
+  Universal Links
+  <a href="#universal-links-1" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>相比起 URL Scheme 只需要前端实现，Universal Links 的支持要复杂一些，原因是在于其使用场景扩大了。<br>
+URL Scheme 的跳转，需要让三方 App 知道我们的 Scheme 定义即可，由<strong>第三方 App 来发起跳转</strong>。如果当前设备并没有安装 App，如何提供备选方案，就完全依赖于三方实现了。</p>
+<p>Universal Links 的跳转，是三方 App 打开一个链接时，由系统决定应该跳转到 App（将其当作 Universal Link） 还是跳转到网页（将其当作普通的 HTTP Link）。同时系统来控制跳转，则意味着用户从系统中几乎任何地方（比如邮件、短信、备忘录、日历）点击 Universal Link 都能跳转到 App 中。这样即使在当前设备没有安装 App 的情况下，依然保证用户可以通过网页访问到需要的资源。</p>
+<p>所以实现的区别在于，需要让系统知道，哪些域名的 URL 是应该跳转到我们的 App。</p>
+<p>依然用 Twitter 举例，当我们需要让系统支持在点击任何带有 <code>twitter.com</code> 为 Host 的链接时，都尝试着唤起 Twitter 就需要：</p>
+<ol>
+<li>开发人员需要在 Twitter App 的配置中，添加 associated domain 的记录，比如 <code>twitter.com</code>。</li>
+<li>当 Twitter App 被安装到用户的手机或者应用更新时，系统会去 Twitter App 包中查找 associated domain 记录。</li>
+<li>如果存在这样一份记录，系统会去访问该 domain 下的一个 JSON 文件，该文件中需要包含 Twitter App 的 App ID，以建立该站点与 App 的联系。比如 Twitter 就将这份 JSON 文件放在了  <code>https://twitter.com/.well-known/apple-app-site-association</code>。</li>
+<li>由此当系统在处理链接的点击时，会去判断 <code>https://twitter.com</code> 是否和当前设备中安装的某个 App 之间存在联系，如果已安装的某个 App 的 app id 存在于该 domain 下的 site association JSON 文件中，则将 URL 作为参数代入，跳转到 App 中。</li>
+</ol>
+<p>用图片来表示的话，大概是这样，首先让 OS 建立域名和 App 的联系：</p>
+<p><img src="/deeplinking_connection.png" alt="make connection between domain and the app"></p>
+<p>当存在联系之后，点击链接时，OS 会去唤起 App：</p>
+<p><img src="/deeplinking_connection1.png" alt="tapping on the link will navigate to the app"></p>
+<p>具体实现细节可以参考：</p>
+<ul>
+<li><a href="https://developer.apple.com/documentation/xcode/allowing-apps-and-websites-to-link-to-your-content">iOS - Allowing Apps and Websites to Link to Your Content</a></li>
+<li><a href="https://developer.android.com/training/app-links#android-app-links">Android - Hanling Android App Link</a></li>
+</ul>
+<h3 id="对比">
+  对比
+  <a href="#%e5%af%b9%e6%af%94" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>实现成本</th>
+<th>支持跳转的范围</th>
+<th>没有安装 App</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>URL Scheme</td>
+<td>需要在 App 中维护一个支持被跳转的 Scheme 列表</td>
+<td>只能由知道 Scheme 的 App 来主动进行跳转</td>
+<td>需要让三方 App 来处理没有安装 App 的情况</td>
+</tr>
+<tr>
+<td>Universal Links</td>
+<td>App 中要维护一个支持被跳转的 domain 列表，同时需要在 domain 对应服务器中放一个 JSON 文件，让系统知道该 domain 同 App 之间的联系</td>
+<td>系统中几乎所有可点击链接区域都可以被系统触发跳转，比如点击邮件、短信、网页、三方 App 中的 Universal Link 时</td>
+<td>用户会跳转到 Universal Link 对应的网页，在网页中我们可以实现一套 Web 版本，或者直接在网页中打开应用商店，引导用户下载 App</td>
+</tr>
+</tbody>
+</table>
+<h2 id="简单总结">
+  简单总结
+  <a href="#%e7%ae%80%e5%8d%95%e6%80%bb%e7%bb%93" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>跳到别人那去，一般来说在需要灵活处理当前设备<strong>没有安装</strong>对方 App 的情况下，通常会选择 URL Scheme，否则选择 Universal Links。</p>
+<p>支持别人跳过来，两个方案可以共存。</p>
+<ul>
+<li>URL Scheme 相对来说实现成本非常低廉，仅需要前端维护 Scheme 列表并且负责解析即可。但需要让对方来处理，如果当前设备没有安装 App 应该怎么办。</li>
+<li>Universal Links 的实现则相对复杂，必须要把 domain 和 app 之间建立联系的 json 文件放在服务器，让系统在安装 App 的时候去访问。但好处是，如果本来就有 Web 版的业务，那么自动就可以在用户未安装 App 时得到相应的服务。</li>
+</ul>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="https://joeytat.github.io/posts/apple_swiftui_workshop/">
+                  <span class="button__text">参加 Apple 开发者线上活动是什么样的体验？</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </div>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="https://joeytat.github.io/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+    <span class="logo__mark"><svg xmlns="http://www.w3.org/2000/svg" class="greater-icon" viewBox="0 0 44 44">
+  <path fill="none" d="M15 8l14.729 14.382L15 35.367" />
+</svg>
+</span>
+    <span class="logo__text"
+      >Joeytat&#39;s Devlog</span
+    >
+    <span class="logo__cursor"></span>
+  
+</a>
+
+      <div class="copyright">
+        <span
+          >© 2022 Powered by
+          <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
+        >
+        <span
+          >Theme created by
+          <a href="https://twitter.com/panr" target="_blank" rel="noopener">panr</a></span
+        >
+      </div>
+    
+  </div>
+</footer>
+
+<script src="https://joeytat.github.io/assets/main.js"></script>
+<script src="https://joeytat.github.io/assets/prism.js"></script>
+
+
+      
+    </div>
+
+    
+      
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-131363452-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+    
+  </body>
+</html>
