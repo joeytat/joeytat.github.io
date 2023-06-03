@@ -1,4 +1,109 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SwiftUI on Dev Log</title><link>https://joeytat.github.io/tags/swiftui/</link><description>Recent content in SwiftUI on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 28 Mar 2022 00:00:35 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/tags/swiftui/index.xml" rel="self" type="application/rss+xml"/><item><title>参加 Apple 开发者线上活动是什么样的体验？</title><link>https://joeytat.github.io/posts/apple_swiftui_workshop/</link><pubDate>Mon, 28 Mar 2022 00:00:35 +0000</pubDate><guid>https://joeytat.github.io/posts/apple_swiftui_workshop/</guid><description>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SwiftUI on Dev Log</title><link>https://joeytat.github.io/tags/swiftui/</link><description>Recent content in SwiftUI on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 02 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/tags/swiftui/index.xml" rel="self" type="application/rss+xml"/><item><title>构建易维护的 Design System: 为什么 SwiftUI 会是更好的选择</title><link>https://joeytat.github.io/posts/why-swiftui-is-better-at-building-a-design-system/</link><pubDate>Fri, 02 Jun 2023 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/posts/why-swiftui-is-better-at-building-a-design-system/</guid><description>
+&lt;p>&lt;code>SwiftUI&lt;/code> 自 iOS 13 发布以来，虽然已经面向公众近 4 年，但由于在实现复杂布局时的性能不佳，以及因其内置组件的底层实现变更（iOS 16 上 &lt;code>List&lt;/code> 的底层实现从 &lt;code>UITableView&lt;/code> 改成了 &lt;code>UICollectionView&lt;/code> ），导致开发者们原本良好运行代码随系统升级被破坏了。iOS 14 之前 SwiftUI 的开发者体验也让人一言难尽。尽管有很多的槽点，但我们还是能发现社区整体上还是比较接纳 SwiftUI。所以如果你对 SwiftUI 还有所犹豫，不清楚为何要使用它，这篇文章或许能够带来一些新的想法。&lt;/p>
+&lt;p>本篇文章主要是想要通过 Design System 为切入点，同大家讨论相比起 UIKit，为什么更推荐使用 SwiftUI 来实现大多数业务场景下的 UI 组件。&lt;/p>
+&lt;p>首先简单概括一下 Design System 是什么，Design System 是一个包含了设计原则、组件库和代码资源等系统化的指导，旨在促进团队间的协作和提高项目的一致性。它可以帮助团队更快速、高效地构建应用程序，同时确保应用程序的外观和交互保持一致。&lt;/p>
+&lt;p>接下来就进入正题，从以下几点来探讨一下通过 SwiftUI 构建 Design System 有哪些优势。&lt;/p>
+&lt;ul>
+&lt;li>声明式语法会更具有可读性和易于实现&lt;/li>
+&lt;li>内建的一致性和统一性表达&lt;/li>
+&lt;li>单向数据流带来的可预测性&lt;/li>
+&lt;li>与 Design System 有更相似的哲学思想&lt;/li>
+&lt;/ul>
+&lt;h2 id="声明式语法会更具有可读性和易于实现">
+声明式语法会更具有可读性和易于实现
+&lt;a href="#%e5%a3%b0%e6%98%8e%e5%bc%8f%e8%af%ad%e6%b3%95%e4%bc%9a%e6%9b%b4%e5%85%b7%e6%9c%89%e5%8f%af%e8%af%bb%e6%80%a7%e5%92%8c%e6%98%93%e4%ba%8e%e5%ae%9e%e7%8e%b0" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>首先从实现和维护成本上来说，SwiftUI 与 Apple 现有的 UIKit 和 AppKit 不同，SwiftUI 采用了声明式语法构建 UI。由于声明式语法更关注于描述 UI 的最终效果，而不是具体实现方式。这使得通过声明式语法编写的 UI 组件更具可读性，有助于团队更好地协作实现 Design System。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// SwiftUI&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>VStack(spacing: &lt;span style="color:#ae81ff">20&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Text(&lt;span style="color:#e6db74">&amp;#34;Hello&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .font(.largeTitle)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Text(&lt;span style="color:#e6db74">&amp;#34;World&amp;#34;&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .font(.largeTitle)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.foregroundColor(.blue)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// UIKit&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> stackView = UIStackView()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stackView.axis = .vertical
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stackView.spacing = &lt;span style="color:#ae81ff">20&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> helloLabel = UILabel()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>helloLabel.text = &lt;span style="color:#e6db74">&amp;#34;Hello&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>helloLabel.font = UIFont.systemFont(ofSize: &lt;span style="color:#ae81ff">34&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stackView.addArrangedSubview(helloLabel)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> worldLabel = UILabel()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>worldLabel.text = &lt;span style="color:#e6db74">&amp;#34;World&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>worldLabel.font = UIFont.systemFont(ofSize: &lt;span style="color:#ae81ff">34&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stackView.addArrangedSubview(worldLabel)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>stackView.backgroundColor = .blue
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>除了代码数量上的差距，我们还可以在 SwiftUI 示例中通过代码结构就直观地感受到 UI 组件是如何被排列的。&lt;/p>
+&lt;h2 id="内建的一致性和统一性表达">
+内建的一致性和统一性表达
+&lt;a href="#%e5%86%85%e5%bb%ba%e7%9a%84%e4%b8%80%e8%87%b4%e6%80%a7%e5%92%8c%e7%bb%9f%e4%b8%80%e6%80%a7%e8%a1%a8%e8%be%be" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>在 SwiftUI 中，我们可以通过 &lt;code>View Modifier&lt;/code> 来实现对 UI 组件的统一性表达。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-swift" data-lang="swift">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// SwiftUI&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Button(&lt;span style="color:#e6db74">&amp;#34;Primary&amp;#34;&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// action&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.buttonStyle(PrimaryButtonStyle())
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>Button(&lt;span style="color:#e6db74">&amp;#34;Secondary&amp;#34;&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// action&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>.buttonStyle(SecondaryButtonStyle()) &lt;span style="color:#75715e">// 当 Primary， 或 Secondary style 发生变化时，所有使用了这两个 style 的按钮都会被自动更新&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// UIKit&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> primaryButton = UIButton()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>primaryButton.setTitle(&lt;span style="color:#e6db74">&amp;#34;Primary&amp;#34;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">，&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span>: .normal)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>primaryButton.titleLabel?.font = UIFont.systemFont(ofSize: &lt;span style="color:#ae81ff">16&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>primaryButton.backgroundColor = UIColor.blue
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>primaryButton.layer.cornerRadius = &lt;span style="color:#ae81ff">5&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">let&lt;/span> secondaryButton = UIButton()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>secondaryButton.setTitle(&lt;span style="color:#e6db74">&amp;#34;Secondary&amp;#34;&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">，&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span>: .normal)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>secondaryButton.titleLabel?.font = UIFont.systemFont(ofSize: &lt;span style="color:#ae81ff">16&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>secondaryButton.backgroundColor = UIColor.gray
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>secondaryButton.layer.cornerRadius = &lt;span style="color:#ae81ff">5&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>通过代码我们可以看到 SwiftUI 预定义的设计规范，使开发者更易于表达和保证 Design System 的统一性。&lt;/p>
+&lt;p>虽然开发者也可以对 UIKit 的 UI 组件进行封装，实现类似 SwiftUI View Modifier 的效果。但是 SwiftUI 的 View Modifier 是内在耦合的，会天然具有更好的一致性。而对 UIKit 进行二次封装，仍需依赖于开发者自觉遵循设计规范，难免会产生疏忽的情况，影响最终 UI 的一致性。&lt;/p>
+&lt;h2 id="单向数据流带来的可预测性">
+单向数据流带来的可预测性
+&lt;a href="#%e5%8d%95%e5%90%91%e6%95%b0%e6%8d%ae%e6%b5%81%e5%b8%a6%e6%9d%a5%e7%9a%84%e5%8f%af%e9%a2%84%e6%b5%8b%e6%80%a7" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>SwiftUI 所编写的 UI 组件更具有可预测性。体现在其遵循单向数据流原则，这样可以减少因为状态管理复杂性导致的 UI 错误。同时 UI 组件的样式是通过高阶函数或组合来创建的，而不是通过副作用或隐式规则创建，这使得开发者更容易识别组件会具备哪些样式及其来源。&lt;/p>
+&lt;p>相比之下 UIKit 作为命令式 UI 框架，其 UI 渲染过程则相对复杂和难以预测。&lt;/p>
+&lt;ul>
+&lt;li>状态变化会导致难以跟踪的副作用，这使 UI 更易出错且难以调试。&lt;/li>
+&lt;li>样式规则由开发者自行定义并应用，存在较大随意性，阅读和理解起来也更加困难。&lt;/li>
+&lt;li>样式的来源和应用不像 SwiftUI 那样清晰，需要开发者自行理清各个样式规则之间的关系，以确保 UI 的正确性。&lt;/li>
+&lt;/ul>
+&lt;h2 id="更相似的哲学思想">
+更相似的哲学思想
+&lt;a href="#%e6%9b%b4%e7%9b%b8%e4%bc%bc%e7%9a%84%e5%93%b2%e5%ad%a6%e6%80%9d%e6%83%b3" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>SwiftUI 中组合和函数式的思想与 Design System 中原子组件和组合的原则相吻合。&lt;/p>
+&lt;ul>
+&lt;li>两者都倾向于构建出小的、自洽的单位，然后通过组合来创建更为复杂的结构，SwiftUI 中的视图和 Modifier 就是这种单位和组合的体现。&lt;/li>
+&lt;li>组件和函数都是可以是通用的或定制的，同时可以将其重复使用或组合。在 SwiftUI 中，我们可以构建出通用的 Modifier 和视图，也可以为某一具体视图定制特有的 Modifier。&lt;/li>
+&lt;li>当改变基础单位(如字号，间距等基础单位)会以可控方式影响所有组合。如果我们改变一个 Modifier 的行为或属性，所有应用该 Modifier 的视图将会相应改变。这使得在设计系统中调整细节时，更易预测和控制其影响范围。&lt;/li>
+&lt;/ul>
+&lt;p>而相比之下，UIKit 作为命令式框架，其 UI 构建方式则相对零散和随意:&lt;/p>
+&lt;ul>
+&lt;li>构建 UI 时，开发者自行决定组装哪些控件和设置何种属性，难以遵循统一的组合规则。&lt;/li>
+&lt;li>没有类似 Modifier 的机制，每个视图的样式都需要单独设置，无法在多处重复使用。这使得调整样式时，需要逐个修改每个视图，难以高效地应用设计变化。&lt;/li>
+&lt;li>属性的变化并不一定会影响所有相关视图，需要开发者自己再逐个对应用的视图做出修改。这加大了设计系统维护的难度。&lt;/li>
+&lt;/ul>
+&lt;h2 id="最后">
+最后
+&lt;a href="#%e6%9c%80%e5%90%8e" class="h-anchor" aria-hidden="true">#&lt;/a>
+&lt;/h2>
+&lt;p>还需要说明的是，本文只是想探讨在实现移动平台的 Design System 时相比起 UIKit，SwiftUI 所具有的一定优势。&lt;/p>
+&lt;p>在某些复杂的场景下，UIKit 这样命令式的 UI 框架的灵活性和性能可能会更强。所以需要注意的是，SwiftUI 的组件状态和行为都是由数据驱动，这可能会导致性能问题，如大量的数据绑定和更新可能会引起 UI 界面的卡顿和延迟。相比之下，UIKit 接近底层渲染机制，性能表现可能更佳。但 SwiftUI 也有实现跨平台需求的优势。&lt;/p>
+&lt;p>在选择具体哪个框架实现 Design System 时，开发者还是得根据具体需求，权衡两者之间的优缺点。在追求性能或需要高度定制化的场景下，UIKit 的灵活性和性能表现可能更占优。但在大多数情况下，SwiftUI 的声明式语法和组合特性，使其天然更适合构建统一且易维护的 Design System。&lt;/p></description></item><item><title>参加 Apple 开发者线上活动是什么样的体验？</title><link>https://joeytat.github.io/posts/apple_swiftui_workshop/</link><pubDate>Mon, 28 Mar 2022 00:00:35 +0000</pubDate><guid>https://joeytat.github.io/posts/apple_swiftui_workshop/</guid><description>
 &lt;p>从朋友圈看到思琦发了一个《使用 SwiftUI 打造卓越体验》的 Apple 开发者线上活动的报名链接，刚好最近参与的项目也在大规模使用 SwiftUI 就报名了，即使时间很不凑巧是工作日（另一报名要求是必须要有中国区的开发者账号）。&lt;/p>
 &lt;p>活动分两天第一天主要是一些 SwiftUI 的介绍，SwiftUI 对数据的处理和布局的一些要点。第二天是社区开发者交流。&lt;/p>
 &lt;p>技术细节后面可以分好几篇博客来描述，但总的来说技术相关的收获其实和自己去看 WWDC 差不多。并且由于长期以 2x 速度观看这类视频，刚开始还出现了一些不适应。但想着这是来自苹果的开发者的分享，还是管住了想拿起手机的手，毕竟机会难得。&lt;/p>
