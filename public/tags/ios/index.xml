@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>iOS on Dev Log</title>
+    <title>IOS on Dev Log</title>
     
     
     
-    <link>https://joeytat.github.io/tags/ios/</link>
-    <description>Recent content in iOS on Dev Log</description>
+    <link>http://localhost:1313/tags/ios/</link>
+    <description>Recent content in IOS on Dev Log</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-cn</language>
     <lastBuildDate>Wed, 19 Jun 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://joeytat.github.io/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:1313/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>翻译 - 图像优化</title>
-      <link>https://joeytat.github.io/posts/optimizing_images/</link>
+      <link>http://localhost:1313/posts/optimizing_images/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://joeytat.github.io/posts/optimizing_images/</guid>
+      <guid>http://localhost:1313/posts/optimizing_images/</guid>
       <description>
         
           
@@ -240,10 +240,10 @@ Physical footprint (peak):  56.7M
     
     <item>
       <title>Platforms State of the Union(WWDC 2019)</title>
-      <link>https://joeytat.github.io/posts/wwdc2019_platforms_state_of_the_union/</link>
+      <link>http://localhost:1313/posts/wwdc2019_platforms_state_of_the_union/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://joeytat.github.io/posts/wwdc2019_platforms_state_of_the_union/</guid>
+      <guid>http://localhost:1313/posts/wwdc2019_platforms_state_of_the_union/</guid>
       <description>
         
           
@@ -275,7 +275,7 @@ Physical footprint (peak):  56.7M
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;Consistent
-自带 Reactive 特性.  将 Model 对象继承自 &lt;code&gt;BindableObject&lt;/code&gt;, 并且声明属性为 &lt;code&gt;@State&lt;/code&gt; 即可获得当属性改变时, UI 控件自动更新的效果.&lt;/p&gt;
+自带 Reactive 特性. 将 Model 对象继承自 &lt;code&gt;BindableObject&lt;/code&gt;, 并且声明属性为 &lt;code&gt;@State&lt;/code&gt; 即可获得当属性改变时, UI 控件自动更新的效果.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;真的如果如此美好, 超级吃性能的 xib 和 storyboard 是不是可以退出舞台了.&lt;/p&gt;
@@ -312,7 +312,7 @@ Swift 终于有自己的 Package manage 了. 并且和 Xcode 进行了深度整�
   跨平台方案
   &lt;a href=&#34;#%e8%b7%a8%e5%b9%b3%e5%8f%b0%e6%96%b9%e6%a1%88&#34; class=&#34;h-anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;
 &lt;/h2&gt;
-&lt;p&gt;SwiftUI 支持跨平台,  同时支持 iOS, macOS, iPadOS. 那如何在 iOS App 的基础上创建一个 macOS App 呢? 只需要三个步骤:&lt;/p&gt;
+&lt;p&gt;SwiftUI 支持跨平台, 同时支持 iOS, macOS, iPadOS. 那如何在 iOS App 的基础上创建一个 macOS App 呢? 只需要三个步骤:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;勾选上 deployment 中的 ✅ mac&lt;/li&gt;
 &lt;li&gt;同时勾选上 ✅ iPad, 一个好的 iPad app, 就是一个好的 macOS app&lt;/li&gt;
@@ -329,10 +329,10 @@ Swift 终于有自己的 Package manage 了. 并且和 Xcode 进行了深度整�
     
     <item>
       <title>为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?</title>
-      <link>https://joeytat.github.io/posts/cocoapods-1.5-static-library/</link>
+      <link>http://localhost:1313/posts/cocoapods-1.5-static-library/</link>
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://joeytat.github.io/posts/cocoapods-1.5-static-library/</guid>
+      <guid>http://localhost:1313/posts/cocoapods-1.5-static-library/</guid>
       <description>
         
           

@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>chitchat on Dev Log</title>
+    <title>Chitchat on Dev Log</title>
     
     
     
-    <link>https://joeytat.github.io/tags/chitchat/</link>
-    <description>Recent content in chitchat on Dev Log</description>
+    <link>http://localhost:1313/tags/chitchat/</link>
+    <description>Recent content in Chitchat on Dev Log</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-cn</language>
     <lastBuildDate>Fri, 28 Dec 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://joeytat.github.io/tags/chitchat/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:1313/tags/chitchat/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>2018</title>
-      <link>https://joeytat.github.io/posts/2018_overview/</link>
+      <link>http://localhost:1313/posts/2018_overview/</link>
       <pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://joeytat.github.io/posts/2018_overview/</guid>
+      <guid>http://localhost:1313/posts/2018_overview/</guid>
       <description>
         
           

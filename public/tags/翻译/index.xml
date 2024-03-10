@@ -5,21 +5,21 @@
     
     
     
-    <link>https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/</link>
+    <link>http://localhost:1313/tags/%E7%BF%BB%E8%AF%91/</link>
     <description>Recent content in 翻译 on Dev Log</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-cn</language>
     <lastBuildDate>Wed, 19 Jun 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://localhost:1313/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>翻译 - 图像优化</title>
-      <link>https://joeytat.github.io/posts/optimizing_images/</link>
+      <link>http://localhost:1313/posts/optimizing_images/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://joeytat.github.io/posts/optimizing_images/</guid>
+      <guid>http://localhost:1313/posts/optimizing_images/</guid>
       <description>
         
           
