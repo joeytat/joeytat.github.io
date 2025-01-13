@@ -11,11 +11,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta
   name="description"
-  content="复合组件是什么 # 编写页面时，经常存在多个子组件的展示，是依赖于同一个数据源的情况。 比如单选框：
-&amp;lt;Switcher&amp;gt; &amp;lt;Switch on={this.props.selecting == &amp;#39;React&amp;#39;}&amp;gt;React&amp;lt;/Switch&amp;gt; &amp;lt;Switch on={this.props.selecting == &amp;#39;Vue&amp;#39;}&amp;gt;Vue&amp;lt;/Switch&amp;gt; &amp;lt;/Switcher&amp;gt; 我们可以看到，所有的 Switch 的数据都需要对 selecting 的值进行判断，并且代码中其实只有 this.props.selecting == 后面的部分不同，如果能改写成这样：
-static Switcher.React = ({selecting}) =&amp;gt; ( &amp;lt;Switch on={selecting === &amp;#39;React&amp;#39;}&amp;gt;React&amp;lt;/Switch&amp;gt; ) static Switcher.Vue = ({selecting}) =&amp;gt; ( &amp;lt;Switch on={selecting === &amp;#39;Vue&amp;#39;}&amp;gt;Vue&amp;lt;/Switch&amp;gt; ) &amp;lt;Switcher selecting={this.props.selecting}&amp;gt; &amp;lt;Switcher.React/&amp;gt; &amp;lt;Switcher.Vue/&amp;gt; &amp;lt;/Switcher&amp;gt; 隐式地将父组件的数据传递给子组件，其显示逻辑交由给子组件自行处理，代码的组织结构将会清晰很多。后续即使需求变动，数据的传递改变也并不需要我们操心（不需要一个子组件一个子组件地添加传递），只需要修改 Switcher 子控件内部处理逻辑即可。
+  content=" 复合组件是什么 # 编写页面时，经常存在多个子组件的展示，是依赖于同一个数据源的情况。 比如单选框：
+&lt;Switcher&gt; &lt;Switch on={this.props.selecting == &#39;React&#39;}&gt;React&lt;/Switch&gt; &lt;Switch on={this.props.selecting == &#39;Vue&#39;}&gt;Vue&lt;/Switch&gt; &lt;/Switcher&gt; 我们可以看到，所有的 Switch 的数据都需要对 selecting 的值进行判断，并且代码中其实只有 this.props.selecting == 后面的部分不同，如果能改写成这样：
+static Switcher.React = ({selecting}) =&gt; ( &lt;Switch on={selecting === &#39;React&#39;}&gt;React&lt;/Switch&gt; ) static Switcher.Vue = ({selecting}) =&gt; ( &lt;Switch on={selecting === &#39;Vue&#39;}&gt;Vue&lt;/Switch&gt; ) &lt;Switcher selecting={this.props.selecting}&gt; &lt;Switcher.React/&gt; &lt;Switcher.Vue/&gt; &lt;/Switcher&gt; 隐式地将父组件的数据传递给子组件，其显示逻辑交由给子组件自行处理，代码的组织结构将会清晰很多。后续即使需求变动，数据的传递改变也并不需要我们操心（不需要一个子组件一个子组件地添加传递），只需要修改 Switcher 子控件内部处理逻辑即可。
 那么要怎么实现这个隐式数据传递呢？ 可以通过 React.Children.map 和 React.cloneElement 这两个 API 来实现。
-React.Children.map 与 React.cloneElement # 在 render 中我们可以使用 React.Children.map 来获取到 Switcher 中的子组件，然后通过 React."
+React.Children.map 与 React.cloneElement # 在 render 中我们可以使用 React.Children.map 来获取到 Switcher 中的子组件，然后通过 React.cloneElement 对组件进行克隆及数据传递：
+render() { return React.Children.map(this.props.children, child =&gt; React.cloneElement(child, { on: this.state.on, toggle: this.toggle, }), ) } 这样，即使我们在使用 Switcher.React 和 Switcher.Vue 时，没有显式地传递参数，子组件也能获取数据。
+"
 />
 <meta
   name="keywords"
@@ -49,18 +51,23 @@ React.Children.map 与 React.cloneElement # 在 render 中我们可以使用 Rea
 <link href="http://localhost:1313/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="React 进阶模式之复合组件（Compound Component）"/>
-<meta name="twitter:description" content="什么是复合组件，以及如何让子组件隐式地共享父组件的 props"/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="React 进阶模式之复合组件（Compound Component）">
+  <meta name="twitter:description" content="什么是复合组件，以及如何让子组件隐式地共享父组件的 props">
 
 
 
-<meta property="og:title" content="React 进阶模式之复合组件（Compound Component）" />
-<meta property="og:description" content="什么是复合组件，以及如何让子组件隐式地共享父组件的 props" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/compound-component/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-08-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-08-12T00:00:00+00:00" />
-
+<meta property="og:url" content="http://localhost:1313/posts/compound-component/">
+  <meta property="og:site_name" content="Dev Log">
+  <meta property="og:title" content="React 进阶模式之复合组件（Compound Component）">
+  <meta property="og:description" content="什么是复合组件，以及如何让子组件隐式地共享父组件的 props">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-08-12T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-08-12T00:00:00+00:00">
+    <meta property="article:tag" content="React">
 
 
 
@@ -330,7 +337,7 @@ React.Children.map 与 React.cloneElement # 在 render 中我们可以使用 Rea
 
       <div class="copyright">
         <span
-          >© 2024 Powered by
+          >© 2025 Powered by
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
         >
         <span
@@ -349,20 +356,5 @@ React.Children.map 与 React.cloneElement # 在 render 中我们可以使用 Rea
       
     </div>
 
-    
-      
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-131363452-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
   </body>
 </html>

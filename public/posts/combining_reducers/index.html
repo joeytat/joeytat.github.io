@@ -14,7 +14,8 @@
   content="因为项目需要使用 SwiftUI，想起来之前买过喵神的 《SwiftUI 与 Combine 编程》 。书中介绍了 Redux 这一在 Web 前端领域广泛被验证过的数据管理模式是如何通过 Swift 来实现的，非常推荐 SwiftUI 初见者阅读。
 在学习过程中还产生了一个疑问，如果 reducer 越来越大，有什么更 “swift” 的办法能解决这一问题呢？（在 Redux.js 中的原生解决方案是 combineReducers）
 拆分 Reducer # 首先看看问题在代码中的表现是什么样的，假设我们有这样一个 reducer：
-func appReducer(appState: inout AppState, action: AppAction) -&amp;gt; Void { switch action { case .emailValid(let isValid): appState.settings.isEmailValid = isValid case .register(let email, let password): appState.settings.loginUser = User(email, password) case .login(let email, let password): appState.settings.loginUser = User(email, password) case .logout: appState.settings.loginUser = nil case ."
+func appReducer(appState: inout AppState, action: AppAction) -&gt; Void { switch action { case .emailValid(let isValid): appState.settings.isEmailValid = isValid case .register(let email, let password): appState.settings.loginUser = User(email, password) case .login(let email, let password): appState.settings.loginUser = User(email, password) case .logout: appState.settings.loginUser = nil case .loadPokemon(let result): appState.pokemonList.pokemons = result case .favoratePokemon(let pokemon): appState.favoritePokemons.append(pokemon) case .removeFavoritePokemon(let pokemon): let index = appState.favoritePokemons.indexOf(pokemon) appState.favoritePokemons.remove(at: index) } 应用的 action 主要包含三个模块：
+"
 />
 <meta
   name="keywords"
@@ -48,18 +49,23 @@ func appReducer(appState: inout AppState, action: AppAction) -&amp;gt; Void { sw
 <link href="http://localhost:1313/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Swift 状态管理 —— 如何拆分庞大的 reducer"/>
-<meta name="twitter:description" content="利用 keyPath 构建 pullback 来处理 reducer 状态隔离的问题"/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Swift 状态管理 —— 如何拆分庞大的 reducer">
+  <meta name="twitter:description" content="利用 keyPath 构建 pullback 来处理 reducer 状态隔离的问题">
 
 
 
-<meta property="og:title" content="Swift 状态管理 —— 如何拆分庞大的 reducer" />
-<meta property="og:description" content="利用 keyPath 构建 pullback 来处理 reducer 状态隔离的问题" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/combining_reducers/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-01-16T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-01-16T00:00:00+00:00" />
-
+<meta property="og:url" content="http://localhost:1313/posts/combining_reducers/">
+  <meta property="og:site_name" content="Dev Log">
+  <meta property="og:title" content="Swift 状态管理 —— 如何拆分庞大的 reducer">
+  <meta property="og:description" content="利用 keyPath 构建 pullback 来处理 reducer 状态隔离的问题">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-01-16T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-01-16T00:00:00+00:00">
+    <meta property="article:tag" content="Swift">
 
 
 
@@ -424,7 +430,7 @@ func appReducer(appState: inout AppState, action: AppAction) -&amp;gt; Void { sw
 
       <div class="copyright">
         <span
-          >© 2024 Powered by
+          >© 2025 Powered by
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
         >
         <span
@@ -443,20 +449,5 @@ func appReducer(appState: inout AppState, action: AppAction) -&amp;gt; Void { sw
       
     </div>
 
-    
-      
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-131363452-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
   </body>
 </html>

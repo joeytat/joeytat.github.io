@@ -12,10 +12,12 @@
 <meta
   name="description"
   content="昨天在 Twitter 上看到 TualatriX 说把私有库都通过 Cocoapods 编译成静态库之后很爽, 就有点好奇到底是爽在哪里.
-于是去搜了一下, 原来是前段时间(大半年前吧&amp;hellip;), Cocoapods 发布了 1.5 的 release note, 宣布支持 Swift 静态库编译. 并且文中提到了对于担心动态二进制文件影响应用启动速度的人来说, 这是个了不起的更新. jh 那又是为什么 App 使用静态库会比动态库有更快的启动速度呢? 又跑去搜了一下官方文档. 打开 Dynamic Library Programming Topics 开头就看到:
+于是去搜了一下, 原来是前段时间(大半年前吧&hellip;), Cocoapods 发布了 1.5 的 release note, 宣布支持 Swift 静态库编译. 并且文中提到了对于担心动态二进制文件影响应用启动速度的人来说, 这是个了不起的更新. jh 那又是为什么 App 使用静态库会比动态库有更快的启动速度呢? 又跑去搜了一下官方文档. 打开 Dynamic Library Programming Topics 开头就看到:
 This article introduces dynamic libraries and shows how using dynamic libraries instead of static libraries reduces both the file size and initial memory footprint of the apps that use them.
 这篇文章主要介绍了动态库, 并且展示了通过使用动态库而不是静态库, 是如何缩减了应用的大小和初始内存空间的.
-┻━┻ (ヽ(`Д ́)ノ( ┻━┻ 这和说好的不一样啊?"
+┻━┻ (ヽ(`Д ́)ノ( ┻━┻ 这和说好的不一样啊?
+带着疑问我又跑去看了一下苹果的 WWDC 2016 - Optimizing App Startup Time 的视频, 这次问题终于得到了解决.
+"
 />
 <meta
   name="keywords"
@@ -49,18 +51,23 @@ This article introduces dynamic libraries and shows how using dynamic libraries 
 <link href="http://localhost:1313/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?"/>
-<meta name="twitter:description" content="昨天在 Twitter 上看到 TualatriX 说[把私有库都通过 Cocoapods 编译成静态库之后很爽](https://twitter.com/tualatrix/status/1077166131956264960), 就有点好奇到底是爽在哪里."/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?">
+  <meta name="twitter:description" content="昨天在 Twitter 上看到 TualatriX 说[把私有库都通过 Cocoapods 编译成静态库之后很爽](https://twitter.com/tualatrix/status/1077166131956264960), 就有点好奇到底是爽在哪里.">
 
 
 
-<meta property="og:title" content="为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?" />
-<meta property="og:description" content="昨天在 Twitter 上看到 TualatriX 说[把私有库都通过 Cocoapods 编译成静态库之后很爽](https://twitter.com/tualatrix/status/1077166131956264960), 就有点好奇到底是爽在哪里." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/cocoapods-1.5-static-library/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2018-12-27T00:00:00+00:00" />
-<meta property="article:modified_time" content="2018-12-27T00:00:00+00:00" />
-
+<meta property="og:url" content="http://localhost:1313/posts/cocoapods-1.5-static-library/">
+  <meta property="og:site_name" content="Dev Log">
+  <meta property="og:title" content="为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?">
+  <meta property="og:description" content="昨天在 Twitter 上看到 TualatriX 说[把私有库都通过 Cocoapods 编译成静态库之后很爽](https://twitter.com/tualatrix/status/1077166131956264960), 就有点好奇到底是爽在哪里.">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2018-12-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2018-12-27T00:00:00+00:00">
+    <meta property="article:tag" content="IOS">
 
 
 
@@ -284,7 +291,7 @@ Total pre-main time: 1.1 seconds (100.0%)
 
       <div class="copyright">
         <span
-          >© 2024 Powered by
+          >© 2025 Powered by
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
         >
         <span
@@ -303,20 +310,5 @@ Total pre-main time: 1.1 seconds (100.0%)
       
     </div>
 
-    
-      
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-131363452-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
   </body>
 </html>

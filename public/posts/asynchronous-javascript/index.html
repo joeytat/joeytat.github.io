@@ -12,10 +12,12 @@
 <meta
   name="description"
   content="先看下面的代码
-function printHello() { console.log(&amp;#34;Hello&amp;#34;); } function printWorld() { console.log(&amp;#34;World&amp;#34;); } printHello(); // 输出 Hello printWorld(); // 输出 World 在 JavaScript 中，存在一个全局调用栈(Global Call Stack)。当我们调用 printHello 时，会将该方法加入到栈中，由于 JavaScript 是单线程执行机制（同一时间只执行一个命令），所以会在执行完成了 printHello 之后再执行 printWorld。
+function printHello() { console.log(&#34;Hello&#34;); } function printWorld() { console.log(&#34;World&#34;); } printHello(); // 输出 Hello printWorld(); // 输出 World 在 JavaScript 中，存在一个全局调用栈(Global Call Stack)。当我们调用 printHello 时，会将该方法加入到栈中，由于 JavaScript 是单线程执行机制（同一时间只执行一个命令），所以会在执行完成了 printHello 之后再执行 printWorld。
 那么现在就引入标题中的问题，JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？
-function printHello() { console.log(&amp;#34;Hello&amp;#34;); } function printWorld() { console.log(&amp;#34;World&amp;#34;); } setTimeout(printHello, 1000); printWorld(); 表面上来看 setTimeout 也是一个方法，他的定义可能是这样：
-function setTimeout(callbackFunc, interval) { // .... } 那么按照 JS 单线程理论来说，应该是先将 setTimeout 方法压入全局调用栈，并且执行该方法，等待 1 秒钟，然后再执行 printWorld 才对。但实际上我们都知道，打印的结果会是 &amp;ldquo;World&amp;rdquo; 然后 &amp;ldquo;Hello&amp;rdquo;，这是为什么？"
+function printHello() { console.log(&#34;Hello&#34;); } function printWorld() { console.log(&#34;World&#34;); } setTimeout(printHello, 1000); printWorld(); 表面上来看 setTimeout 也是一个方法，他的定义可能是这样：
+function setTimeout(callbackFunc, interval) { // .... } 那么按照 JS 单线程理论来说，应该是先将 setTimeout 方法压入全局调用栈，并且执行该方法，等待 1 秒钟，然后再执行 printWorld 才对。但实际上我们都知道，打印的结果会是 &ldquo;World&rdquo; 然后 &ldquo;Hello&rdquo;，这是为什么？
+Web Browser API &amp; Callback Queue # 事实上 setTimeout 并不是完全是 JS 代码，而是属于 Web Browser API 中的方法。就像名字中所指的那样， JS 调用了 setTimeout 之后，浏览器（Web Browser）会去创建一个 timer，同时将我们传入 setTimeout 的方法 - printHello 加入到 Callback Queue（回调队列） 中。
+"
 />
 <meta
   name="keywords"
@@ -49,18 +51,23 @@ function setTimeout(callbackFunc, interval) { // .... } 那么按照 JS 单线�
 <link href="http://localhost:1313/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？"/>
-<meta name="twitter:description" content="一个问题简单地理解 Web Browser API，Callback Queue 与 Event Loop 是如何协作的"/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？">
+  <meta name="twitter:description" content="一个问题简单地理解 Web Browser API，Callback Queue 与 Event Loop 是如何协作的">
 
 
 
-<meta property="og:title" content="JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？" />
-<meta property="og:description" content="一个问题简单地理解 Web Browser API，Callback Queue 与 Event Loop 是如何协作的" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/asynchronous-javascript/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-08-19T00:00:00+00:00" />
-<meta property="article:modified_time" content="2019-08-19T00:00:00+00:00" />
-
+<meta property="og:url" content="http://localhost:1313/posts/asynchronous-javascript/">
+  <meta property="og:site_name" content="Dev Log">
+  <meta property="og:title" content="JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？">
+  <meta property="og:description" content="一个问题简单地理解 Web Browser API，Callback Queue 与 Event Loop 是如何协作的">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2019-08-19T00:00:00+00:00">
+    <meta property="article:modified_time" content="2019-08-19T00:00:00+00:00">
+    <meta property="article:tag" content="JavaScript">
 
 
 
@@ -320,7 +327,7 @@ function setTimeout(callbackFunc, interval) { // .... } 那么按照 JS 单线�
 
       <div class="copyright">
         <span
-          >© 2024 Powered by
+          >© 2025 Powered by
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
         >
         <span
@@ -339,20 +346,5 @@ function setTimeout(callbackFunc, interval) { // .... } 那么按照 JS 单线�
       
     </div>
 
-    
-      
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-131363452-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
   </body>
 </html>

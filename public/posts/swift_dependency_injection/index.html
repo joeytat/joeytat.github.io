@@ -14,9 +14,10 @@
   content="在 iOS 业务开发过程经常面对网络请求，数据持久化这样带有副作用的操作。为了能够在测试中 mock 这些操作，通常的做法就是抽象一层 protocol 出来，然后编写不同的实现。
 比如需要处理一个简陋的注册业务（示例省略了一点细节），需要用户输入信息后发送网络请求，成功后返回对应用户对象。
 首先为网络请求定义一个 protocol：
-protocol SignUpRepositoryProtocol: RepositoryProtocol { func handleSignUp(name: String, email: String, pwd: String) -&amp;gt; AnyPublisher&amp;lt;User, Error&amp;gt; } 对其进行实现：
-struct SignUpRepository: SignUpRepositoryProtocol { func handleSignUp(name: String, email: String, pwd: String) -&amp;gt; AnyPublisher&amp;lt;User, Error&amp;gt; { client(.signUp(name, email, pwd)) .map .decode .eraseToAnyPublisher() } } 将其注入到 ViewModel 或是 Interactor 中（取决于你采取的架构是什么 :p ），并且调用对应方法：
-class SignUpViewModel { enum State { case loading case success case failed } let repository: SignUpRepositoryPortocol var state: State = ."
+protocol SignUpRepositoryProtocol: RepositoryProtocol { func handleSignUp(name: String, email: String, pwd: String) -&gt; AnyPublisher&lt;User, Error&gt; } 对其进行实现：
+struct SignUpRepository: SignUpRepositoryProtocol { func handleSignUp(name: String, email: String, pwd: String) -&gt; AnyPublisher&lt;User, Error&gt; { client(.signUp(name, email, pwd)) .map .decode .eraseToAnyPublisher() } } 将其注入到 ViewModel 或是 Interactor 中（取决于你采取的架构是什么 :p ），并且调用对应方法：
+class SignUpViewModel { enum State { case loading case success case failed } let repository: SignUpRepositoryPortocol var state: State = .loading init(repository: SignUpRepositoryPortocol) { self.repository = repository } func onSubmit(name: String, email: String, pwd: String) { repository.hanldeSignUp(name: name, email: email, pwd: pwd) .sink {[weak self] completion in switch completion { case .failure: self.?state = .failed case .finished: break } } receiveValue: {[weak self] result in self?.state = .success }.store(in: &amp;bag) } } 由此如果需要测试对应的方法，只需要再创建一份 MockSignUpRepository 的实现即可，比如想要测试注册成功或失败场景下的处理：
+"
 />
 <meta
   name="keywords"
@@ -50,18 +51,23 @@ class SignUpViewModel { enum State { case loading case success case failed } let
 <link href="http://localhost:1313/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="iOS 架构之另一种依赖注入的思路"/>
-<meta name="twitter:description" content="介绍了一种相比 protocol 更轻量级更灵活的依赖注入实现"/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="iOS 架构之另一种依赖注入的思路">
+  <meta name="twitter:description" content="介绍了一种相比 protocol 更轻量级更灵活的依赖注入实现">
 
 
 
-<meta property="og:title" content="iOS 架构之另一种依赖注入的思路" />
-<meta property="og:description" content="介绍了一种相比 protocol 更轻量级更灵活的依赖注入实现" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/swift_dependency_injection/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-03-15T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-03-15T00:00:00+00:00" />
-
+<meta property="og:url" content="http://localhost:1313/posts/swift_dependency_injection/">
+  <meta property="og:site_name" content="Dev Log">
+  <meta property="og:title" content="iOS 架构之另一种依赖注入的思路">
+  <meta property="og:description" content="介绍了一种相比 protocol 更轻量级更灵活的依赖注入实现">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-03-15T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-03-15T00:00:00+00:00">
+    <meta property="article:tag" content="Swift">
 
 
 
@@ -418,7 +424,7 @@ class SignUpViewModel { enum State { case loading case success case failed } let
 
       <div class="copyright">
         <span
-          >© 2024 Powered by
+          >© 2025 Powered by
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
         >
         <span
@@ -437,20 +443,5 @@ class SignUpViewModel { enum State { case loading case success case failed } let
       
     </div>
 
-    
-      
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-131363452-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
   </body>
 </html>

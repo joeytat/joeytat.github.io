@@ -2,19 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/posts/2024_overview/</loc>
+    <lastmod>2025-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/chitchat/</loc>
+    <lastmod>2025-01-13T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2023-06-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-01-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2023-06-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-01-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2025-01-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/swift/</loc>
     <lastmod>2023-06-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/swiftui/</loc>
-    <lastmod>2023-06-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2023-06-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/why-swiftui-is-better-at-building-a-design-system/</loc>
@@ -66,9 +72,6 @@
     <lastmod>2019-06-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/2018_overview/</loc>
-    <lastmod>2018-12-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/chitchat/</loc>
     <lastmod>2018-12-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/cocoapods-1.5-static-library/</loc>

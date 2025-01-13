@@ -16,7 +16,7 @@
 首先简单概括一下 Design System 是什么，Design System 是一个包含了设计原则、组件库和代码资源等系统化的指导，旨在促进团队间的协作和提高项目的一致性。它可以帮助团队更快速、高效地构建应用程序，同时确保应用程序的外观和交互保持一致。
 接下来就进入正题，从以下几点来探讨一下通过 SwiftUI 构建 Design System 有哪些优势。
 声明式语法会更具有可读性和易于实现 内建的一致性和统一性表达 单向数据流带来的可预测性 与 Design System 有更相似的哲学思想 声明式语法会更具有可读性和易于实现 # 首先从实现和维护成本上来说，SwiftUI 与 Apple 现有的 UIKit 和 AppKit 不同，SwiftUI 采用了声明式语法构建 UI。由于声明式语法更关注于描述 UI 的最终效果，而不是具体实现方式。这使得通过声明式语法编写的 UI 组件更具可读性，有助于团队更好地协作实现 Design System。
-// SwiftUI VStack(spacing: 20) { Text(&amp;#34;Hello&amp;#34;) ."
+"
 />
 <meta
   name="keywords"
@@ -50,18 +50,24 @@
 <link href="http://localhost:1313/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="构建易维护的 Design System: 为什么 SwiftUI 会是更好的选择"/>
-<meta name="twitter:description" content="通过 SwiftUI 构建 Design System 有哪些优势"/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="构建易维护的 Design System: 为什么 SwiftUI 会是更好的选择">
+  <meta name="twitter:description" content="通过 SwiftUI 构建 Design System 有哪些优势">
 
 
 
-<meta property="og:title" content="构建易维护的 Design System: 为什么 SwiftUI 会是更好的选择" />
-<meta property="og:description" content="通过 SwiftUI 构建 Design System 有哪些优势" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/why-swiftui-is-better-at-building-a-design-system/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-06-02T00:00:00+00:00" />
-<meta property="article:modified_time" content="2023-06-02T00:00:00+00:00" />
-
+<meta property="og:url" content="http://localhost:1313/posts/why-swiftui-is-better-at-building-a-design-system/">
+  <meta property="og:site_name" content="Dev Log">
+  <meta property="og:title" content="构建易维护的 Design System: 为什么 SwiftUI 会是更好的选择">
+  <meta property="og:description" content="通过 SwiftUI 构建 Design System 有哪些优势">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2023-06-02T00:00:00+00:00">
+    <meta property="article:modified_time" content="2023-06-02T00:00:00+00:00">
+    <meta property="article:tag" content="Swift">
+    <meta property="article:tag" content="SwiftUI">
 
 
 
@@ -298,6 +304,13 @@
           </div>
           <div class="pagination__buttons">
             
+              <span class="button previous">
+                <a href="http://localhost:1313/posts/2024_overview/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">2024</span>
+                </a>
+              </span>
+            
             
               <span class="button next">
                 <a href="http://localhost:1313/posts/differences_between_scheme_and_universal_links/">
@@ -344,7 +357,7 @@
 
       <div class="copyright">
         <span
-          >© 2024 Powered by
+          >© 2025 Powered by
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
         >
         <span
@@ -363,20 +376,5 @@
       
     </div>
 
-    
-      
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-131363452-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
   </body>
 </html>

@@ -20,7 +20,7 @@ BA 老刘：「区别是啥？」
 ps: Android 中这两种选项是 Deep Links 和 App Links，运作原理大体相同，实现方式 iOS 和 Android 有些许差异。为少打字，下文将统一使用 URL Scheme 和 Universal Links。
 URL Scheme # 通常长这样： example://destination?param1=hello。
 想通过 URL Scheme 跳转到某个 App，我们需要知道对方 App 定义的 Scheme 是什么（这不算是废话）。
-以 Twitter 为例，如果当前设备安装了 Twitter："
+"
 />
 <meta
   name="keywords"
@@ -54,18 +54,23 @@ URL Scheme # 通常长这样： example://destination?param1=hello。
 <link href="http://localhost:1313/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="移动开发中实现 Deep Linking 的 URL Scheme 和 Universal Links 的区别是什么？"/>
-<meta name="twitter:description" content="经历过的 Mobile 项目基本上都有支持 Deep Linking 的需求，每次新项目都会经历向其他端同事和 BA 解释实现 Deep Linking 两种方案的区别，于是就有了这一篇短文。主要是介绍两种方案的优缺点和实现成本差异，并不涉及如何实现的代码步骤。"/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="移动开发中实现 Deep Linking 的 URL Scheme 和 Universal Links 的区别是什么？">
+  <meta name="twitter:description" content="经历过的 Mobile 项目基本上都有支持 Deep Linking 的需求，每次新项目都会经历向其他端同事和 BA 解释实现 Deep Linking 两种方案的区别，于是就有了这一篇短文。主要是介绍两种方案的优缺点和实现成本差异，并不涉及如何实现的代码步骤。">
 
 
 
-<meta property="og:title" content="移动开发中实现 Deep Linking 的 URL Scheme 和 Universal Links 的区别是什么？" />
-<meta property="og:description" content="经历过的 Mobile 项目基本上都有支持 Deep Linking 的需求，每次新项目都会经历向其他端同事和 BA 解释实现 Deep Linking 两种方案的区别，于是就有了这一篇短文。主要是介绍两种方案的优缺点和实现成本差异，并不涉及如何实现的代码步骤。" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/differences_between_scheme_and_universal_links/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-07-27T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-07-27T00:00:00+00:00" />
-
+<meta property="og:url" content="http://localhost:1313/posts/differences_between_scheme_and_universal_links/">
+  <meta property="og:site_name" content="Dev Log">
+  <meta property="og:title" content="移动开发中实现 Deep Linking 的 URL Scheme 和 Universal Links 的区别是什么？">
+  <meta property="og:description" content="经历过的 Mobile 项目基本上都有支持 Deep Linking 的需求，每次新项目都会经历向其他端同事和 BA 解释实现 Deep Linking 两种方案的区别，于是就有了这一篇短文。主要是介绍两种方案的优缺点和实现成本差异，并不涉及如何实现的代码步骤。">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-07-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-07-27T00:00:00+00:00">
+    <meta property="article:tag" content="KnownEnoughToBeDangerous">
 
 
 
@@ -222,25 +227,25 @@ BA 老刘：「区别是啥？」<br>
   <a href="#%e6%96%b9%e6%a1%88%e5%af%b9%e6%af%94" class="h-anchor" aria-hidden="true">#</a>
 </h3>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>有安装对应 App</th>
-<th>没有安装对应 App</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>URL Scheme</td>
-<td>直接打开对应 App</td>
-<td>需要自行处理设备没有安装对应 App 的情况，但处理方案可以非常灵活多变</td>
-</tr>
-<tr>
-<td>Universal Links</td>
-<td>直接打开对应 App</td>
-<td>无需额外处理，通常 Universal Link 就对应了一个网页，在当前设备没有安装 App 的情况下，会跳转到对应网页</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>有安装对应 App</th>
+          <th>没有安装对应 App</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>URL Scheme</td>
+          <td>直接打开对应 App</td>
+          <td>需要自行处理设备没有安装对应 App 的情况，但处理方案可以非常灵活多变</td>
+      </tr>
+      <tr>
+          <td>Universal Links</td>
+          <td>直接打开对应 App</td>
+          <td>无需额外处理，通常 Universal Link 就对应了一个网页，在当前设备没有安装 App 的情况下，会跳转到对应网页</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="如果想让别人跳过来">
   如果想让别人跳过来
@@ -290,28 +295,28 @@ URL Scheme 的跳转，需要让三方 App 知道我们的 Scheme 定义即可�
   <a href="#%e5%af%b9%e6%af%94" class="h-anchor" aria-hidden="true">#</a>
 </h3>
 <table>
-<thead>
-<tr>
-<th></th>
-<th>实现成本</th>
-<th>支持跳转的范围</th>
-<th>没有安装 App</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>URL Scheme</td>
-<td>需要在 App 中维护一个支持被跳转的 Scheme 列表</td>
-<td>只能由知道 Scheme 的 App 来主动进行跳转</td>
-<td>需要让三方 App 来处理没有安装 App 的情况</td>
-</tr>
-<tr>
-<td>Universal Links</td>
-<td>App 中要维护一个支持被跳转的 domain 列表，同时需要在 domain 对应服务器中放一个 JSON 文件，让系统知道该 domain 同 App 之间的联系</td>
-<td>系统中几乎所有可点击链接区域都可以被系统触发跳转，比如点击邮件、短信、网页、三方 App 中的 Universal Link 时</td>
-<td>用户会跳转到 Universal Link 对应的网页，在网页中我们可以实现一套 Web 版本，或者直接在网页中打开应用商店，引导用户下载 App</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th></th>
+          <th>实现成本</th>
+          <th>支持跳转的范围</th>
+          <th>没有安装 App</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>URL Scheme</td>
+          <td>需要在 App 中维护一个支持被跳转的 Scheme 列表</td>
+          <td>只能由知道 Scheme 的 App 来主动进行跳转</td>
+          <td>需要让三方 App 来处理没有安装 App 的情况</td>
+      </tr>
+      <tr>
+          <td>Universal Links</td>
+          <td>App 中要维护一个支持被跳转的 domain 列表，同时需要在 domain 对应服务器中放一个 JSON 文件，让系统知道该 domain 同 App 之间的联系</td>
+          <td>系统中几乎所有可点击链接区域都可以被系统触发跳转，比如点击邮件、短信、网页、三方 App 中的 Universal Link 时</td>
+          <td>用户会跳转到 Universal Link 对应的网页，在网页中我们可以实现一套 Web 版本，或者直接在网页中打开应用商店，引导用户下载 App</td>
+      </tr>
+  </tbody>
 </table>
 <h2 id="简单总结">
   简单总结
@@ -389,7 +394,7 @@ URL Scheme 的跳转，需要让三方 App 知道我们的 Scheme 定义即可�
 
       <div class="copyright">
         <span
-          >© 2024 Powered by
+          >© 2025 Powered by
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
         >
         <span
@@ -408,20 +413,5 @@ URL Scheme 的跳转，需要让三方 App 知道我们的 Scheme 定义即可�
       
     </div>
 
-    
-      
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-131363452-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
   </body>
 </html>

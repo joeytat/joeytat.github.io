@@ -15,7 +15,8 @@
 通常数据中可能存在很多状态，如果使用很多的 boolean 值来描述这些状态，那么 App 的可维护性可能会大大降低。
 管理独立状态的问题 # 假设我们有一个 App，用户可以在登录与非登录状态下进行操作。所以我们的界面需要兼容这两种状态，其描述可能是这样的：
 class AppState: ObservableObject { @Published var user: User? = nil @Published var error: Error? = nil var authenticated: Bool { user != nil } var hasError: Bool { error != nil } } 基于这样的状态描述，如果我们想创建一个仅展示用户名的组件大概会是这样：
-var body: some View { Group { if state.hasError { Text(&amp;#34;Oops, sth went wrong: \(state.error!.localizedDescription)&amp;#34;) } if state.authenticated { Text(&amp;#34;Hello \(state."
+var body: some View { Group { if state.hasError { Text(&#34;Oops, sth went wrong: \(state.error!.localizedDescription)&#34;) } if state.authenticated { Text(&#34;Hello \(state.user?.name ?? &#34;Unknown&#34;)!&#34;) } else { Text(&#34;Hello, stranger&#34;) } } } 粗看没有什么问题，实际上在维护这样的数据结构时就需要格外小心了。比如第一次我们登录失败，为了展示错误信息给 error 设置了值之后。必须在登录成功之后要及时地去清空 error，否则即使 state.authenticated 等于 true，用户依然无法看到正确的信息。
+"
 />
 <meta
   name="keywords"
@@ -49,18 +50,23 @@ var body: some View { Group { if state.hasError { Text(&amp;#34;Oops, sth went w
 <link href="http://localhost:1313/assets/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
 
 
-<meta name="twitter:card" content="summary"/><meta name="twitter:title" content="SwiftUI 状态管理 —— Composible Binding"/>
-<meta name="twitter:description" content="如何利用 Enum 以及自定义 KeyPath 来更好地管理 SwiftUI 的状态"/>
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="SwiftUI 状态管理 —— Composible Binding">
+  <meta name="twitter:description" content="如何利用 Enum 以及自定义 KeyPath 来更好地管理 SwiftUI 的状态">
 
 
 
-<meta property="og:title" content="SwiftUI 状态管理 —— Composible Binding" />
-<meta property="og:description" content="如何利用 Enum 以及自定义 KeyPath 来更好地管理 SwiftUI 的状态" />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/posts/composible_binding/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2022-01-03T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-01-03T00:00:00+00:00" />
-
+<meta property="og:url" content="http://localhost:1313/posts/composible_binding/">
+  <meta property="og:site_name" content="Dev Log">
+  <meta property="og:title" content="SwiftUI 状态管理 —— Composible Binding">
+  <meta property="og:description" content="如何利用 Enum 以及自定义 KeyPath 来更好地管理 SwiftUI 的状态">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2022-01-03T00:00:00+00:00">
+    <meta property="article:modified_time" content="2022-01-03T00:00:00+00:00">
+    <meta property="article:tag" content="SwiftUI">
 
 
 
@@ -414,7 +420,7 @@ var body: some View { Group { if state.hasError { Text(&amp;#34;Oops, sth went w
 
       <div class="copyright">
         <span
-          >© 2024 Powered by
+          >© 2025 Powered by
           <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a></span
         >
         <span
@@ -433,20 +439,5 @@ var body: some View { Group { if state.hasError { Text(&amp;#34;Oops, sth went w
       
     </div>
 
-    
-      
-<script>
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'UA-131363452-1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
-    
   </body>
 </html>
