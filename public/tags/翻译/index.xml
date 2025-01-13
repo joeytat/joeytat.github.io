@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>翻译 on Dev Log</title>
-    <link>http://localhost:1313/tags/%E7%BF%BB%E8%AF%91/</link>
+    <link>https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/</link>
     <description>Recent content in 翻译 on Dev Log</description>
     <generator>Hugo -- 0.136.5</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 19 Jun 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>翻译 - 图像优化</title>
-      <link>http://localhost:1313/posts/optimizing_images/</link>
+      <link>https://joeytat.github.io/posts/optimizing_images/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/optimizing_images/</guid>
+      <guid>https://joeytat.github.io/posts/optimizing_images/</guid>
       <description>(通过啦～✌️)  发现 SwiftGG 在招人, 需要试译一篇文章. 花了半个下午加上午的时间来翻译, 于是就有了这篇. 不知道能不能通过.</description>
     </item>
   </channel>
