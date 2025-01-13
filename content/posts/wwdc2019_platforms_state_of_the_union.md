@@ -1,7 +1,6 @@
 +++
 title = "Platforms State of the Union(WWDC 2019)"
 date = "2019-06-05"
-author = "Joeytat"
 tags = ["iOS"]
 description = "观看 WWDC 2019 - Platforms State of the Union 的一些笔记"
 +++

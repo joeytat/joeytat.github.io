@@ -1,7 +1,6 @@
 +++
 title = "为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?"
 date = "2018-12-27"
-author = "Joeytat"
 tags = ["iOS"]
 description = "昨天在 Twitter 上看到 TualatriX 说[把私有库都通过 Cocoapods 编译成静态库之后很爽](https://twitter.com/tualatrix/status/1077166131956264960), 就有点好奇到底是爽在哪里."
 +++

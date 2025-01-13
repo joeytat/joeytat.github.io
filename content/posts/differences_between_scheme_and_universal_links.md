@@ -1,7 +1,6 @@
 +++
 title = "移动开发中实现 Deep Linking 的 URL Scheme 和 Universal Links 的区别是什么？"
 date = "2022-07-27T00:00:00"
-author = "Joeytat"
 tags = ["KnownEnoughToBeDangerous"]
 description = "经历过的 Mobile 项目基本上都有支持 Deep Linking 的需求，每次新项目都会经历向其他端同事和 BA 解释实现 Deep Linking 两种方案的区别，于是就有了这一篇短文。主要是介绍两种方案的优缺点和实现成本差异，并不涉及如何实现的代码步骤。"
 +++

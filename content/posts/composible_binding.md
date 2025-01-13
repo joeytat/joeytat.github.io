@@ -1,7 +1,6 @@
 +++
 title = "SwiftUI 状态管理 —— Composible Binding"
 date = "2022-01-03"
-author="Joeytat"
 description = "如何利用 Enum 以及自定义 KeyPath 来更好地管理 SwiftUI 的状态"
 tags = ["SwiftUI"]
 +++

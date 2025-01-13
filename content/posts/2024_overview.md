@@ -1,7 +1,6 @@
 +++
 title = "2024"
 date = "2025-01-13"
-author = "Joeytat"
 tags = ["chitchat"]
 description = "年终总结"
 +++

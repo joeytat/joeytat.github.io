@@ -1,7 +1,6 @@
 +++
 title = "参加 Apple 开发者线上活动是什么样的体验？"
 date = "2022-03-28T00:00:35"
-author = "Joeytat"
 tags = ["SwiftUI"]
 description = "记录一下收获到的与 SwiftUI 相关的资料，与一条来自苹果工程师的学习路线。"
 +++
