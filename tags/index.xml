@@ -1,1 +1,68 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Dev Log</title><link>https://joeytat.github.io/tags/</link><description>Recent content in Tags on Dev Log</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Fri, 02 Jun 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://joeytat.github.io/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>Swift</title><link>https://joeytat.github.io/tags/swift/</link><pubDate>Fri, 02 Jun 2023 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/tags/swift/</guid><description/></item><item><title>SwiftUI</title><link>https://joeytat.github.io/tags/swiftui/</link><pubDate>Fri, 02 Jun 2023 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/tags/swiftui/</guid><description/></item><item><title>KnownEnoughToBeDangerous</title><link>https://joeytat.github.io/tags/knownenoughtobedangerous/</link><pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/tags/knownenoughtobedangerous/</guid><description/></item><item><title>JavaScript</title><link>https://joeytat.github.io/tags/javascript/</link><pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/tags/javascript/</guid><description/></item><item><title>React</title><link>https://joeytat.github.io/tags/react/</link><pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/tags/react/</guid><description/></item><item><title>IOS</title><link>https://joeytat.github.io/tags/ios/</link><pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/tags/ios/</guid><description/></item><item><title>翻译</title><link>https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/</link><pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/</guid><description/></item><item><title>Chitchat</title><link>https://joeytat.github.io/tags/chitchat/</link><pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate><guid>https://joeytat.github.io/tags/chitchat/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on Dev Log</title>
+    <link>https://joeytat.github.io/tags/</link>
+    <description>Recent content in Tags on Dev Log</description>
+    <generator>Hugo -- 0.140.2</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 13 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://joeytat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chitchat</title>
+      <link>https://joeytat.github.io/tags/chitchat/</link>
+      <pubDate>Mon, 13 Jan 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/chitchat/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Swift</title>
+      <link>https://joeytat.github.io/tags/swift/</link>
+      <pubDate>Fri, 02 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/swift/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>SwiftUI</title>
+      <link>https://joeytat.github.io/tags/swiftui/</link>
+      <pubDate>Fri, 02 Jun 2023 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/swiftui/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>KnownEnoughToBeDangerous</title>
+      <link>https://joeytat.github.io/tags/knownenoughtobedangerous/</link>
+      <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/knownenoughtobedangerous/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>JavaScript</title>
+      <link>https://joeytat.github.io/tags/javascript/</link>
+      <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>React</title>
+      <link>https://joeytat.github.io/tags/react/</link>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/react/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>IOS</title>
+      <link>https://joeytat.github.io/tags/ios/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/ios/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>翻译</title>
+      <link>https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/</link>
+      <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
