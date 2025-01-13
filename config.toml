@@ -2,8 +2,8 @@ baseUrl = "https://joeytat.github.io/"
 languageCode = "zh-cn"
 title = "Dev Log"
 theme = "hello-friend"
-paginate = 5
-googleAnalytics = "UA-131363452-1"
+pagination.pagerSize = 5
+googleAnalytics = "G-83QEEKFELL"
 
 [params]
   # dir name of your blog content (default is `content/posts`).
