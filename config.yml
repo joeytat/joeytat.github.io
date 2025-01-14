@@ -1,6 +1,6 @@
 baseUrl: "https://joeytat.github.io/"
 languageCode: "zh-cn"
-title: "Dev Log"
+title: "Joeytat's Dev Log"
 theme: "PaperMod"
 pagination.pagerSize: 8
 analytics.google: "G-83QEEKFELL"
