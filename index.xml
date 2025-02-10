@@ -4,10 +4,17 @@
     <title>Joeytat&#39;s Dev Log</title>
     <link>https://joeytat.github.io/</link>
     <description>Recent content on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.140.2</generator>
+    <generator>Hugo -- 0.143.1</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 13 Jan 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 1</title>
+      <link>https://joeytat.github.io/posts/2025_week1/</link>
+      <pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week1/</guid>
+      <description>新年开工的第一周</description>
+    </item>
     <item>
       <title>2024</title>
       <link>https://joeytat.github.io/posts/2024_overview/</link>
