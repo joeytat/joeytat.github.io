@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>IOS on Dev Log</title>
-    <link>https://joeytat.github.io/tags/ios/</link>
-    <description>Recent content in IOS on Dev Log</description>
-    <generator>Hugo -- 0.136.5</generator>
+    <title>IOS on Joeytat&#39;s Dev Log</title>
+    <link>http://localhost:1313/tags/ios/</link>
+    <description>Recent content in IOS on Joeytat&#39;s Dev Log</description>
+    <generator>Hugo -- 0.145.0</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 19 Jun 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://joeytat.github.io/tags/ios/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/ios/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>翻译 - 图像优化</title>
-      <link>https://joeytat.github.io/posts/optimizing_images/</link>
+      <link>http://localhost:1313/posts/optimizing_images/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/optimizing_images/</guid>
+      <guid>http://localhost:1313/posts/optimizing_images/</guid>
       <description>(通过啦～✌️)  发现 SwiftGG 在招人, 需要试译一篇文章. 花了半个下午加上午的时间来翻译, 于是就有了这篇. 不知道能不能通过.</description>
     </item>
     <item>
       <title>Platforms State of the Union(WWDC 2019)</title>
-      <link>https://joeytat.github.io/posts/wwdc2019_platforms_state_of_the_union/</link>
+      <link>http://localhost:1313/posts/wwdc2019_platforms_state_of_the_union/</link>
       <pubDate>Wed, 05 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/wwdc2019_platforms_state_of_the_union/</guid>
+      <guid>http://localhost:1313/posts/wwdc2019_platforms_state_of_the_union/</guid>
       <description>观看 WWDC 2019 - Platforms State of the Union 的一些笔记</description>
     </item>
     <item>
       <title>为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?</title>
-      <link>https://joeytat.github.io/posts/cocoapods-1.5-static-library/</link>
+      <link>http://localhost:1313/posts/cocoapods-1.5-static-library/</link>
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/cocoapods-1.5-static-library/</guid>
+      <guid>http://localhost:1313/posts/cocoapods-1.5-static-library/</guid>
       <description>昨天在 Twitter 上看到 TualatriX 说[把私有库都通过 Cocoapods 编译成静态库之后很爽](https://twitter.com/tualatrix/status/1077166131956264960), 就有点好奇到底是爽在哪里.</description>
     </item>
   </channel>

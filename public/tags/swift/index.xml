@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Swift on Dev Log</title>
-    <link>https://joeytat.github.io/tags/swift/</link>
-    <description>Recent content in Swift on Dev Log</description>
-    <generator>Hugo -- 0.136.5</generator>
+    <title>Swift on Joeytat&#39;s Dev Log</title>
+    <link>http://localhost:1313/tags/swift/</link>
+    <description>Recent content in Swift on Joeytat&#39;s Dev Log</description>
+    <generator>Hugo -- 0.145.0</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 02 Jun 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://joeytat.github.io/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>构建易维护的 Design System: 为什么 SwiftUI 会是更好的选择</title>
-      <link>https://joeytat.github.io/posts/why-swiftui-is-better-at-building-a-design-system/</link>
+      <link>http://localhost:1313/posts/why-swiftui-is-better-at-building-a-design-system/</link>
       <pubDate>Fri, 02 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/why-swiftui-is-better-at-building-a-design-system/</guid>
+      <guid>http://localhost:1313/posts/why-swiftui-is-better-at-building-a-design-system/</guid>
       <description>通过 SwiftUI 构建 Design System 有哪些优势</description>
     </item>
     <item>
       <title>iOS 架构之另一种依赖注入的思路</title>
-      <link>https://joeytat.github.io/posts/swift_dependency_injection/</link>
+      <link>http://localhost:1313/posts/swift_dependency_injection/</link>
       <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/swift_dependency_injection/</guid>
+      <guid>http://localhost:1313/posts/swift_dependency_injection/</guid>
       <description>介绍了一种相比 protocol 更轻量级更灵活的依赖注入实现</description>
     </item>
     <item>
       <title>Swift 状态管理 —— 如何拆分庞大的 reducer</title>
-      <link>https://joeytat.github.io/posts/combining_reducers/</link>
+      <link>http://localhost:1313/posts/combining_reducers/</link>
       <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/combining_reducers/</guid>
+      <guid>http://localhost:1313/posts/combining_reducers/</guid>
       <description>利用 keyPath 构建 pullback 来处理 reducer 状态隔离的问题</description>
     </item>
   </channel>
