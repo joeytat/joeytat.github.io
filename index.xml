@@ -51,7 +51,8 @@
 &lt;p&gt;构建号更简单，每次构建时自动递增。通常是团队内部用来定位问题使用，外部不可见。&lt;/p&gt;
 &lt;p&gt;今天偶然发现了用了好几年的日记 app &lt;a href=&#34;https://dayoneapp.com&#34;&gt;Day one&lt;/a&gt; 的版本号，感觉还挺有意思，格式就是：年.当年发布次数。&lt;/p&gt;
 &lt;p&gt;&lt;img alt=&#34;day one version&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/user_friendly_version.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;软件的更新频率在很大程度上影响用户是否愿意投入时间和金钱使用该软件。相比常见的语义化版本号，这种版本号显然更用户友好。&lt;/p&gt;</description>
+&lt;p&gt;软件的更新频率在很大程度上影响用户是否愿意投入时间和金钱使用该软件。相比常见的语义化版本号，这种版本号显然更用户友好。&lt;/p&gt;
+&lt;p&gt;ps: 是的，Day one 的更新历史中有个 2025.1.1。或许是因为那次的更新只是一次非常简单的 bug fix，所以团队并不想将其作为“一次发布”记录在案。&lt;/p&gt;</description>
     </item>
     <item>
       <title>2025 week 3</title>
