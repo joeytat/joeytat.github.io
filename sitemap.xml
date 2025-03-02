@@ -2,6 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://joeytat.github.io/tags/chitchat/</loc>
+    <lastmod>2025-03-02T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://joeytat.github.io/posts/date_formatter_issue/</loc>
     <lastmod>2025-03-02T00:00:00+00:00</lastmod>
   </url><url>
@@ -17,6 +20,9 @@
     <loc>https://joeytat.github.io/tags/</loc>
     <lastmod>2025-03-02T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://joeytat.github.io/posts/user_friendly_version/</loc>
+    <lastmod>2025-03-02T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://joeytat.github.io/posts/2025_week3/</loc>
     <lastmod>2025-02-28T00:00:00+00:00</lastmod>
   </url><url>
@@ -30,9 +36,6 @@
     <lastmod>2025-02-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joeytat.github.io/posts/2024_overview/</loc>
-    <lastmod>2025-01-13T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://joeytat.github.io/tags/chitchat/</loc>
     <lastmod>2025-01-13T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joeytat.github.io/tags/swiftui/</loc>
