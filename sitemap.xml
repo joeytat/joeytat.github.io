@@ -2,31 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://joeytat.github.io/posts/2025_week4/</loc>
+    <lastmod>2025-03-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/</loc>
+    <lastmod>2025-03-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/posts/</loc>
+    <lastmod>2025-03-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/tags/</loc>
+    <lastmod>2025-03-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/</loc>
+    <lastmod>2025-03-04T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://joeytat.github.io/tags/chitchat/</loc>
     <lastmod>2025-03-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joeytat.github.io/posts/date_formatter_issue/</loc>
     <lastmod>2025-03-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/</loc>
-    <lastmod>2025-03-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://joeytat.github.io/posts/</loc>
-    <lastmod>2025-03-02T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://joeytat.github.io/tags/swift/</loc>
-    <lastmod>2025-03-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://joeytat.github.io/tags/</loc>
     <lastmod>2025-03-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joeytat.github.io/posts/user_friendly_version/</loc>
     <lastmod>2025-03-02T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joeytat.github.io/posts/2025_week3/</loc>
-    <lastmod>2025-02-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/</loc>
     <lastmod>2025-02-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://joeytat.github.io/posts/2025_week2/</loc>
