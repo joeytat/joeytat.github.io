@@ -2,73 +2,73 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on Joeytat&#39;s Dev Log</title>
-    <link>http://localhost:1313/tags/</link>
+    <link>https://joeytat.github.io/tags/</link>
     <description>Recent content in Tags on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.145.0</generator>
+    <generator>Hugo -- 0.136.5</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 02 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Swift</title>
-      <link>http://localhost:1313/tags/swift/</link>
-      <pubDate>Sun, 02 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/swift/</guid>
-      <description></description>
-    </item>
+    <lastBuildDate>Tue, 04 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://joeytat.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>周记</title>
-      <link>http://localhost:1313/tags/%E5%91%A8%E8%AE%B0/</link>
-      <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E5%91%A8%E8%AE%B0/</guid>
+      <link>https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/</link>
+      <pubDate>Tue, 04 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/</guid>
       <description></description>
     </item>
     <item>
       <title>Chitchat</title>
-      <link>http://localhost:1313/tags/chitchat/</link>
-      <pubDate>Mon, 13 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/chitchat/</guid>
+      <link>https://joeytat.github.io/tags/chitchat/</link>
+      <pubDate>Sun, 02 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/chitchat/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Swift</title>
+      <link>https://joeytat.github.io/tags/swift/</link>
+      <pubDate>Sun, 02 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/tags/swift/</guid>
       <description></description>
     </item>
     <item>
       <title>SwiftUI</title>
-      <link>http://localhost:1313/tags/swiftui/</link>
+      <link>https://joeytat.github.io/tags/swiftui/</link>
       <pubDate>Fri, 02 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/swiftui/</guid>
+      <guid>https://joeytat.github.io/tags/swiftui/</guid>
       <description></description>
     </item>
     <item>
       <title>KnownEnoughToBeDangerous</title>
-      <link>http://localhost:1313/tags/knownenoughtobedangerous/</link>
+      <link>https://joeytat.github.io/tags/knownenoughtobedangerous/</link>
       <pubDate>Wed, 27 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/knownenoughtobedangerous/</guid>
+      <guid>https://joeytat.github.io/tags/knownenoughtobedangerous/</guid>
       <description></description>
     </item>
     <item>
       <title>JavaScript</title>
-      <link>http://localhost:1313/tags/javascript/</link>
+      <link>https://joeytat.github.io/tags/javascript/</link>
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/javascript/</guid>
+      <guid>https://joeytat.github.io/tags/javascript/</guid>
       <description></description>
     </item>
     <item>
       <title>React</title>
-      <link>http://localhost:1313/tags/react/</link>
+      <link>https://joeytat.github.io/tags/react/</link>
       <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/react/</guid>
+      <guid>https://joeytat.github.io/tags/react/</guid>
       <description></description>
     </item>
     <item>
       <title>IOS</title>
-      <link>http://localhost:1313/tags/ios/</link>
+      <link>https://joeytat.github.io/tags/ios/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/ios/</guid>
+      <guid>https://joeytat.github.io/tags/ios/</guid>
       <description></description>
     </item>
     <item>
       <title>翻译</title>
-      <link>http://localhost:1313/tags/%E7%BF%BB%E8%AF%91/</link>
+      <link>https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/</link>
       <pubDate>Wed, 19 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/tags/%E7%BF%BB%E8%AF%91/</guid>
+      <guid>https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/</guid>
       <description></description>
     </item>
   </channel>
