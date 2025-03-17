@@ -6,8 +6,25 @@
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.136.5</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 10 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 17 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 6: Github Copilot 复杂项目初体验</title>
+      <link>https://joeytat.github.io/posts/2025_week6/</link>
+      <pubDate>Mon, 17 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week6/</guid>
+      <description>&lt;p&gt;周一一大早发现 Github Copilot license 申请下来之后就迫不及待开始在项目上体验了。尽管之前在自己的 side project 上使用过，但在澳洲最大的流媒体应用这个量级的项目上，还是头一遭。&lt;/p&gt;
+&lt;p&gt;先说结论，目前个人感觉对生产代码的编写提速帮助不算大，但通过 chat 来了解代码结构及技术决策分析会有奇效。&lt;/p&gt;
+&lt;p&gt;因为日常工作中，需求分析及 Tasking 的时间占 80%，实际写代码的时间可能只有 20%。此前还和同事打趣，写完了 issue 文档基本上等于代码都写完了。所以现在有了一个具有整个 codebase 上下文的 AI 来辅助阅读及理解代码，整体速率的提升还是比较明显。
+￼&lt;img alt=&#34;chat&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/copilot-chat.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但在如此复杂的项目结构及复杂业务上下文的场景下，如果想要通过 Copilot Edits 帮助实现代码，就需要把指令拆分得非常小且明确。即使如此也还是要经过很多轮的验证。有这个时间，自己写早就写完了。&lt;/p&gt;
+&lt;h2 id=&#34;娱乐&#34;&gt;娱乐&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;杀手寓言 ⭐️⭐️&lt;br&gt;
+因为在社交媒体上看到了该片很酷的动作场景片段才看的电影，但实际上体验是：搞笑梗很烂，情节俗套且拖沓。剧情发展从头到尾没有一丝丝意外。精神不正常的角色都演得不错，但太多了，是个反叛就神经质，导致同质化比较严重，就审美疲劳了。
+一分给动作场景，一分给变态反派们。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 5: 去日本</title>
       <link>https://joeytat.github.io/posts/2025_week5/</link>
@@ -35,7 +52,7 @@
 &lt;p&gt;如果真的有这么一个死无葬身之地，我的父亲应该会在那里等着我吧。很想他。&lt;/p&gt;
 &lt;h2 id=&#34;娱乐&#34;&gt;娱乐&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;长发公主 ⭐️⭐️⭐️⭐️
+&lt;li&gt;长发公主 ⭐️⭐️⭐️⭐️&lt;br&gt;
 中规中矩的迪士尼公主，特殊之处在于男主角较为不同寻常，是个小偷。&lt;/li&gt;
 &lt;/ul&gt;</description>
     </item>

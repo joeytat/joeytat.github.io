@@ -5,6 +5,8 @@ tags: ["Swift", "SwiftUI"]
 description: "通过 SwiftUI 构建 Design System 有哪些优势"
 ---
 
+> 该文已同步发布至 Thoughtworks Insights -- What benefits does SwiftUI offer for building a design system? [原文链接](https://www.thoughtworks.com/en-sg/insights/blog/mobile/benefits-swiftUI-design-system)
+
 `SwiftUI` 自 iOS 13 发布以来，虽然已经面向公众近 4 年，但由于在实现复杂布局时的性能不佳，以及因其内置组件的底层实现变更（iOS 16 上 `List` 的底层实现从 `UITableView` 改成了 `UICollectionView` ），导致开发者们原本良好运行代码随系统升级被破坏了。iOS 14 之前 SwiftUI 的开发者体验也让人一言难尽。尽管有很多的槽点，但我们还是能发现社区整体上还是比较接纳 SwiftUI。所以如果你对 SwiftUI 还有所犹豫，不清楚为何要使用它，这篇文章或许能够带来一些新的想法。
 
 本篇文章主要是想要通过 Design System 为切入点，同大家讨论相比起 UIKit，为什么更推荐使用 SwiftUI 来实现大多数业务场景下的 UI 组件。
