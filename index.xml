@@ -6,8 +6,45 @@
     <description>Recent content on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 17 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 8: 入手懒猫微服</title>
+      <link>https://joeytat.github.io/posts/2025_week8/</link>
+      <pubDate>Mon, 31 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week8/</guid>
+      <description>&lt;p&gt;眼馋了朋友的 NAS 已久，自己调研了 4 个小时之后，机缘巧合之下，在 x.com 上通过&lt;a href=&#34;https://lazycat.cloud&#34;&gt;懒猫微服&lt;/a&gt;创始人 &lt;a href=&#34;https://x.com/manateelazycat&#34;&gt;Andy Stewart&lt;/a&gt;，得到了一张优惠券购入了这个看起来蛮贵的机器。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;lazycat&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/lazycat.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但目前仅仅是用来同步照片及网盘，还没有发掘其全部的功能。&lt;/p&gt;
+&lt;h1 id=&#34;input&#34;&gt;Input&lt;/h1&gt;
+&lt;p&gt;听 《Cortex》 主播之一 Myke 将要生小孩，Grey 推荐了几本书，被其中一本《&lt;a href=&#34;https://www.amazon.com.au/Selfish-Reasons-Have-More-Kids/dp/0465028616&#34;&gt;Selfish Reasons to Have More Kids&lt;/a&gt;》 给吸引了。大家聊起生更多小孩这事时，通常都和社会福祉挂钩一起聊，但个人聊到这个话题时，一般会咂舌说「一个都够受了，哪敢要要多的」。那有什么站的住脚的「自私」理由应该多要一些小孩呢？&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>2025 week 7: 如果是 Lin 的话，他现在会怎么做呢？</title>
+      <link>https://joeytat.github.io/posts/2025_week7/</link>
+      <pubDate>Mon, 24 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week7/</guid>
+      <description>&lt;p&gt;工作时间只有 35% 写代码，其他的时间要不然是在会议上，要不然是各个群里灌水了，自觉状态不是很好。&lt;/p&gt;
+&lt;p&gt;这时候会想起来上个项目共事的同事 Lin。客户对他的评价就是——天生的领导者。对此的理解是，因为他对于自己工作专业态度的一致性，以至于同组的成员很容易就受到他的影响，整个团队的工作效率也被拔高。&lt;/p&gt;
+&lt;p&gt;脑子里立刻能回忆起来的就有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Code Diff 及开会基本上会合上电脑，认真听他人发言，且与发言人产生互动&lt;/li&gt;
+&lt;li&gt;Slack 中对于团队内部及跨团队交流非常及时&lt;/li&gt;
+&lt;li&gt;承接任务之后会持续保持后续更新，符合「件件有着落，事事有回音」的标准&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;开始尝试着在自觉工作不在状态时想一下，如果是 Lin 的话，他现在会怎么做呢？&lt;/p&gt;
+&lt;h2 id=&#34;input&#34;&gt;Input&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://nshipster.com/model-context-protocol/?utm_source=substack&amp;amp;utm_medium=email&#34;&gt;Model Context Protocol (MCP)&lt;/a&gt;&lt;br&gt;
+Mattt 写的一篇介绍 MCP 到底解决什么问题以及如何运作的文章，例子相当通俗易懂。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://world.hey.com/dhh/the-most-interesting-people-4950913f&#34;&gt;The most interesting people&lt;/a&gt;&lt;br&gt;
+DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜欢的例子。当有了自己的小孩之后，就像是得到了一个机会可以观看世界上最有趣的人的演出一般。这场演出极其精彩，但作为父母你并没有办法说服其他人和你有相同的感受。有小孩之前，我应该是无法理解这种比喻的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 6: Github Copilot 复杂项目初体验</title>
       <link>https://joeytat.github.io/posts/2025_week6/</link>
