@@ -4,10 +4,36 @@
     <title>Joeytat&#39;s Dev Log</title>
     <link>http://localhost:1313/</link>
     <description>Recent content on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.136.5</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 17 Mar 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Mar 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 7</title>
+      <link>http://localhost:1313/posts/2025_week7/</link>
+      <pubDate>Mon, 24 Mar 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2025_week7/</guid>
+      <description>&lt;p&gt;工作时间只有 35% 写代码，其他的时间要不然是在会议上，要不然是各个群里灌水了，自觉状态不是很好。&lt;/p&gt;
+&lt;p&gt;这时候会想起来上个项目共事的同事 Lin。客户对他的评价就是——天生的领导者。对此的理解是，因为他对于自己工作专业态度的一致性，以至于同组的成员很容易就受到他的影响，整个团队的工作效率也被拔高。&lt;/p&gt;
+&lt;p&gt;脑子里立刻能回忆起来的就有：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Code Diff 及开会基本上会合上电脑，认真听他人发言，且与发言人产生互动&lt;/li&gt;
+&lt;li&gt;Slack 中对于团队内部及跨团队交流非常及时&lt;/li&gt;
+&lt;li&gt;承接任务之后会持续保持后续更新，符合「件件有着落，事事有回音」的标准&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;开始尝试着在自觉工作不在状态时想一下，如果是 Lin 的话，他现在会怎么做呢？&lt;/p&gt;
+&lt;h2 id=&#34;input&#34;&gt;Input&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://nshipster.com/model-context-protocol/?utm_source=substack&amp;amp;utm_medium=email&#34;&gt;Model Context Protocol (MCP)&lt;/a&gt;&lt;br&gt;
+Mattt 写的一篇介绍 MCP 到底解决什么问题以及如何运作的文章，例子相当通俗易懂。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://world.hey.com/dhh/the-most-interesting-people-4950913f&#34;&gt;The most interesting people&lt;/a&gt;&lt;br&gt;
+DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜欢的例子。当有了自己的小孩之后，就像是得到了一个机会可以观看世界上最有趣的人的演出一般。这场演出极其精彩，但作为父母你并没有办法说服其他人和你有相同的感受。有小孩之前，我应该是无法理解这种比喻的。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 6: Github Copilot 复杂项目初体验</title>
       <link>http://localhost:1313/posts/2025_week6/</link>
@@ -74,8 +100,7 @@
 &lt;p&gt;这就是我认为程序员这个工种短时间内无法被取代的原因：你没办法让 AI 帮助完成&lt;strong&gt;你不知道你不知道&lt;/strong&gt;的任务。&lt;/p&gt;
 &lt;p&gt;即使在有 AI 加持的现在，依然需要具备相当多的软件开发知识，才能够在众多方案中甄别出相对合理的方案，由此从生产到部署再到维护，完成一个复杂系统的构建。诚然，学习能力足够强的人可以通过边做边学的方式来让 AI 构建，但走完了整个流程的他，其实已经通过 AI 帮助，在“做中学”的过程中成为了一个 AI 时代的程序员。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;AI 时代的程序员：明白各种软件开发领域名词背后的含义，但并不需要自己去实现的人。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;AI 时代的程序员：明白各种软件开发领域名词背后的含义，但并不需要自己去实现的人。&lt;/p&gt;&lt;/blockquote&gt;
 &lt;p&gt;这种“做中学”产生的副作用（掌握软件开发知识），也并不是每个需要发布软件的人都想要的，因为它相当费神耗时，所以我依然认为程序员这个工种在“将想法变成现实”的路上，具有较高程度的不可替代性。&lt;/p&gt;
 &lt;p&gt;而 “工作的可被 AI 替代性” 这条线再具体一些，就是工作的产出物是否具有易于描述的创造流程，以及清晰的验收标准。输入和输出越复杂，描述和验收所需要的知识越多，工作就越不可被替代。&lt;/p&gt;
 &lt;h2 id=&#34;娱乐&#34;&gt;娱乐&lt;/h2&gt;

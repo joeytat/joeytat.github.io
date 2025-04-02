@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>JavaScript on Joeytat&#39;s Dev Log</title>
-    <link>https://joeytat.github.io/tags/javascript/</link>
+    <link>http://localhost:1313/tags/javascript/</link>
     <description>Recent content in JavaScript on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.136.5</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 19 Aug 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://joeytat.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>JavaScript 既然是单线程语言，为什么 setTimeout 不会阻塞线程？</title>
-      <link>https://joeytat.github.io/posts/asynchronous-javascript/</link>
+      <link>http://localhost:1313/posts/asynchronous-javascript/</link>
       <pubDate>Mon, 19 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/asynchronous-javascript/</guid>
+      <guid>http://localhost:1313/posts/asynchronous-javascript/</guid>
       <description>一个问题简单地理解 Web Browser API，Callback Queue 与 Event Loop 是如何协作的</description>
     </item>
     <item>
       <title>如何实现 JavaScript 函数参数必填的支持?</title>
-      <link>https://joeytat.github.io/posts/js_required_property/</link>
+      <link>http://localhost:1313/posts/js_required_property/</link>
       <pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/js_required_property/</guid>
+      <guid>http://localhost:1313/posts/js_required_property/</guid>
       <description>&lt;p&gt;JS 在 ES6 的中新增了函数参数指定默认值的支持:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kr&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Greeting&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Joeytat&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;console&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;log&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`Hello &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;sb&#34;&gt;`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;

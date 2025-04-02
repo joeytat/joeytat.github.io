@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>SwiftUI on Joeytat&#39;s Dev Log</title>
-    <link>https://joeytat.github.io/tags/swiftui/</link>
+    <link>http://localhost:1313/tags/swiftui/</link>
     <description>Recent content in SwiftUI on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.136.5</generator>
+    <generator>Hugo -- 0.145.0</generator>
     <language>zh-cn</language>
     <lastBuildDate>Fri, 02 Jun 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://joeytat.github.io/tags/swiftui/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/swiftui/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>构建易维护的 Design System: 为什么 SwiftUI 会是更好的选择</title>
-      <link>https://joeytat.github.io/posts/why-swiftui-is-better-at-building-a-design-system/</link>
+      <link>http://localhost:1313/posts/why-swiftui-is-better-at-building-a-design-system/</link>
       <pubDate>Fri, 02 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/why-swiftui-is-better-at-building-a-design-system/</guid>
+      <guid>http://localhost:1313/posts/why-swiftui-is-better-at-building-a-design-system/</guid>
       <description>通过 SwiftUI 构建 Design System 有哪些优势</description>
     </item>
     <item>
       <title>参加 Apple 开发者线上活动是什么样的体验？</title>
-      <link>https://joeytat.github.io/posts/apple_swiftui_workshop/</link>
+      <link>http://localhost:1313/posts/apple_swiftui_workshop/</link>
       <pubDate>Mon, 28 Mar 2022 00:00:35 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/apple_swiftui_workshop/</guid>
+      <guid>http://localhost:1313/posts/apple_swiftui_workshop/</guid>
       <description>记录一下收获到的与 SwiftUI 相关的资料，与一条来自苹果工程师的学习路线。</description>
     </item>
     <item>
       <title>SwiftUI 状态管理 —— Composible Binding</title>
-      <link>https://joeytat.github.io/posts/composible_binding/</link>
+      <link>http://localhost:1313/posts/composible_binding/</link>
       <pubDate>Mon, 03 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/composible_binding/</guid>
+      <guid>http://localhost:1313/posts/composible_binding/</guid>
       <description>如何利用 Enum 以及自定义 KeyPath 来更好地管理 SwiftUI 的状态</description>
     </item>
   </channel>
