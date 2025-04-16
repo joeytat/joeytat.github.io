@@ -2,28 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>周记 on Joeytat&#39;s Dev Log</title>
-    <link>http://localhost:1313/tags/%E5%91%A8%E8%AE%B0/</link>
+    <link>https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/</link>
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.145.0</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 31 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 07 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 9: 记忆与现实</title>
+      <link>https://joeytat.github.io/posts/2025_week9/</link>
+      <pubDate>Mon, 07 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week9/</guid>
+      <description>&lt;p&gt;清明节去九寨沟玩了一趟。&lt;/p&gt;
+&lt;p&gt;小学时候和妈妈去过一次，还记得周围大人都穿着厚厚的衣服，但自己穿着短袖尽管冷得哆嗦，可听着旁人说“你看这个小伙子身体真好”，又觉得得意的场景。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;jiuzhai&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/jiuzhai.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;景点也只记得一个五色海，当时同行有位大叔还问导游：“这水能不能喝？”，导游顿了顿答：“别喝太多”。&lt;/p&gt;
+&lt;p&gt;现在再看到这个景点，感觉已经和记忆中完全不同，连印象中的大叔和导游也无处安置了。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;jiuzhai and zelda&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/jiuzhai-zelda.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;而且看到这样有山有树的地方，会立刻联想到几年前操纵着林克爬山滑翔的场景，进而想起当时玩荒野之息的愉快体验。相比玩了数倍时长于荒野之息的一款开放世界手游，却几乎不能让我在现实生活中产生共鸣。&lt;/p&gt;
+&lt;p&gt;想来或许和游戏制作人的目的有关，手游心思花在设计各种刺激点来让人氪金，游戏内容本身更像是吸引玩家入门的东西。但单机游戏则就是以做出好的游戏内容为主要目标。&lt;/p&gt;
+&lt;h1 id=&#34;input&#34;&gt;Input&lt;/h1&gt;
+&lt;p&gt;本周没有太多输入和产出，但在高铁上舒舒服服地看完了一本小说。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;《恶意》 ⭐️⭐️⭐️⭐️⭐️ &lt;br&gt;
+东野圭吾的侦探小说阅读体验一直都很好。看到最后才会意识到开头的性格描写产生的印象会有多深刻，第一印象确实很重要啊。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 8: 入手懒猫微服</title>
-      <link>http://localhost:1313/posts/2025_week8/</link>
+      <link>https://joeytat.github.io/posts/2025_week8/</link>
       <pubDate>Mon, 31 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2025_week8/</guid>
+      <guid>https://joeytat.github.io/posts/2025_week8/</guid>
       <description>&lt;p&gt;眼馋了朋友的 NAS 已久，自己调研了 4 个小时之后，机缘巧合之下，在 x.com 上通过&lt;a href=&#34;https://lazycat.cloud&#34;&gt;懒猫微服&lt;/a&gt;创始人 &lt;a href=&#34;https://x.com/manateelazycat&#34;&gt;Andy Stewart&lt;/a&gt;，得到了一张优惠券购入了这个看起来蛮贵的机器。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;lazycat&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/lazycat.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;但目前仅仅是用来同步照片及网盘，还没有发掘其全部的功能。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;lazycat&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/lazycat.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但目前仅仅是用来同步照片及网盘，还没有发掘其全部的功能。饶是如此也能在未来节约每个月 68 块钱的 iCloud 税。&lt;/p&gt;
 &lt;h1 id=&#34;input&#34;&gt;Input&lt;/h1&gt;
 &lt;p&gt;听 《Cortex》 主播之一 Myke 将要生小孩，Grey 推荐了几本书，被其中一本《&lt;a href=&#34;https://www.amazon.com.au/Selfish-Reasons-Have-More-Kids/dp/0465028616&#34;&gt;Selfish Reasons to Have More Kids&lt;/a&gt;》 给吸引了。大家聊起生更多小孩这事时，通常都和社会福祉挂钩一起聊，但个人聊到这个话题时，一般会咂舌说「一个都够受了，哪敢要要多的」。那有什么站的住脚的「自私」理由应该多要一些小孩呢？&lt;/p&gt;</description>
     </item>
     <item>
       <title>2025 week 7: 如果是 Lin 的话，他现在会怎么做呢？</title>
-      <link>http://localhost:1313/posts/2025_week7/</link>
+      <link>https://joeytat.github.io/posts/2025_week7/</link>
       <pubDate>Mon, 24 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2025_week7/</guid>
+      <guid>https://joeytat.github.io/posts/2025_week7/</guid>
       <description>&lt;p&gt;工作时间只有 35% 写代码，其他的时间要不然是在会议上，要不然是各个群里灌水了，自觉状态不是很好。&lt;/p&gt;
 &lt;p&gt;这时候会想起来上个项目共事的同事 Lin。客户对他的评价就是——天生的领导者。对此的理解是，因为他对于自己工作专业态度的一致性，以至于同组的成员很容易就受到他的影响，整个团队的工作效率也被拔高。&lt;/p&gt;
 &lt;p&gt;脑子里立刻能回忆起来的就有：&lt;/p&gt;
@@ -47,13 +67,13 @@ DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜�
     </item>
     <item>
       <title>2025 week 6: Github Copilot 复杂项目初体验</title>
-      <link>http://localhost:1313/posts/2025_week6/</link>
+      <link>https://joeytat.github.io/posts/2025_week6/</link>
       <pubDate>Mon, 17 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2025_week6/</guid>
+      <guid>https://joeytat.github.io/posts/2025_week6/</guid>
       <description>&lt;p&gt;周一一大早发现 Github Copilot license 申请下来之后就迫不及待开始在项目上体验了。尽管之前在自己的 side project 上使用过，但在澳洲最大的流媒体应用这个量级的项目上，还是头一遭。&lt;/p&gt;
 &lt;p&gt;先说结论，目前个人感觉对生产代码的编写提速帮助不算大，但通过 chat 来了解代码结构及技术决策分析会有奇效。&lt;/p&gt;
 &lt;p&gt;因为日常工作中，需求分析及 Tasking 的时间占 80%，实际写代码的时间可能只有 20%。此前还和同事打趣，写完了 issue 文档基本上等于代码都写完了。所以现在有了一个具有整个 codebase 上下文的 AI 来辅助阅读及理解代码，整体速率的提升还是比较明显。
-￼&lt;img alt=&#34;chat&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/copilot-chat.png&#34;&gt;&lt;/p&gt;
+￼&lt;img alt=&#34;chat&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/copilot-chat.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;但在如此复杂的项目结构及复杂业务上下文的场景下，如果想要通过 Copilot Edits 帮助实现代码，就需要把指令拆分得非常小且明确。即使如此也还是要经过很多轮的验证。有这个时间，自己写早就写完了。&lt;/p&gt;
 &lt;h2 id=&#34;娱乐&#34;&gt;娱乐&lt;/h2&gt;
 &lt;ul&gt;
@@ -64,11 +84,11 @@ DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜�
     </item>
     <item>
       <title>2025 week 5: 去日本</title>
-      <link>http://localhost:1313/posts/2025_week5/</link>
+      <link>https://joeytat.github.io/posts/2025_week5/</link>
       <pubDate>Mon, 10 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2025_week5/</guid>
+      <guid>https://joeytat.github.io/posts/2025_week5/</guid>
       <description>&lt;p&gt;上周写完自己对于 AI 可能产生的对程序员这个职业的影响之后，无独有偶，好几个程序员朋友也和我聊起了这个话题。看起来大家都有相关的顾虑和想法。有个好消息是，由于我一直在做咨询交付类的项目，所以在使用任何 AI 之前都需要客户的同意，但因为知识产权的关系，使用 AI 辅助编程很难推进，只能自己脱敏之后通过 chat 的方式来运用。但最近的项目客户已经同意在接下来的工作中使用 AI 辅助的 IDE 来进行日常交付了，这下或许可以深度感受到 AI 给职业带来的影响了。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;akihabara&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/akihabara.jpg&#34;&gt;
+&lt;p&gt;&lt;img alt=&#34;akihabara&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/akihabara.jpg&#34;&gt;
 因为去了一趟日本（4 天），所以没有太多的工作产出或是输出，不过在秋叶原见了一些市面，甚至产生了如果国内有这样的地方和文化，自己努力赚钱的意愿会更强的想法。&lt;/p&gt;
 &lt;h2 id=&#34;输入&#34;&gt;输入&lt;/h2&gt;
 &lt;ul&gt;
@@ -95,9 +115,9 @@ DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜�
     </item>
     <item>
       <title>2025 week 4: 程序员的不可替代性</title>
-      <link>http://localhost:1313/posts/2025_week4/</link>
+      <link>https://joeytat.github.io/posts/2025_week4/</link>
       <pubDate>Tue, 04 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2025_week4/</guid>
+      <guid>https://joeytat.github.io/posts/2025_week4/</guid>
       <description>&lt;h2 id=&#34;工作&#34;&gt;工作&lt;/h2&gt;
 &lt;p&gt;算是在 deadline 驱动下，度过了生产力爆棚的一周（请了一天假），每天实际写代码的时间达到了 7 小时。究其原因，只因为老板说有个新的提案要做时，加了一句“I personally think you are the best to work on it”，就卯足了劲儿赶在他需要的时间前，把手上的工作都快速处理好了。我真是容易满足啊 🫠&lt;/p&gt;
 &lt;h2 id=&#34;输出&#34;&gt;输出&lt;/h2&gt;
@@ -119,9 +139,9 @@ DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜�
     </item>
     <item>
       <title>2025 week 3</title>
-      <link>http://localhost:1313/posts/2025_week3/</link>
+      <link>https://joeytat.github.io/posts/2025_week3/</link>
       <pubDate>Fri, 28 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2025_week3/</guid>
+      <guid>https://joeytat.github.io/posts/2025_week3/</guid>
       <description>&lt;p&gt;这周在日常使用 AI 时产生了两次印象比较深刻的场景。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;在家用办公的时候用闲鱼买来的二手 Odyssey G7 显示器发现很卡，一度怀疑是 Mac mini M4 带不动。调整了很多设置都无法解决，问了一下 AI 提示可能是线的问题，结果发现果然是这样。&lt;/li&gt;
@@ -134,9 +154,9 @@ DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜�
     </item>
     <item>
       <title>2025 week 2</title>
-      <link>http://localhost:1313/posts/2025_week2/</link>
+      <link>https://joeytat.github.io/posts/2025_week2/</link>
       <pubDate>Mon, 17 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2025_week2/</guid>
+      <guid>https://joeytat.github.io/posts/2025_week2/</guid>
       <description>&lt;p&gt;2025 week 2&lt;/p&gt;
 &lt;p&gt;陪家人去医院请了几天假，工作输入输出都没什么进展。不过这段时间因为 deepseek 的火热，感觉让世界看到了中国科研的潜力，国内大家的信心也得到重振，于是建仓了恒生科技。&lt;/p&gt;
 &lt;h2 id=&#34;娱乐&#34;&gt;娱乐&lt;/h2&gt;
@@ -147,9 +167,9 @@ DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜�
     </item>
     <item>
       <title>2025 week 1: 为什么开始写周记</title>
-      <link>http://localhost:1313/posts/2025_week1/</link>
+      <link>https://joeytat.github.io/posts/2025_week1/</link>
       <pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2025_week1/</guid>
+      <guid>https://joeytat.github.io/posts/2025_week1/</guid>
       <description>&lt;p&gt;为了更好地通过记录这个行为来感知时间（开始写周记也是这个目的），研究了一下如何通过 toggl 的 API，现在可以通过 Shortcuts 自动将使用手机上的各种 app 自动分门别类（购物，社交网络，理财）记录使用时间，并且将低于 2 分钟的使用自动归类为 distraction 了。等这套系统再跑一跑完善一下，再来写一下体验和心得。&lt;/p&gt;
 &lt;h2 id=&#34;工作&#34;&gt;工作&lt;/h2&gt;
 &lt;p&gt;年前被告知晋升没通过，理由是尽管对于交付工作和团队管理都很满意，但因为缺少了在团队之外稳定地输出影响力的事实，所以给拒绝了。得知这一消息多少有点打击积极性，但自己接受得比想象的快，可能和我司晋升之后对薪资涨幅的提升不太明显有关。&lt;/p&gt;
