@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Swift on Joeytat&#39;s Dev Log</title>
-    <link>http://localhost:1313/tags/swift/</link>
+    <link>https://joeytat.github.io/tags/swift/</link>
     <description>Recent content in Swift on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 02 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/swift/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://joeytat.github.io/tags/swift/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DateFormatter 静态实例的一个小坑</title>
-      <link>http://localhost:1313/posts/date_formatter_issue/</link>
+      <link>https://joeytat.github.io/posts/date_formatter_issue/</link>
       <pubDate>Sun, 02 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/date_formatter_issue/</guid>
+      <guid>https://joeytat.github.io/posts/date_formatter_issue/</guid>
       <description>&lt;h2 id=&#34;问题&#34;&gt;问题&lt;/h2&gt;
 &lt;p&gt;目前开发的 app 主要服务于澳洲用户，开发团队由中澳两地开发人员组成，所以写和 DateFormatter 相关测试时，通常会指定 Calendar 所处时区。否则可能出现测试在本地运行完美通过，但澳洲同事本地或者 CI 上挂掉的情况出现。&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-swift&#34; data-lang=&#34;swift&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;mockCalendar&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Calendar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;identifier&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;iso8601&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
@@ -34,27 +34,27 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#expect(humanizedDate(date: mockDate, formatter: formatter) == &amp;#34;02 Mar 12:00”) // ✅
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;优化&#34;&gt;优化&lt;/h2&gt;
 &lt;p&gt;但在生产代码中考虑到 DateFormatter 在使用的时候如果不重用实例，则会额外耗费十几倍的时间。
-&lt;img alt=&#34;how-expensive-is-dateformatter-when-using&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/date-formatter-time-consuming.png&#34;&gt;&lt;/p&gt;</description>
+&lt;img alt=&#34;how-expensive-is-dateformatter-when-using&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/date-formatter-time-consuming.png&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>构建易维护的 Design System: 为什么 SwiftUI 会是更好的选择</title>
-      <link>http://localhost:1313/posts/why-swiftui-is-better-at-building-a-design-system/</link>
+      <link>https://joeytat.github.io/posts/why-swiftui-is-better-at-building-a-design-system/</link>
       <pubDate>Fri, 02 Jun 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/why-swiftui-is-better-at-building-a-design-system/</guid>
+      <guid>https://joeytat.github.io/posts/why-swiftui-is-better-at-building-a-design-system/</guid>
       <description>通过 SwiftUI 构建 Design System 有哪些优势</description>
     </item>
     <item>
       <title>iOS 架构之另一种依赖注入的思路</title>
-      <link>http://localhost:1313/posts/swift_dependency_injection/</link>
+      <link>https://joeytat.github.io/posts/swift_dependency_injection/</link>
       <pubDate>Tue, 15 Mar 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/swift_dependency_injection/</guid>
+      <guid>https://joeytat.github.io/posts/swift_dependency_injection/</guid>
       <description>介绍了一种相比 protocol 更轻量级更灵活的依赖注入实现</description>
     </item>
     <item>
       <title>Swift 状态管理 —— 如何拆分庞大的 reducer</title>
-      <link>http://localhost:1313/posts/combining_reducers/</link>
+      <link>https://joeytat.github.io/posts/combining_reducers/</link>
       <pubDate>Sun, 16 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/combining_reducers/</guid>
+      <guid>https://joeytat.github.io/posts/combining_reducers/</guid>
       <description>利用 keyPath 构建 pullback 来处理 reducer 状态隔离的问题</description>
     </item>
   </channel>
