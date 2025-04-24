@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>React on Joeytat&#39;s Dev Log</title>
-    <link>https://joeytat.github.io/tags/react/</link>
+    <link>http://localhost:1313/tags/react/</link>
     <description>Recent content in React on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.145.0</generator>
+    <generator>Hugo -- 0.146.6</generator>
     <language>zh-cn</language>
     <lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://joeytat.github.io/tags/react/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/react/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>React 进阶模式之复合组件（Compound Component）</title>
-      <link>https://joeytat.github.io/posts/compound-component/</link>
+      <link>http://localhost:1313/posts/compound-component/</link>
       <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/compound-component/</guid>
+      <guid>http://localhost:1313/posts/compound-component/</guid>
       <description>什么是复合组件，以及如何让子组件隐式地共享父组件的 props</description>
     </item>
   </channel>
