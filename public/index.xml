@@ -4,10 +4,34 @@
     <title>Joeytat&#39;s Dev Log</title>
     <link>https://joeytat.github.io/</link>
     <description>Recent content on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.146.6</generator>
+    <generator>Hugo -- 0.147.0</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 24 Apr 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 27 Apr 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 12: Showcase</title>
+      <link>https://joeytat.github.io/posts/2025_week12/</link>
+      <pubDate>Sun, 27 Apr 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week12/</guid>
+      <description>&lt;p&gt;本周工作产出主要是准备 showcase 及修复 iOS 15 UIHostingViewController 在 UINavigationController 层级下可能会出现 navigation bar 无法隐藏的问题。&lt;/p&gt;
+&lt;h1 id=&#34;输入&#34;&gt;输入&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;《盲人钟表匠》&lt;br&gt;
+当人们走在路上如果看到一块构造奇怪的石头，无论其构造如何诡异，依然会有概率相信这样一块石头是自然产物。但如果在路上捡到了一块钟表，则极难让人相信，这是自然产物，原因在于钟表的复杂性。那么相比起身体构造，钟表的精细程度显然不值一提，也就很难相信人是自然产物，而不是神刻意制造出来的。
+《盲人钟表匠》 这本书就是讲进化论的自然选择，是如何反驳这个在达尔文出现之前，最有影响力的支持”上帝存在“的论证——「设计论证」。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;娱乐&#34;&gt;娱乐&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;《辐射》 ⭐️ ⭐️ ⭐️ ⭐️&lt;br&gt;
+剧情一般，没能把各种避难所的荒诞以及地面各势力的斗争体完全体现出来。但场景道具服装还原极佳！再玩一次辐射 4 是不可能了，但很期待新辐射。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;《苦尽柑来遇见你》&lt;br&gt;
+本来对韩剧不太感兴趣，但时间线上看到太多人说好，开始看看。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 11: 《Tiny Experiences》 = 但行好事莫问前程 &#43; 量变引起质变</title>
       <link>https://joeytat.github.io/posts/2025_week11/</link>
@@ -17,7 +41,7 @@
 &lt;p&gt;周末小朋友被他外公外婆带出去玩了，得了两天空闲。研究了一下如何更好地利用懒猫微服 NAS。但因为自己对数据安全的敏感，不太乐意往里面装不清楚来历的东西，而自己又嫌弃麻烦所以也没有太多成果，甚至开始思考这个东西到底是否适合自己了。&lt;/p&gt;
 &lt;h1 id=&#34;输入&#34;&gt;输入&lt;/h1&gt;
 &lt;ul&gt;
-&lt;li&gt;《Tiny Experiences》 ⭐️ ⭐️ ⭐️ ⭐️ ⭐️&lt;br&gt;
+&lt;li&gt;《Tiny Experiences》
 又一次受到 cbvivi 的影响，看他在读《Tiny Experiences》这本书，发起了一个要连续更新博客一百天的活动。这本书我只看了开头，个人感觉核心概念和但行好事莫问前程很像。先用一个契约把事儿做了，做的过程中自然会有好事发生（量变引起质变）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;同时相当喜欢 cbvivi 在这篇博客最后面的引用：&lt;/p&gt;
@@ -30,7 +54,7 @@
 周日硬生生玩了十个小时，把地底的很大一片区域都探索了，获得了一套衣服。期间没有一分钟不是开心的。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;《白莲花度假村》第一季 ⭐️ ⭐️ ⭐️ ⭐️ ⭐️   &lt;br&gt;
+&lt;p&gt;《白莲花度假村》第一季 ⭐️ ⭐️ ⭐️ ⭐️ ⭐️&lt;br&gt;
 很戏剧的一部短剧。值得一提的是其中一个主演是《Why Women Kill》的达达里奥，漂亮的眼睛颜色让人感觉她又不知所措但又带了一些神经质。&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;</description>
@@ -401,9 +425,9 @@ DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜�
     </item>
     <item>
       <title>为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?</title>
-      <link>https://joeytat.github.io/posts/cocoapods-1/</link>
+      <link>https://joeytat.github.io/posts/cocoapods-1.5-static-library/</link>
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/cocoapods-1/</guid>
+      <guid>https://joeytat.github.io/posts/cocoapods-1.5-static-library/</guid>
       <description>昨天在 Twitter 上看到 TualatriX 说[把私有库都通过 Cocoapods 编译成静态库之后很爽](https://twitter.com/tualatrix/status/1077166131956264960), 就有点好奇到底是爽在哪里.</description>
     </item>
   </channel>
