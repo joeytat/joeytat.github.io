@@ -2,8 +2,9 @@ baseUrl: "https://joeytat.github.io/"
 languageCode: "zh-cn"
 title: "Joeytat's Dev Log"
 theme: "PaperMod"
-pagination.pagerSize: 20
-analytics.google: "G-83QEEKFELL"
+pagination:
+  disableAliases: false
+  pagerSize: 15
 
 minify:
   disableXML: true
@@ -113,8 +114,12 @@ menu:
     #   url: /categories/
     #   weight: 10
     - identifier: tags
-      name: tags
+      name: Tags
       url: /tags/
+      weight: 20
+    - identifier: archives
+      name: Archives
+      url: archives
       weight: 20
     # - identifier: example
     #   name: example.org

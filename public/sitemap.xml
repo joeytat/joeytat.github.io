@@ -2,129 +2,131 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://joeytat.github.io/posts/2025_week13/</loc>
+    <loc>http://localhost:1313/posts/2025_week13/</loc>
     <lastmod>2025-05-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/</loc>
+    <loc>http://localhost:1313/</loc>
     <lastmod>2025-05-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2025-05-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-05-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/</loc>
+    <loc>http://localhost:1313/tags/%E5%91%A8%E8%AE%B0/</loc>
     <lastmod>2025-05-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week12/</loc>
+    <loc>http://localhost:1313/posts/2025_week12/</loc>
     <lastmod>2025-04-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week11/</loc>
+    <loc>http://localhost:1313/posts/2025_week11/</loc>
     <lastmod>2025-04-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week10/</loc>
+    <loc>http://localhost:1313/posts/2025_week10/</loc>
     <lastmod>2025-04-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week9/</loc>
+    <loc>http://localhost:1313/posts/2025_week9/</loc>
     <lastmod>2025-04-07T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week8/</loc>
+    <loc>http://localhost:1313/posts/2025_week8/</loc>
     <lastmod>2025-03-31T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week7/</loc>
+    <loc>http://localhost:1313/posts/2025_week7/</loc>
     <lastmod>2025-03-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week6/</loc>
+    <loc>http://localhost:1313/posts/2025_week6/</loc>
     <lastmod>2025-03-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week5/</loc>
+    <loc>http://localhost:1313/posts/2025_week5/</loc>
     <lastmod>2025-03-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week4/</loc>
+    <loc>http://localhost:1313/posts/2025_week4/</loc>
     <lastmod>2025-03-04T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/chitchat/</loc>
+    <loc>http://localhost:1313/tags/chitchat/</loc>
     <lastmod>2025-03-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/date_formatter_issue/</loc>
+    <loc>http://localhost:1313/posts/date_formatter_issue/</loc>
     <lastmod>2025-03-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/swift/</loc>
+    <loc>http://localhost:1313/tags/swift/</loc>
     <lastmod>2025-03-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/user_friendly_version/</loc>
+    <loc>http://localhost:1313/posts/user_friendly_version/</loc>
     <lastmod>2025-03-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week3/</loc>
+    <loc>http://localhost:1313/posts/2025_week3/</loc>
     <lastmod>2025-02-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week2/</loc>
+    <loc>http://localhost:1313/posts/2025_week2/</loc>
     <lastmod>2025-02-17T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2025_week1/</loc>
+    <loc>http://localhost:1313/posts/2025_week1/</loc>
     <lastmod>2025-02-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2024_overview/</loc>
+    <loc>http://localhost:1313/posts/2024_overview/</loc>
     <lastmod>2025-01-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/swiftui/</loc>
+    <loc>http://localhost:1313/tags/swiftui/</loc>
     <lastmod>2023-06-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/why-swiftui-is-better-at-building-a-design-system/</loc>
+    <loc>http://localhost:1313/posts/why-swiftui-is-better-at-building-a-design-system/</loc>
     <lastmod>2023-06-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/knownenoughtobedangerous/</loc>
+    <loc>http://localhost:1313/tags/knownenoughtobedangerous/</loc>
     <lastmod>2022-07-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/differences_between_scheme_and_universal_links/</loc>
+    <loc>http://localhost:1313/posts/differences_between_scheme_and_universal_links/</loc>
     <lastmod>2022-07-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/apple_swiftui_workshop/</loc>
+    <loc>http://localhost:1313/posts/apple_swiftui_workshop/</loc>
     <lastmod>2022-03-28T00:00:35+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/swift_dependency_injection/</loc>
+    <loc>http://localhost:1313/posts/swift_dependency_injection/</loc>
     <lastmod>2022-03-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/combining_reducers/</loc>
+    <loc>http://localhost:1313/posts/combining_reducers/</loc>
     <lastmod>2022-01-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/composible_binding/</loc>
+    <loc>http://localhost:1313/posts/composible_binding/</loc>
     <lastmod>2022-01-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/javascript/</loc>
+    <loc>http://localhost:1313/tags/javascript/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/asynchronous-javascript/</loc>
+    <loc>http://localhost:1313/posts/asynchronous-javascript/</loc>
     <lastmod>2019-08-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/react/</loc>
+    <loc>http://localhost:1313/tags/react/</loc>
     <lastmod>2019-08-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/compound-component/</loc>
+    <loc>http://localhost:1313/posts/compound-component/</loc>
     <lastmod>2019-08-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/ios/</loc>
+    <loc>http://localhost:1313/tags/ios/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/tags/%E7%BF%BB%E8%AF%91/</loc>
+    <loc>http://localhost:1313/tags/%E7%BF%BB%E8%AF%91/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/optimizing_images/</loc>
+    <loc>http://localhost:1313/posts/optimizing_images/</loc>
     <lastmod>2019-06-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/wwdc2019_platforms_state_of_the_union/</loc>
+    <loc>http://localhost:1313/posts/wwdc2019_platforms_state_of_the_union/</loc>
     <lastmod>2019-06-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/js_required_property/</loc>
+    <loc>http://localhost:1313/posts/js_required_property/</loc>
     <lastmod>2019-06-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/2018_overview/</loc>
+    <loc>http://localhost:1313/posts/2018_overview/</loc>
     <lastmod>2018-12-28T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/posts/cocoapods-1/</loc>
+    <loc>http://localhost:1313/posts/cocoapods-1/</loc>
     <lastmod>2018-12-27T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://joeytat.github.io/categories/</loc>
+    <loc>http://localhost:1313/archives/</loc>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
   </url>
 </urlset>
