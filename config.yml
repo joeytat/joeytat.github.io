@@ -6,6 +6,8 @@ pagination:
   disableAliases: false
   pagerSize: 15
 
+googleAnalytics: "G-83QEEKFELL"
+
 minify:
   disableXML: true
   minifyOutput: true
