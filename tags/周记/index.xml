@@ -4,10 +4,20 @@
     <title>周记 on Joeytat&#39;s Dev Log</title>
     <link>https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/</link>
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.147.2</generator>
+    <generator>Hugo -- 0.147.3</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 07 May 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 May 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 14: 反馈循环</title>
+      <link>https://joeytat.github.io/posts/2025_week14/</link>
+      <pubDate>Wed, 14 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week14/</guid>
+      <description>&lt;p&gt;这周主要工作在重构上。之前有两个高度重合模块需求出来的时间间隔有点大，且过程中产品和开发沟通不足，导致两个模块实现过程中产生了不少冗余代码。&lt;/p&gt;
+&lt;p&gt;这种时候 code diff / PR review 经常发现，core contributor 们在重构议题上有很强的「技术卓越」倾向，同时当可扩展性和可维护性两个词搬出来时，很难从技术角度说是错的，然后大家陷入一轮又一轮的争论。&lt;/p&gt;
+&lt;p&gt;考虑到这两个特质在复杂业务项目中实现的成本，以及过往太多实现了高可复用模块但并未发挥作用的经历。个人感觉其实更好的做法先放下技术人视角，和干系人（老板）沟通，确认真实的验收标准，严格执行，交付，然后开始进入下一个任务。&lt;/p&gt;
+&lt;p&gt;把这个反馈循环牢记于心，一方面可以节约大量不必要的讨论精力和实现成本，另一方面也可以避免出现明明花费了大量时间精力，但老板不认可成果的情况出现。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025 week 13: 集成联调</title>
       <link>https://joeytat.github.io/posts/2025_week13/</link>
