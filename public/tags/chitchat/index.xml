@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Chitchat on Joeytat&#39;s Dev Log</title>
-    <link>http://localhost:1313/tags/chitchat/</link>
+    <link>https://joeytat.github.io/tags/chitchat/</link>
     <description>Recent content in Chitchat on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 02 Mar 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/chitchat/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://joeytat.github.io/tags/chitchat/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>面向用户的版本号</title>
-      <link>http://localhost:1313/posts/user_friendly_version/</link>
+      <link>https://joeytat.github.io/posts/user_friendly_version/</link>
       <pubDate>Sun, 02 Mar 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/user_friendly_version/</guid>
+      <guid>https://joeytat.github.io/posts/user_friendly_version/</guid>
       <description>&lt;p&gt;日常开发接触能接触到的版本号方案通常就是语义化版本（构建号版本）：&lt;/p&gt;
 &lt;p&gt;语义化版本大致是：主版本号.次版本号.修订号（1.2.3）。&lt;/p&gt;
 &lt;ul&gt;
@@ -22,22 +22,22 @@
 &lt;/ul&gt;
 &lt;p&gt;构建号更简单，每次构建时自动递增。通常是团队内部用来定位问题使用，外部不可见。&lt;/p&gt;
 &lt;p&gt;今天偶然发现了用了好几年的日记 app &lt;a href=&#34;https://dayoneapp.com&#34;&gt;Day one&lt;/a&gt; 的版本号，感觉还挺有意思，格式就是：年.当年发布次数。&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;day one version&#34; loading=&#34;lazy&#34; src=&#34;http://localhost:1313/user_friendly_version.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;day one version&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/user_friendly_version.png&#34;&gt;&lt;/p&gt;
 &lt;p&gt;软件的更新频率在很大程度上影响用户是否愿意投入时间和金钱使用该软件。相比常见的语义化版本号，这种版本号显然更用户友好。&lt;/p&gt;
 &lt;p&gt;ps: 是的，Day one 的更新历史中有个 2025.1.1。个人猜测或许是因为那次的更新只是一次非常简单的 bug fix，所以团队并不想将其作为“一次发布”记录在案。: ]&lt;/p&gt;</description>
     </item>
     <item>
       <title>2024</title>
-      <link>http://localhost:1313/posts/2024_overview/</link>
+      <link>https://joeytat.github.io/posts/2024_overview/</link>
       <pubDate>Mon, 13 Jan 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2024_overview/</guid>
+      <guid>https://joeytat.github.io/posts/2024_overview/</guid>
       <description>年终总结</description>
     </item>
     <item>
       <title>2018</title>
-      <link>http://localhost:1313/posts/2018_overview/</link>
+      <link>https://joeytat.github.io/posts/2018_overview/</link>
       <pubDate>Fri, 28 Dec 2018 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2018_overview/</guid>
+      <guid>https://joeytat.github.io/posts/2018_overview/</guid>
       <description>年终总结</description>
     </item>
   </channel>
