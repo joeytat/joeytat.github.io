@@ -6,8 +6,41 @@
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.146.6</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 28 May 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 17：语音输入</title>
+      <link>http://localhost:1313/posts/2025_week17/</link>
+      <pubDate>Wed, 04 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2025_week17/</guid>
+      <description>&lt;p&gt;端午节，本来计划是闲暇时间 vibe coding 完成一款 app 的初版。但不知道为何开始整理自己电脑里文件了。发现了自己大学写的日记的存档，当时觉得纸质的容易泄密且丢失，就拍照保存了一份丢 iCloud 了。&lt;/p&gt;
+&lt;p&gt;突然就想着要不把这些手写的日记照片给转成文字版存在 Day One 里好了。说干就干，最初的想法是直接 OCR 扫描一下就行，但简单试了一下就被自己潦草的字迹打败了。自己录入也不太可能，好几百篇得打到猴年马月。最后想到还是语音录入转文字吧，刚好知道了一个蛮厉害的语音转文字的 app，MacWhisper。试了一下免费版本，基本满足需求，但有个问题是转换出来的文字不带标点。需要购入 pro license（59 EUR），有点太贵了对我这种一次性需求来说。&lt;/p&gt;
+&lt;p&gt;然后想起来其实 iOS 自带的语言输入体验还不错，在 mac 上设置了一下，连击 ctrl 两次就可以唤起。且短文字录入效果很好，但太长了会出现吞句的现象。而且标点虽然会加，但错误比较多，不过胜在免费且系统级交互体验比较舒适，可以入侵到所有 app 的输入框里。&lt;/p&gt;
+&lt;p&gt;话说回来，之前辛苦从全拼转到了双拼，即使熟练使用了，这个速度完全也是完全比不上语音输入的，打字快的唯一优势只能是在办公室可以不影响他人吧。&lt;/p&gt;
+&lt;p&gt;双拼第三周速度刚到全拼的 60%，道长且阻啊。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;速度&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;全拼&lt;/td&gt;
+          &lt;td&gt;87 字/分&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;双拼第一天&lt;/td&gt;
+          &lt;td&gt;17 字/分&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;双拼第三周&lt;/td&gt;
+          &lt;td&gt;52 字/分&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</description>
+    </item>
     <item>
       <title>2025 week 16：斜挎包</title>
       <link>http://localhost:1313/posts/2025_week16/</link>
