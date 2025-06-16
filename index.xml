@@ -4,10 +4,23 @@
     <title>Joeytat&#39;s Dev Log</title>
     <link>https://joeytat.github.io/</link>
     <description>Recent content on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.147.7</generator>
+    <generator>Hugo -- 0.147.8</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 04 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 09 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 17：Alex 涨价了</title>
+      <link>https://joeytat.github.io/posts/2025_week18/</link>
+      <pubDate>Mon, 09 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week18/</guid>
+      <description>&lt;p&gt;之前体验了一下 &lt;a href=&#34;https://www.alexcodes.app/auth/signup?ref=joeyqaq-ORWI0Y&#34;&gt;alex&lt;/a&gt; 来 vibe coding 但没有付费，因为还在犹豫是订阅 cursor 还是 alex，等回过神来，发现 alex 已经从 20 USD 涨到了 30 USD 了。考虑到其开箱即用的 Xcode 整合体验确实很好，还是订阅了，但只要持续订阅 alex，每个月现在会额外付出 10 USD，多少有点难受。&lt;/p&gt;
+&lt;p&gt;但话说回来随着各家 IDE AI 的进化速度，似乎也没必要守着一个供应商来订阅。&lt;/p&gt;
+&lt;h1 id=&#34;娱乐&#34;&gt;娱乐&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;《白莲花度假村》 S3  ⭐️   ⭐️   ⭐️   ⭐️&lt;br&gt;
+比起前两季来说稍逊一筹，主要问题是节奏太慢了，而且出现了 Lisa 和保安这条没有什么意义的线，占据了不时长。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 17：语音输入</title>
       <link>https://joeytat.github.io/posts/2025_week17/</link>
