@@ -13,7 +13,7 @@
       <link>https://joeytat.github.io/posts/2025_week21/</link>
       <pubDate>Sat, 28 Jun 2025 00:00:00 +0000</pubDate>
       <guid>https://joeytat.github.io/posts/2025_week21/</guid>
-      <description>&lt;p&gt;本周的 Toggl 数据看起来相当健康。在总共记录的 43 小时中，工作稳定占据了 20.4 小时（47.3%），而个人项目达到了 10.7 小时（24.9%）。&lt;/p&gt;
+      <description>&lt;p&gt;本周的 &lt;a href=&#34;https://accounts.toggl.com/track/signup/?grsf=joeyqaq-14msby&#34;&gt;Toggl&lt;/a&gt; 数据看起来相当健康。在总共记录的 43 小时中，工作稳定占据了 20.4 小时（47.3%），而个人项目达到了 10.7 小时（24.9%）。&lt;/p&gt;
 &lt;p&gt;个人项目时间的增长，并非完全源于自律，更多是工作项目因合同与发布日期的不确定性，带来了一段“时间真空”。我把这些时间空闲投入到了第一个 Vibe Coding 实验项目上，因此更清晰地触摸到了当前 AI 辅助编程的边界。&lt;/p&gt;
 &lt;p&gt;这个项目以摄像头为核心，而我很快发现，AI 难以对需要实时与物理世界交互的功能进行有效调试。对于摄像头前后翻转、镜像处理、人体识别这类问题，它似乎难以理解。其结果就是，我花费了整整 5 个小时，消耗了近 200 条 message 额度，却依然没能解决一个关键的人体识别难题。如果再选一次，我应该不会选择一个以摄像头为主的项目，作为探索 Vibe Coding 的起点。&lt;/p&gt;
 &lt;p&gt;这次痛苦的调试经历，也促使我快速迭代了与 AI 的协作模式，大致经历了三个版本：&lt;/p&gt;
