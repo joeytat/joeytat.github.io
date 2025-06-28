@@ -4,10 +4,28 @@
     <title>Joeytat&#39;s Dev Log</title>
     <link>https://joeytat.github.io/</link>
     <description>Recent content on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.147.8</generator>
+    <generator>Hugo -- 0.147.9</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 16 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 25 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 20: 内容产出的自动化</title>
+      <link>https://joeytat.github.io/posts/2025_week20/</link>
+      <pubDate>Wed, 25 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week20/</guid>
+      <description>&lt;p&gt;这周的 &lt;a href=&#34;https://accounts.toggl.com/track/signup/?grsf=joeyqaq-14msby&#34;&gt;Toggl&lt;/a&gt; 数据呈现出一种值得警惕的模式。总记录时长高达 46 小时，表面上是忙碌且充实的一周，但仔细审视时间的流向，却发现了一些不平衡。&lt;/p&gt;
+&lt;p&gt;工作依然是时间投入的核心，占据了 43.1%。然而，真正反映个人成长和创造力的“个人项目” ，本周的投入锐减到了仅 5%。这是一个危险的信号。当被动的工作任务完全挤占了主动的个人创造时间，很容易陷入一种“为了工作而工作”的循环，从而失去对技术的热情和探索欲。这让我想起之前设立“写周记”这个行为的初衷——更好地感知时间。而现在，数据清晰地告诉我，我需要重新调整优先级，为那些能带来长期价值和满足感的事情，预留出更多的时间和精力。&lt;/p&gt;
+&lt;p&gt;本周在“消耗”上的投入相当可观。影音和游戏两项相加，总共消耗了总记录时长的近四分之一。虽然娱乐是必要的调剂，但当它在时间占比上开始与核心产出“分庭抗礼”时，就值得反思了。特别是当我发现“输入”类目（如读书、语言学习）的时间被严重压缩时，这种感觉尤为强烈。&lt;/p&gt;
+&lt;p&gt;看 Peter Steinberger 写的《Claude code is my computer》中&lt;a href=&#34;https://steipete.me/posts/2025/claude-code-is-my-computer#what-i-actually-use-it-for&#34;&gt;我如何使用它&lt;/a&gt;一章，学到了可以用 &lt;a href=&#34;https://wisprflow.ai&#34;&gt;Whipser flow&lt;/a&gt; 来和 Claude code（在我这里是 Google Gemini CLI）对话，然后让 claude code 来阅读他过去所有的文章并且基于他的写作风格来构建一篇新的文章。&lt;/p&gt;
+&lt;p&gt;在我的使用场景上衍生一下，就变长了&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Google Gemini CLI 去 &lt;a href=&#34;https://accounts.toggl.com/track/signup/?grsf=joeyqaq-14msby&#34;&gt;Toggl&lt;/a&gt; 读取了我上一周记录的数据。&lt;/li&gt;
+&lt;li&gt;分析我过去的周记所关注的数据侧重点，帮我产出一份具有洞察力的报告。&lt;/li&gt;
+&lt;li&gt;我会用 &lt;a href=&#34;https://wisprflow.ai&#34;&gt;Whipser flow&lt;/a&gt; 和它产生一些对话。&lt;/li&gt;
+&lt;li&gt;根据对话，基于我写作风格来生成一篇新的周记。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;很好玩！&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025 week 19：Whisper Flow 中英混合语音输入</title>
       <link>https://joeytat.github.io/posts/2025_week19/</link>
