@@ -6,8 +6,17 @@
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.147.9</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 28 Jun 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 22: Claude Code 沉迷</title>
+      <link>https://joeytat.github.io/posts/2025_week22/</link>
+      <pubDate>Mon, 07 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week22/</guid>
+      <description>&lt;p&gt;在上周末花了 200 多条 &lt;a href=&#34;https://www.alexcodes.app/auth/signup?ref=joeyqaq-ORWI0Y&#34;&gt;alex&lt;/a&gt; message quote 修复 bug 依然失败的情况下，气不过跑去用 &lt;a href=&#34;https://bewildcard.com/i/TUSJ5QKU&#34;&gt;WildCard&lt;/a&gt; 开通了 &lt;a href=&#34;https://www.anthropic.com/pricing&#34;&gt;Claude Code Max 5x&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;此前因为 Claude 必须要&lt;strong&gt;1. 非中国区手机号注册，2. 非中国区信用卡付款，3. 非中国地区 IP 地址登入&lt;/strong&gt;，三个条件同时满足才给用，就一直在找一些替代品。这次觉得与其花费很多时间研究 prompting 和 MCP 啥的以增强 AI agent 的能力，不如直接花钱买最好的模型来用。&lt;a href=&#34;https://bewildcard.com/i/TUSJ5QKU&#34;&gt;WildCard&lt;/a&gt; 提供了前两个条件的解决方案，可以申请 3 个手机号，提供订阅用的信用卡。缺点是需要开卡会员费（1 年 $9.9 和 2 年 $14.99 两种方式）和单笔充值 3.5% 的手续费。&lt;/p&gt;
+&lt;p&gt;开通了之后发现果然是好啊，只用了三轮对话，就解决了之前 &lt;a href=&#34;https://www.alexcodes.app/auth/signup?ref=joeyqaq-ORWI0Y&#34;&gt;alex&lt;/a&gt; 一整天都没有解决的问题。这下就沉迷进去了，而且得益于 claude code 的后台 agent 模式，并行又开了个 side project 的坑，这周在上面花了 44 小时。几乎一周都是 1、2 点才睡觉，这还是因为 Claude Code 5x 计划 的使用限额强制暂停导致的，如果订阅了 20x 的计划，估计睡眠时间会更少。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025 week 21: AI 辅助编程的边界</title>
       <link>https://joeytat.github.io/posts/2025_week21/</link>
