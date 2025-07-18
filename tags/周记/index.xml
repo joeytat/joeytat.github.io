@@ -4,10 +4,24 @@
     <title>周记 on Joeytat&#39;s Dev Log</title>
     <link>https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/</link>
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.147.9</generator>
+    <generator>Hugo -- 0.148.1</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 07 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 18 Jul 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 23: 用数据复盘一周</title>
+      <link>https://joeytat.github.io/posts/2025_week23/</link>
+      <pubDate>Fri, 18 Jul 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week23/</guid>
+      <description>&lt;p&gt;为了给客户的 app 做 &lt;a href=&#34;https://developer.apple.com/support/reader-apps/&#34;&gt;reader app&lt;/a&gt; 的支持，首先需要把已有的注册流程全部干掉，然后用 &lt;a href=&#34;https://developer.apple.com/documentation/storekit/external-link-account&#34;&gt;External Link Account&lt;/a&gt; 来实现。刚开始分析需求的时候第一反应就是这活儿直接交给 AI Agent 来做简直完美，就是分析理解 user journey 然后删除对应路径上的各种依赖。但转念一想，似乎也没啥活儿不能交给 AI 了。&lt;/p&gt;
+&lt;p&gt;还花了大量时间投入在 side project 上，用 claude code 打磨一些交互上的细节。发现即使强如 opus 4，在找 UI 界面层级上，用透明组件实现的特殊交互时（前端惯用技巧，比如界面上看着是同一层级的元素，但为了交互的易用性，其层级关系会更复杂甚至反直觉，比如点击穿透和常见的 modal 展示），其理解能力也比较捉襟见肘。但提供了足够多的上下文之后，还是能很快完成任务。&lt;/p&gt;
+&lt;p&gt;chatGPT 的免费图生图额度也被我薅得差不多了，先后尝试过 grok，google AI studio 效果都不如 GPT image 1 模型，但又不想为了几张图片去订阅会员。最后在 v2ex 看到个卖 token 的，只花了 0.9 刀就搞定了两个 side project 的 app icon。&lt;/p&gt;
+&lt;h3 id=&#34;娱乐&#34;&gt;娱乐&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;《小骨》 ⭐️⭐️⭐️⭐️⭐️&lt;br&gt;
+RogueLike 游戏，几年前玩过二十小时。最近突然想再试试，没想到异常欢乐，周日玩了 12 小时。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 22: Claude Code 沉迷</title>
       <link>https://joeytat.github.io/posts/2025_week22/</link>
