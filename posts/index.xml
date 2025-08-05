@@ -6,17 +6,25 @@
     <description>Recent content in Posts on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 28 Jul 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 04 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>2025 week 25: “开始觉得自己写了个垃圾“</title>
+      <title>2025 week 25: TDD: Terminology-Driven Development</title>
       <link>https://joeytat.github.io/posts/2025_week25/</link>
-      <pubDate>Mon, 28 Jul 2025 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 04 Aug 2025 00:00:00 +0000</pubDate>
       <guid>https://joeytat.github.io/posts/2025_week25/</guid>
-      <description>&lt;p&gt;手上的两个 side project 又一次陷入了停滞状态。为什么要说又呢，因为过去也有数次自己开启了 side project，但写到一半觉得「可能除了自己，也不会有人想用吧？」就搁置了。尽管这次借助 AI 两个项目的完成度已经相当高了，但也确实又开始觉得自己写了个垃圾。&lt;/p&gt;
-&lt;p&gt;无独有偶的是在这个状态下，恰巧在 twitter 上看到了 Randy 写的：「&lt;a href=&#34;https://x.com/randyloop/status/1947661054739374409&#34;&gt;开始觉得自己写了个垃圾。这是个信号，说明是时候要发布了。&lt;/a&gt;」&lt;/p&gt;
-&lt;p&gt;&lt;img alt=&#34;randy talk about ship&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/randy-talk-about-ship.png&#34;&gt;&lt;/p&gt;
-&lt;p&gt;有种被启发到的感觉！&lt;/p&gt;</description>
+      <description>&lt;p&gt;最近发现自己越来越像一个 TDD 工程师了，不是 Test-Driven Development，而是 &lt;strong&gt;Terminology-Driven Development&lt;/strong&gt;。当需要实现一个功能时，我不再思考「怎么写代码」，而是思考「用什么术语」。&lt;/p&gt;
+&lt;p&gt;曾经有很长一段时间 Thoughtworks 社招 mobile 开发的面试题是会要求做一个朋友圈出来，除了考察项目结构设计，层级依赖是否清晰还有代码风格之外，最重要的考察是是否有实现图片的三级缓存。如果是现在拿到这个面试题，只需要知道三级缓存这个概念即可。在现在这个时间点，我不觉得有多少开发者独立实现的最终代码质量和可维护性会比 Claude 更好。&lt;/p&gt;
+&lt;p&gt;学编程的时候，总会看到「不要死记硬背，要理解原理」的描述。现在好了，连原理都不需要理解了，只需要知道「三级缓存」这个词汇即可。过去如果需要解决一个不熟悉领域的问题，除了要定位问题发现 root cause 之外，还需要根据解决方案的实现成本和可维护性来做决策，这需要对每个方案在当前系统中如何实现了然于胸才行。现在决策过程变成了定位问题，念出正确的术语即可交给 AI 实现。&lt;/p&gt;
+&lt;h3 id=&#34;术语即-api&#34;&gt;术语即 API&lt;/h3&gt;
+&lt;p&gt;仔细想想，这其实是个自然演进：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;汇编时代：需要记住寄存器名称&lt;/li&gt;
+&lt;li&gt;Objective-C 时代：需要记住 MRC / ARC 内存管理&lt;/li&gt;
+&lt;li&gt;Swift 时代：需要记住语法糖&lt;/li&gt;
+&lt;li&gt;AI 时代：需要记住概念术语&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每一层抽象都在让我们更接近「解决问题」本身，远离「如何解决问题」。现在的区别只是抽象层级更高了而已。&lt;/p&gt;</description>
     </item>
     <item>
       <title>2025 week 24: Kimi K2 来拯救!</title>
