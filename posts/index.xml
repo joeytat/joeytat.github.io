@@ -6,8 +6,55 @@
     <description>Recent content in Posts on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.148.2</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 04 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 26: 学习双拼 10 周</title>
+      <link>https://joeytat.github.io/posts/2025_week26/</link>
+      <pubDate>Mon, 11 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week26/</guid>
+      <description>&lt;p&gt;又测了一次双拼的打字速度，已经比较接近全拼了。比自己想象的慢了一些，但可能和在实体键盘上打中文很少有关系。不过现在看到一个词，几乎可以不需要思考韵母在哪里，仅仅凭借肌肉记忆来按下键盘了。颇为带感，像是在玩节奏游戏。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;&lt;/th&gt;
+          &lt;th&gt;速度&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;全拼&lt;/td&gt;
+          &lt;td&gt;87 字/分&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;双拼第 1 天&lt;/td&gt;
+          &lt;td&gt;17 字/分&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;双拼第 3 周&lt;/td&gt;
+          &lt;td&gt;52 字/分&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;双拼第 10 周&lt;/td&gt;
+          &lt;td&gt;70 字/分&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;之前客户有给提供 copilot 使用，但用了一阵子感觉效果不好，加上写的项目 SwiftUI 占比有点大，那时候要通过 copilot for Xcode 在复杂项目里还原设计稿还是需要费相当大的功夫，所以其实有一段时间没用 GitHub copilot 了。这周打开 vscode 解决 git 冲突 的时候，突发奇想决定再试试，结果发现还挺好用的，特别在清楚知道上下文的时候。&lt;/p&gt;
+&lt;p&gt;尝试着用自己写 spec 的时间和耐心写了一个 promp，然后丢给 copilot for VSCode 以 ask 的模式问了一下「如果想达到这个目的，还需要提供哪些信息」（模拟 claude code planning mode），然后再交给 agent 进行实现，结果产生的代码很好。&lt;/p&gt;
+&lt;p&gt;AI 产品果然不能付年费啊。&lt;/p&gt;
+&lt;h3 id=&#34;娱乐&#34;&gt;娱乐&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;《取消道格拉斯》 ⭐️⭐️⭐️⭐️⭐️&lt;br&gt;
+讲一个主持人卷入一起「Cancel」运动的故事，一共只有四集但很多反转以至于不知道如何在不剧透的情况下来推荐这部电影。但总体而言是好看的！建议在不看任何和剧情相关的评价下观看。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;《幻想生活 i 转圈圈的龙和偷取时间的少女》 ⭐️⭐️⭐️⭐️⭐️&lt;br&gt;
+画风类似动物森友会的……怪物猎人？缝合了不少游戏的感觉。当意识到可以扮演所有职业，一个行为可以让好几个职业获益的时候，这个游戏一下子有趣了起来。比如挖矿可以升级采矿职业，挖出来的矿石可以造装备造福其他职业，造装备的过程可以让铁匠职业升级。由此有相当多的正向反馈，一拿起来就放不下，总有很多事情可以做。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 25: TDD: Terminology-Driven Development</title>
       <link>https://joeytat.github.io/posts/2025_week25/</link>
