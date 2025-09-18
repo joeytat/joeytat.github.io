@@ -12,7 +12,6 @@ minify:
   disableXML: true
   minifyOutput: true
 
-
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   keywords: [Blog, iOS]
@@ -69,15 +68,14 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "| ᐕ)⁾⁾"
-    Content: > 
+    Content: >
       Mobile / Web 软件开发者@Thoughtworks.com
 
-      - 在读：《盲人钟表匠》；《理性思考的艺术》
+      - 在读：《无神话不艺术》
 
-      - 在玩：《塞尔达： 王国之泪》；《黑神话：悟空》；《博德之门 3》
+      - 在玩：《鸣潮》，《赛博朋克 2077》
 
-      - 在练：推 85KG * 7 * 5；蹲 135KG * 7 * 5；拉 120KG * 8 * 5
-
+      - 在练：推 90KG * 6 * 5；蹲 130KG * 6 * 5；拉 120KG * 8 * 5
 
   # socialIcons:
   #   - name: x
