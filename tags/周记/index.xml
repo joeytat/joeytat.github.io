@@ -6,8 +6,26 @@
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.150.0</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 08 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 15 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 31: 语言学习的必要性</title>
+      <link>https://joeytat.github.io/posts/2025_week31/</link>
+      <pubDate>Mon, 15 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week31/</guid>
+      <description>&lt;p&gt;因为运动方式的改变，现在每天早上会跑去爬 5 趟楼梯，从 2 楼到 26 楼，一边爬楼梯就一边刷多邻国，每天的日语学习时间就稳定在 35 分钟左右，进度比之前快了许多。&lt;/p&gt;
+&lt;p&gt;不过随着 AirPods Pro 第三代的发布，&lt;a href=&#34;https://support.apple.com/zh-cn/guide/airpods/dev9c215ca94/1.0/web/1.0&#34;&gt;收听面对面对话翻译&lt;/a&gt;功能引起了很多讨论，还是让我会想，现在学习一门外语的必要性还有多大呢？如果效果真的如宣传片那样好，只要戴上耳机就能知道异国的对方在说什么，那花费数千小时（参考的自学英语的时间）意义何在。&lt;/p&gt;
+&lt;p&gt;有还不错的英语能力，是我觉得自己职业生涯中最好的投资。&lt;/p&gt;
+&lt;p&gt;由于国内的 mobile 开发需求量，学习资料并不多，也大多比较过时。所以英语阅读能力让我以很低的成本就掌握了大量的 iOS 开发领域的不对称信息，让我以一种较为轻松的方式就获得了还不错的竞争力。但现在 AI 的翻译速度和水平之高令人咋舌。而且母语的阅读理解速度还是要快许多，比如我自己也不知不觉就养成习惯，在邮件阅读列表里面看到大段英文直接通过 raycast 调用 extension 用 Gemini 2.5 Flash Light 翻译了。&lt;/p&gt;
+&lt;p&gt;而工作中我能用到的英文写作对大模型来说更是小菜一碟。&lt;/p&gt;
+&lt;p&gt;所以现在相比其他英语不那么好的同事，我只有听和说的能力还有点竞争力，比如在和海外客户社交的时候，可以不卡壳地讲讲笑话拉近距离。但看到 AirPods Pro 第三代这样的产品，感觉这点竞争力应该也维持不了多久了。&lt;/p&gt;
+&lt;p&gt;有点想把这部分时间花在其他地方了。&lt;/p&gt;
+&lt;h3 id=&#34;输入&#34;&gt;输入&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;《新哲人 04：旅行之必要》 ⭐️⭐️⭐️&lt;br&gt;
+书不是我期待的包含对“旅行之必要”有正反两方观点的讨论，而是真的几乎一整本由不同撰稿人阐述旅行必要性的书。 不确定是翻译的问题还是内容确实乏味，大部分文字都从脑子上滑了过去，没有留下痕迹。但有时候会想起其中一句“我们在日常生活中越能把更多细节交给无意识掌控，我们心灵的高级力量就越能被解放出来，从而做它本该做的工作”。 心灵的高级力量本来的工作是什么？&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 30: 从 Apple Notes 迁移</title>
       <link>https://joeytat.github.io/posts/2025_week30/</link>
