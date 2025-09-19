@@ -6,8 +6,22 @@
     <description>Recent content in Posts on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.150.0</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 01 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 30: 从 Apple Notes 迁移</title>
+      <link>https://joeytat.github.io/posts/2025_week30/</link>
+      <pubDate>Mon, 08 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week30/</guid>
+      <description>&lt;p&gt;这周又调整了一下自己写东西的方式。此前刚接触到 PARA 理念的时候&lt;strong&gt;觉得&lt;/strong&gt;这种整理方式很简单且有效，刚好看了 Randy 写的&lt;a href=&#34;https://lutaonan.com/blog/apple-notes-and-para/&#34;&gt;《我如何使用 Apple Notes 做笔记》&lt;/a&gt; ，感觉其记录和写作方法相当有说服力。就把笔记系统从 logseq 切换到了 Apple Notes，一开始体验还挺好的，除了想要将笔记分类无法使用带有层级的 tag。&lt;/p&gt;
+&lt;p&gt;大概半年，决定还是得换回基于文件的笔记系统。主要原因有两个：&lt;/p&gt;
+&lt;p&gt;第一，我没办法简单地让 AI 来访问到我的笔记。Apple Notes 它不是基于本地文件的笔记应用，也并不提供接受让 AI 访问所有的笔记。这一点还有点麻烦，毕竟工作和学习所记录的东西，还是希望能够利用大模型的能力帮忙整理和分析一下。&lt;/p&gt;
+&lt;p&gt;第二，Apple Notes 没有 markdown 的支持，我写的东西还是很依赖于 markdown 的语法，毕竟有一些需要发布。&lt;/p&gt;
+&lt;p&gt;以及这段时间发现 PARA 对于我来说不太实用，我几乎不用 Area 和 Resource 的 tag。绝大部分记录的东西都能放进 project，所以有个一级目录已经足够了。PARA 徒增笔记创建的启动成本和维护成本，比如我需要在一个笔记状态变化（比如 &lt;code&gt;resource/prompt&lt;/code&gt; 变到 &lt;code&gt;project/side-project&lt;/code&gt;）的时候更新 tag，而 tag 不是内容，我经常会忘记。&lt;/p&gt;
+&lt;p&gt;笔记软件暂时选择了两年没有更新的 Taio，但其使用体验对我来说依然很好。&lt;/p&gt;
+&lt;h3 id=&#34;娱乐&#34;&gt;娱乐&lt;/h3&gt;
+&lt;p&gt;依然是鸣潮，花了二十多个小时跟上了主线。很期待接下来清理地图和支线的体验，但依然很讨厌玩限时活动小游戏。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025 week 29: 用车成本</title>
       <link>https://joeytat.github.io/posts/2025_week29/</link>
