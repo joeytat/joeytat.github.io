@@ -6,8 +6,21 @@
     <description>Recent content on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.151.0</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 29 Sep 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 34: Codex</title>
+      <link>https://joeytat.github.io/posts/2025_week34/</link>
+      <pubDate>Mon, 06 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week34/</guid>
+      <description>&lt;p&gt;惊觉自己之前因为玩 Claude Code 起劲儿开通的 Apple 开发者账号已经三个月了，但一款产品都还没发布。于是乎用美区账号+礼品卡的方式订阅了 $20 档位的 chatGPT，用上了 &lt;a href=&#34;https://openai.com/codex/&#34;&gt;Codex&lt;/a&gt;。本来计划是 $20 美金的档位肯定不够用得配合 &lt;a href=&#34;https://z.ai/subscribe&#34;&gt;GLM 的 Coding plan&lt;/a&gt; 才行，但实际用下来感觉 Codex 在 token 用量上比 Claude Code 小非常多，且效果也很好，用它帮忙处理上架前的最后功能调整，效果非常满意。&lt;/p&gt;
+&lt;p&gt;而且 chatGPT 的订阅相比 Claude Code 还有个好处是多了个图片生成的额度。比如其中一款拍照相关的 app 我迟迟未上架的原因就是懒得准备 App Store 的截图，但和 chatGPT 聊了聊它提出或许可以用插画的方式来代替。于是让它出了一版设计稿之后又逐张处理了一下，个人对效果还挺满意的。就是比较耗时，从讨论需求-&amp;gt;设计稿-&amp;gt;实际截图的制作，总共花了 5 个小时，其中有一些流程比如把 app 的截图放进 mockup 再进行排版，如果自己会相关的设计工具，应该会节约不少时间。&lt;/p&gt;
+&lt;h3 id=&#34;before&#34;&gt;Before&lt;/h3&gt;
+&lt;p&gt;&lt;img alt=&#34;Image&#34; loading=&#34;lazy&#34; src=&#34;IMG_12.png&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;after&#34;&gt;After&lt;/h3&gt;
+&lt;p&gt;&lt;img alt=&#34;Image&#34; loading=&#34;lazy&#34; src=&#34;IMG_13.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;但最后审核给拒绝了，理由是截图没有展示实际使用的场景（Guideline 2.3.3 - Performance - Accurate Metadata）&amp;hellip;🤦&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025 week 33: 学习 Crypto 套利</title>
       <link>https://joeytat.github.io/posts/2025_week33/</link>
