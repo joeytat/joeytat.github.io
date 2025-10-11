@@ -4,7 +4,7 @@
     <title>IOS on Joeytat&#39;s Dev Log</title>
     <link>http://localhost:1313/tags/ios/</link>
     <description>Recent content in IOS on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.146.6</generator>
+    <generator>Hugo -- 0.147.0</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 19 Jun 2019 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/ios/index.xml" rel="self" type="application/rss+xml" />
@@ -24,9 +24,9 @@
     </item>
     <item>
       <title>为什么 Cocoapods 1.5 支持编译静态库之后大家这么高兴?</title>
-      <link>http://localhost:1313/posts/cocoapods-1/</link>
+      <link>http://localhost:1313/posts/cocoapods-1.5-static-library/</link>
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/cocoapods-1/</guid>
+      <guid>http://localhost:1313/posts/cocoapods-1.5-static-library/</guid>
       <description>昨天在 Twitter 上看到 TualatriX 说[把私有库都通过 Cocoapods 编译成静态库之后很爽](https://twitter.com/tualatrix/status/1077166131956264960), 就有点好奇到底是爽在哪里.</description>
     </item>
   </channel>

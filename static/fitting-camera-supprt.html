@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Support information for the Fitting Camera iOS app." />
+    <meta name="keywords" content="Fitting Camera, iOS, support, pose overlay" />
+    <title>Fitting Camera Support</title>
+    <style>
+      :root {
+        --bg: #f5f5f7;
+        --card-bg: #ffffff;
+        --text: #1d1d1f;
+        --muted: #6e6e73;
+        --accent: #0071e3;
+        --border: #d2d2d7;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        color: var(--text);
+        background: var(--bg);
+        line-height: 1.6;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 48px 24px;
+      }
+
+      .card {
+        width: 100%;
+        max-width: 760px;
+        background: var(--card-bg);
+        border-radius: 32px;
+        padding: 56px clamp(32px, 6vw, 80px);
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.06);
+      }
+
+      .language-toggle {
+        display: inline-flex;
+        padding: 6px;
+        background: #f2f2f7;
+        border-radius: 999px;
+        margin: 0 auto 40px;
+        gap: 6px;
+      }
+
+      .language-toggle button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .language-toggle button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 2px;
+      }
+
+      .language-toggle button.active {
+        background: var(--card-bg);
+        color: var(--text);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.2rem, 4vw, 2.9rem);
+        font-weight: 600;
+        letter-spacing: 0.01em;
+      }
+
+      .tagline {
+        margin-top: 12px;
+        font-size: clamp(1.1rem, 2.4vw, 1.3rem);
+        color: var(--muted);
+      }
+
+      section + section {
+        margin-top: 32px;
+      }
+
+      .section-title {
+        font-size: 0.9rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 12px;
+      }
+
+      p {
+        margin: 0;
+        font-size: 1.05rem;
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      a:hover,
+      a:focus {
+        text-decoration: underline;
+      }
+
+      footer {
+        margin-top: 48px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      .language-panel {
+        display: none;
+        animation: fade-in 0.25s ease;
+      }
+
+      .language-panel.active {
+        display: block;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 640px) {
+        body {
+          padding: 32px 16px;
+        }
+
+        .card {
+          border-radius: 24px;
+          padding: 44px 24px;
+        }
+
+        .language-toggle {
+          margin-bottom: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <nav class="language-toggle" aria-label="Language selector">
+        <button type="button" data-lang="en" class="active" aria-pressed="true">English</button>
+        <button type="button" data-lang="zh" aria-pressed="false">中文</button>
+      </nav>
+
+      <div class="language-panel active" id="lang-en" lang="en">
+        <header>
+          <h1>Fitting Camera</h1>
+          <p class="tagline">Recreate the same pose, capture real changes.</p>
+        </header>
+
+        <section>
+          <p class="section-title">About</p>
+          <p>
+            Fitting Camera helps you take consistent body or portrait photos by overlaying outlines from previous shots.
+            It’s perfect for tracking fitness progress, recreating family photos, or improving portrait alignment.
+          </p>
+        </section>
+
+        <section>
+          <p class="section-title">Support</p>
+          <p>
+            If you experience any issues or have feedback, please reach out to our team via X (formerly Twitter).
+            <br />
+            <a href="https://x.com/joeytat" rel="noopener" target="_blank">@joeytat</a>
+          </p>
+        </section>
+
+        <section>
+          <p class="section-title">Privacy</p>
+          <p>
+            Fitting Camera values your privacy. All photos are stored locally on your device and are never uploaded to any
+            server. We only collect minimal diagnostic data to improve app performance.
+          </p>
+        </section>
+
+        <footer>© 2025 Fitting Camera. All rights reserved.</footer>
+      </div>
+
+      <div class="language-panel" id="lang-zh" lang="zh-Hans">
+        <header>
+          <h1>Fitting Camera</h1>
+          <p class="tagline">重现相同的姿势，捕捉真实的变化。</p>
+        </header>
+
+        <section>
+          <p class="section-title">关于应用</p>
+          <p>
+            Fitting Camera 通过叠加过往照片的轮廓，帮助你拍摄一致的身形或人像照片。非常适合记录健身进展、重现家庭合影，或提升人像对齐。
+          </p>
+        </section>
+
+        <section>
+          <p class="section-title">支持</p>
+          <p>
+            如果你遇到问题或有反馈，请通过 X（原 Twitter）与我们的团队联系。
+            <br />
+            <a href="https://x.com/joeytat" rel="noopener" target="_blank">@joeytat</a>
+          </p>
+        </section>
+
+        <section>
+          <p class="section-title">隐私声明</p>
+          <p>
+            Fitting Camera 重视你的隐私。所有照片仅保存在你的设备上，绝不会上传到任何服务器。我们仅收集最少量的诊断数据，以改进应用表现。
+          </p>
+        </section>
+
+        <footer>© 2025 Fitting Camera. 保留所有权利。</footer>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        const buttons = Array.from(document.querySelectorAll('.language-toggle button'));
+        const panels = {
+          en: document.getElementById('lang-en'),
+          zh: document.getElementById('lang-zh')
+        };
+
+        buttons.forEach((button) => {
+          button.addEventListener('click', () => {
+            const target = button.dataset.lang;
+
+            buttons.forEach((btn) => {
+              const isActive = btn === button;
+              btn.classList.toggle('active', isActive);
+              btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+
+            Object.entries(panels).forEach(([lang, panel]) => {
+              panel.classList.toggle('active', lang === target);
+            });
+
+            document.documentElement.setAttribute('lang', target === 'zh' ? 'zh-Hans' : 'en');
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
