@@ -6,8 +6,23 @@
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.147.0</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 06 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 35: VSCode 作为主力 markdown app</title>
+      <link>http://localhost:1313/posts/2025_week35/</link>
+      <pubDate>Thu, 16 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2025_week35/</guid>
+      <description>&lt;p&gt;本来是国庆节前，客户通知说有个新需求，要延续合同一个月。结果国庆节后，收到消息，说客户改主意了，按照原计划下项目。正以为可以休息一下，多陪娃玩玩，结果当天就收到了两年前合作过的另一个项目的邀请。虽然这么背靠背地上项目，没有休息的机会，但这样一来时间利用率很好，也能减少被裁员的概率吧……只能这么安慰自己了。&lt;/p&gt;
+&lt;p&gt;因为在新项目，记笔记频次变多不少。这时候发现两年不更新的 Taio 在 macOS 上的使用体验确实有点差，特别是做会议笔记的时候，文件无法拖拽到对应的文件夹，响应速度慢（但其体验在 iOS 上依然相当好）。开始寻找替代品。&lt;/p&gt;
+&lt;p&gt;一开始想着从过去用过的产品中寻找，但意识到自己很依赖 Taio 所提供的「在写文章过程中粘贴图片后，图片会处于当前文章所在同级目录下的 &lt;code&gt;./assets&lt;/code&gt; 目录中」的特性。突然想到这种事情其实 VSCode 肯定能很好解决，问了一下 chatGPT 就得到了答案，而且还比 Taio 做得更好，粘贴图片之后可以把当前文档名字作为前缀添加到图片文件的名字上。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;markdown.copyFiles.destination&amp;#34;&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;#34;**/*&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;${documentDirName}/assets/${documentBaseName}-${unixTime}.${fileExtName}&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;然后要解决的就是通过快捷键打开笔记所在目录。之前不管用 Apple Notes 还是 Taio 我都习惯用 option + d 作为热键，但 VSCode 不仅用来写笔记同时也是日常开发的编辑器，如果把 option + d 绑定为 VSCode 快捷键，那每次启动只会打开 app 上次打开的目录。&lt;/p&gt;
+&lt;p&gt;Raycast 的 Quicklink 功能又派上用场了，把笔记所在目录路径作为 Link，VSCode 作为打开方式，创建好了之后再将热键绑定即可&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;raycast quicklink&#34; loading=&#34;lazy&#34; src=&#34;raycast-quicklink.png&#34;&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025 week 34: Codex</title>
       <link>http://localhost:1313/posts/2025_week34/</link>
