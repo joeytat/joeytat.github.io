@@ -6,8 +6,35 @@
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 35: 生产项目的 AI 辅助编程</title>
+      <link>https://joeytat.github.io/posts/2025_week37/</link>
+      <pubDate>Mon, 27 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week37/</guid>
+      <description>&lt;p&gt;现在服务的客户项目非常注重文档，在做任务之前会需要先写一份 engineering doc，其中包含：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户故事&lt;/li&gt;
+&lt;li&gt;验收标准&lt;/li&gt;
+&lt;li&gt;改动范围 / 技术实现&lt;/li&gt;
+&lt;li&gt;测试策略&lt;/li&gt;
+&lt;li&gt;超出范围&lt;/li&gt;
+&lt;li&gt;跨功能需求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不难看出这其实已经是一份足够详细到能让 AI 帮忙实现的 prompt 了。现在的工作流程就变成了首先利用 Github issue 来撰写一份详尽的 engineering doc，然后直接让大模型来阅读 engineering doc 进行实现。过程中有遇到的一些问题：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;直接让 VSCode for Copilot 访问网页会提示没有相关操作权限。但让他用 GitHub CLI (&lt;code&gt;gh&lt;/code&gt;) 就可以了&lt;/li&gt;
+&lt;li&gt;用 &lt;code&gt;gh&lt;/code&gt; 来阅读 issue doc 获取文档及代码上下文时候，agent mode 会卡住，原因是因为 &lt;code&gt;gh issue view&lt;/code&gt; 这个命令默认把输出送入了分页器（less），需要换成 &lt;code&gt;cat&lt;/code&gt;(&lt;code&gt;gh config set pager cat&lt;/code&gt;)。&lt;/li&gt;
+&lt;li&gt;项目本身是用的 GraphQL 作为网络请求层（这是一个非常 LLM 友好的技术选型！），用脚本生成相关的 models 之后，需要让 agent 把生成的文件都加到 Xcode project 里，这样新生成的文件可以参与到编译。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;由此基本上就做到了写完 engineering doc 之后让大模型阅读就能实现个七七八八，只需要自己编译验收，审查一下代码即可。一周下来在写文档和验收微调上耗费时间大概 1:1，算是做到了先思考再实现，思考时间大于真正上手写代码的时间。&lt;/p&gt;
+&lt;h3 id=&#34;娱乐&#34;&gt;娱乐&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;《逃离鸭科夫》 ⭐️⭐️⭐️⭐️⭐️&lt;br&gt;
+健身的时候听机核节目《&lt;a href=&#34;https://www.gcores.com/radios/206164&#34;&gt;鸭科夫凭什么爆火？因为它是真懂搜打撤&lt;/a&gt;》被安利的，收听过程中就知道这个游戏自己肯定喜欢，结果没想到开始玩一发不可收拾，当天就玩到了凌晨 4 点，很久没有这么沉迷一款游戏了，希望能出个 Switch 版本，这样可以在地铁里玩。&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 35: 宜家全屋设计</title>
       <link>https://joeytat.github.io/posts/2025_week36/</link>
