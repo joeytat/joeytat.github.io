@@ -4,10 +4,30 @@
     <title>周记 on Joeytat&#39;s Dev Log</title>
     <link>https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/</link>
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
-    <generator>Hugo -- 0.151.0</generator>
+    <generator>Hugo -- 0.152.2</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 16 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 Oct 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 35: 宜家全屋设计</title>
+      <link>https://joeytat.github.io/posts/2025_week36/</link>
+      <pubDate>Mon, 20 Oct 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week36/</guid>
+      <description>&lt;h2 id=&#34;装修&#34;&gt;装修&lt;/h2&gt;
+&lt;p&gt;21 年买的房最近交付了，有点开心又有点难过，现在房价距离入手的价格跌了大概 30% 以上&amp;hellip;&lt;/p&gt;
+&lt;p&gt;这套房是精装交付，所以只需要购置家具家电。之前的装修是找了定制家具的公司定制各种柜子，但实际使用下来发现定制家具价格昂贵，制作周期长，并且甲醛释放耗时长。于是这次就打算全部买成品，直接选择了宜家的全屋设计。&lt;/p&gt;
+&lt;p&gt;主要考量是：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;环保。据在成品柜定制公司工作过的朋友说，宜家成品家具的环保标准在国内算是一档，比起之前找的本地的工厂要高非常多。&lt;/li&gt;
+&lt;li&gt;制作周期。因为是成品组装不需要像定制家具那样等待制作周期。&lt;/li&gt;
+&lt;li&gt;审美。很符合自己对家的想象，且找全屋设计会有一个宜家的设计师来帮忙搭配及设计。&lt;/li&gt;
+&lt;li&gt;保修。最关键的是保修是真的保修，之前买了一张床垫，睡了快五年发现中间有点凹陷，打电话给宜家派了个人上门看了看，二话不说就给换了。而之前找的本地的家具定制公司已经关门了。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;联系了宜家之后，缴纳 2000 押金，他们会安排人上门测绘，然后设计师拉群。第一次意向沟通后，就会出一版设计图，然后再基于设计图沟通几次，可能因为自己需求比较简单一共只花了 5 个小时，就走完了设计到下单的流程。&lt;/p&gt;
+&lt;p&gt;&lt;img alt=&#34;IKEA&#34; loading=&#34;lazy&#34; src=&#34;https://joeytat.github.io/ikea_design.jpg&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;工作&#34;&gt;工作&lt;/h2&gt;
+&lt;p&gt;在被客户续费两次之后，终于结束了近两年的流媒体项目。本以为能休息一下，结果第二天就被安排上了之前服务过的房地产项目。虽然项目是好项目（客户非常好！），但入职我司以来每次上项目都是这么背靠背的安排，还是会有点失落。为什么身边其他同事都可以 on beach 几周到几月不等啊&amp;hellip; :[&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025 week 35: VSCode 作为主力 markdown app</title>
       <link>https://joeytat.github.io/posts/2025_week35/</link>
@@ -533,7 +553,8 @@ RogueLike 游戏，几年前玩过二十小时。最近突然想再试试，没�
 &lt;/ul&gt;
 &lt;p&gt;同时相当喜欢 cbvivi 在这篇博客最后面的引用：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;When you write, you think better. When you think better, you create better.&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;When you write, you think better. When you think better, you create better.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;h1 id=&#34;娱乐&#34;&gt;娱乐&lt;/h1&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -691,7 +712,8 @@ DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜�
 &lt;p&gt;这就是我认为程序员这个工种短时间内无法被取代的原因：你没办法让 AI 帮助完成&lt;strong&gt;你不知道你不知道&lt;/strong&gt;的任务。&lt;/p&gt;
 &lt;p&gt;即使在有 AI 加持的现在，依然需要具备相当多的软件开发知识，才能够在众多方案中甄别出相对合理的方案，由此从生产到部署再到维护，完成一个复杂系统的构建。诚然，学习能力足够强的人可以通过边做边学的方式来让 AI 构建，但走完了整个流程的他，其实已经通过 AI 帮助，在“做中学”的过程中成为了一个 AI 时代的程序员。&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;AI 时代的程序员：明白各种软件开发领域名词背后的含义，但并不需要自己去实现的人。&lt;/p&gt;&lt;/blockquote&gt;
+&lt;p&gt;AI 时代的程序员：明白各种软件开发领域名词背后的含义，但并不需要自己去实现的人。&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;这种“做中学”产生的副作用（掌握软件开发知识），也并不是每个需要发布软件的人都想要的，因为它相当费神耗时，所以我依然认为程序员这个工种在“将想法变成现实”的路上，具有较高程度的不可替代性。&lt;/p&gt;
 &lt;p&gt;而 “工作的可被 AI 替代性” 这条线再具体一些，就是工作的产出物是否具有易于描述的创造流程，以及清晰的验收标准。输入和输出越复杂，描述和验收所需要的知识越多，工作就越不可被替代。&lt;/p&gt;
 &lt;h2 id=&#34;娱乐&#34;&gt;娱乐&lt;/h2&gt;
