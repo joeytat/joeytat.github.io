@@ -6,8 +6,40 @@
     <description>Recent content on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.152.2</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 27 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 11 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 39: Performance Review</title>
+      <link>https://joeytat.github.io/posts/2025_week39/</link>
+      <pubDate>Tue, 11 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week39/</guid>
+      <description>&lt;p&gt;又到了年终审核的时候了，配合 AI 花了 4 个小时搞定了。主要流程就是把 1）自己记录的工作笔记 2）项目上线邮件。这是老板撰写的，等于她已经帮我把我工作的重点有价值的部分高亮标记出来了。3） 公司对于职级期望的描述打包发给了 AI。再让 AI 根据职级描述判断我在描述的各维度里有哪些达标，有哪些超出预期。最后再生成一段简短的总结，这样找老板和同事要反馈时一起发给他们可能能方便点。&lt;/p&gt;
+&lt;p&gt;过程中还发现 AI 输出如果是中文，就一股子阿里味儿（比如“面对后端未就绪 / 设计频变 / 技术栈切换 的组合复杂度，采用混合架构 + Mock 解耦 + 变更批处理 的组合拳），试了好几次都去不掉，改让 AI 输出英文然后再翻译中文就好非常多。&lt;/p&gt;
+&lt;h3 id=&#34;娱乐&#34;&gt;娱乐&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;《姥姥的外孙》 ⭐️⭐️⭐️⭐️⭐️&lt;br&gt;
+听《纵横四海》Melody 推荐看的。讲述了一个平时从来不照顾姥姥，但得知姥姥癌症晚期后打算临时抱佛脚跑去照顾以获得遗产的外孙的故事。很催泪且温情。
+对其中有个印象特别深刻的场景是姥姥想要个漂亮的大墓地。我的第一反应是，姥姥还是有一些虚荣心的呀。但她下一句话却是“墓地漂亮点，这样你们就愿意来多看看我了”。😢&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>2025 week 38: 美股减仓</title>
+      <link>https://joeytat.github.io/posts/2025_week38/</link>
+      <pubDate>Mon, 03 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week38/</guid>
+      <description>&lt;p&gt;看到喵神在群里发美股减仓及英伟达破 5 万亿市值的消息，于是开始减仓标普 500，纳指和标普科技（持仓占比是 1:1:2），过段时间再回头来看看是不是卖飞了。&lt;/p&gt;
+&lt;p&gt;笔记从 Apple notes 迁移到 markdown 文件已经几周了，发现自己只有第一次搭建好环境的的时候用上了 codex 来分析整理笔记，此后再没有了。可能对我来说只需要一个能够满足我快速记录获取信息的 markdown 工具即可。&lt;/p&gt;
+&lt;h3 id=&#34;输入&#34;&gt;输入&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;《养育男孩》 ⭐️⭐️⭐️⭐️&lt;br&gt;
+尽管其他部分还行，但因为在男孩女孩差异及性取向章节部分有不少脱离时代的刻板印象描述，让我对这本书的可信度打了一些折扣，会觉得有点更不上版本了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;娱乐&#34;&gt;娱乐&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;《魔女》 ⭐️⭐️⭐️⭐️&lt;br&gt;
+好看，讲述了天赋异禀的超能青年如何逃脱组织的控制。崔宇植演得很好，相较之下女主角在影片的后半段就有点面瘫了…&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
     <item>
       <title>2025 week 37: 生产项目的 AI 辅助编程</title>
       <link>https://joeytat.github.io/posts/2025_week37/</link>
