@@ -6,8 +6,22 @@
     <description>Recent content in Posts on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.153.1</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 17 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 24 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025 week 41: 要事第一</title>
+      <link>https://joeytat.github.io/posts/2025_week41/</link>
+      <pubDate>Mon, 24 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_week41/</guid>
+      <description>&lt;p&gt;最近看了一本很受启发的书《The Let Them Theory》。理论主要就是两个部分， Let them 随他们去， Let me 让我来。&lt;/p&gt;
+&lt;p&gt;核心理念非常简单但有力量，如果无法改变别人，那就随他们去吧。然后把注意力更多地转向自己能控制的事情上。&lt;/p&gt;
+&lt;p&gt;我们很多痛苦来自三件事，想让别人理解我，想让别人按我期待的方式行事，想通过“解释 / 付出 / 忍耐”换取改变。但其实这些事情都是自己控制不了的。&lt;/p&gt;
+&lt;p&gt;拿自己举例，因为我自己是有非常规律的健身习惯的，所以长期以来，我也会期望身边的人也如此，但一直得不到什么好的效果。为此我其实感觉到非常焦虑，也很困惑，为什么他们宁愿躺在沙发上刷手机，也不愿意起来动一下呢？&lt;/p&gt;
+&lt;p&gt;这种焦虑不仅对自己造成了很大的内耗，同时也让身边的人会觉得有一些压迫。因为换一个角度，其实没有人不希望自己身体好。只是可能因为每个人每天要面临的处理的事情不同，所以导致了有些人没有办法振作自己。那如果他们身边的人持续地逼迫他们，要求他们在已经很累的情况下还要去锻炼，就会产生抵触心理。但需要强调的是，The Let Them Theory 并不要求我一定要理解或认同他们的选择。即使我不理解，甚至不同意，我也接受这是他们此刻的决定。&lt;/p&gt;
+&lt;p&gt;而且也让我知道一个自己持续忽略的事实，那就是无论自己的建议多么正确，无论后果多么严重，其实都不能直接导致一个人的改变。并不是自己的话在对方心中分量不足，只是人性使然。&lt;/p&gt;
+&lt;p&gt;所以更好的办法其实就是随他们去。那我能做的是什么呢？至多也就是以身作则，通过不断的自身的努力来告诉他们，锻炼其实也可以很快乐，也有很轻松的方式。与其在他们本来就有一定精神负担的情况下，还用言语来刺激他们，责问他们为什么这么懒，不如承认他们有权选择自己舒服的生活方式，哪怕在我看来是不健康的。即使他们最终完全没有改变，这种做法对我来说也已经是成立的。因为重点不在于他们是否被影响，而在于我是否停止了把精力浪费在试图控制他人上。&lt;/p&gt;
+&lt;p&gt;由此将对他人的期望，对他人的控制（尽管出于善意），转化为对自己行为的关注，把精力用来处理自己能控制的事情上。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025 week 40: 要事第一</title>
       <link>https://joeytat.github.io/posts/2025_week40/</link>
@@ -1026,24 +1040,6 @@ DHH 所写的「到底为什么要有一个小孩」。举了一个自己很喜�
       <pubDate>Thu, 27 Dec 2018 00:00:00 +0000</pubDate>
       <guid>https://joeytat.github.io/posts/cocoapods-1.5-static-library/</guid>
       <description>昨天在 Twitter 上看到 TualatriX 说[把私有库都通过 Cocoapods 编译成静态库之后很爽](https://twitter.com/tualatrix/status/1077166131956264960), 就有点好奇到底是爽在哪里.</description>
-    </item>
-    <item>
-      <title></title>
-      <link>https://joeytat.github.io/posts/2025_week41/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://joeytat.github.io/posts/2025_week41/</guid>
-      <description>&lt;p&gt;title = &amp;ldquo;2025 week 41: 要事第一&amp;rdquo;
-date = &amp;ldquo;2025-11-24&amp;rdquo;
-tags = [&amp;ldquo;周记&amp;rdquo;]&lt;/p&gt;
-&lt;p&gt;+++&lt;/p&gt;
-&lt;p&gt;最近看了一本很受启发的书《The Let Them Theory》。理论主要就是两个部分， Let them 随他们去， Let me 让我来。&lt;/p&gt;
-&lt;p&gt;核心理念非常简单但有力量，如果无法改变别人，那就随他们去吧。然后把注意力更多地转向自己能控制的事情上。&lt;/p&gt;
-&lt;p&gt;我们很多痛苦来自三件事，想让别人理解我，想让别人按我期待的方式行事，想通过“解释 / 付出 / 忍耐”换取改变。但其实这些事情都是自己控制不了的。&lt;/p&gt;
-&lt;p&gt;拿自己举例，因为我自己是有非常规律的健身习惯的，所以长期以来，我也会期望身边的人也如此，但一直得不到什么好的效果。为此我其实感觉到非常焦虑，也很困惑，为什么他们宁愿躺在沙发上刷手机，也不愿意起来动一下呢？&lt;/p&gt;
-&lt;p&gt;这种焦虑不仅对自己造成了很大的内耗，同时也让身边的人会觉得有一些压迫。因为换一个角度，其实没有人不希望自己身体好。只是可能因为每个人每天要面临的处理的事情不同，所以导致了有些人没有办法振作自己。那如果他们身边的人持续地逼迫他们，要求他们在已经很累的情况下还要去锻炼，就会产生抵触心理。但需要强调的是，The Let Them Theory 并不要求我一定要理解或认同他们的选择。即使我不理解，甚至不同意，我也接受这是他们此刻的决定。&lt;/p&gt;
-&lt;p&gt;而且也让我知道一个自己持续忽略的事实，那就是无论自己的建议多么正确，无论后果多么严重，其实都不能直接导致一个人的改变。并不是自己的话在对方心中分量不足，只是人性使然。&lt;/p&gt;
-&lt;p&gt;所以更好的办法其实就是随他们去。那我能做的是什么呢？至多也就是以身作则，通过不断的自身的努力来告诉他们，锻炼其实也可以很快乐，也有很轻松的方式。与其在他们本来就有一定精神负担的情况下，还用言语来刺激他们，责问他们为什么这么懒，不如承认他们有权选择自己舒服的生活方式，哪怕在我看来是不健康的。即使他们最终完全没有改变，这种做法对我来说也已经是成立的。因为重点不在于他们是否被影响，而在于我是否停止了把精力浪费在试图控制他人上。&lt;/p&gt;
-&lt;p&gt;由此将对他人的期望，对他人的控制（尽管出于善意），转化为对自己行为的关注，把精力用来处理自己能控制的事情上。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
