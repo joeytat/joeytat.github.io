@@ -10,7 +10,7 @@ render() { return React.Children.map(this.props.children, child => React.cloneEl
 这里 React.Children.map 与 this.props.children.map 并不等价，后者在只有一个子组件的时候，返回的不是数组，而是唯一的那个组件。
 React.Children.map 的局限性 上面代码有个问题是，如果出现了更多层级的子组件，那么参数传递只会到第一层。
 &lt;Switcher selecting={this.props.selecting}> &lt;Switcher.React/> &lt;div> &lt;Switcher.Vue/> &lt;/div> &lt;/Switcher> 这样写会提示传递了错误的参数给 div，因为我们 React.Children.map 只能获取到第一层子组件（[Switcher.React, div]）。
-...</p></div><footer class=entry-footer><span title='2019-08-12 00:00:00 +0000 UTC'>August 12, 2019</span></footer><a class=entry-link aria-label="post link to React 进阶模式之复合组件（Compound Component）" href=https://joeytat.github.io/posts/compound-component/></a></article></main><footer class=footer><span>&copy; 2025 <a href=https://joeytat.github.io/>Joeytat's Dev Log</a></span> ·
+...</p></div><footer class=entry-footer><span title='2019-08-12 00:00:00 +0000 UTC'>August 12, 2019</span></footer><a class=entry-link aria-label="post link to React 进阶模式之复合组件（Compound Component）" href=https://joeytat.github.io/posts/compound-component/></a></article></main><footer class=footer><span>&copy; 2026 <a href=https://joeytat.github.io/>Joeytat's Dev Log</a></span> ·
 <span>Powered by
 <a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
 <a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg viewBox="0 0 12 6" fill="currentColor"><path d="M12 6H0l6-6z"/></svg>
