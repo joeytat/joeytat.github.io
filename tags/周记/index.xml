@@ -6,8 +6,79 @@
     <description>Recent content in 周记 on Joeytat&#39;s Dev Log</description>
     <generator>Hugo -- 0.154.3</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 24 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 08 Jan 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://joeytat.github.io/tags/%E5%91%A8%E8%AE%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2025</title>
+      <link>https://joeytat.github.io/posts/2025_overview/</link>
+      <pubDate>Thu, 08 Jan 2026 00:00:00 +0000</pubDate>
+      <guid>https://joeytat.github.io/posts/2025_overview/</guid>
+      <description>&lt;blockquote&gt;
+&lt;p&gt;成文于 2026 年但文中的“今年”均是指 2025 年。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;去年在 Timery 上面记录了 936 小时的时间（主要记录了游戏（396 小时），健身（258 小时），阅读（81 小时），其他），今年把分类细化了一些，感觉更像是屏幕时间记录，数据大概如下。&lt;/p&gt;
+&lt;p&gt;今年总共记录了 2842 小时。&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+      &lt;tr&gt;
+          &lt;th&gt;类别&lt;/th&gt;
+          &lt;th&gt;时间（小时）&lt;/th&gt;
+          &lt;th&gt;占比&lt;/th&gt;
+      &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+      &lt;tr&gt;
+          &lt;td&gt;有效工作（写代码，调研需求，审查代码，工作流程优化等）&lt;/td&gt;
+          &lt;td&gt;736&lt;/td&gt;
+          &lt;td&gt;25.8%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;社交网络&lt;/td&gt;
+          &lt;td&gt;445&lt;/td&gt;
+          &lt;td&gt;15.6%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;游戏&lt;/td&gt;
+          &lt;td&gt;360&lt;/td&gt;
+          &lt;td&gt;12.6%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;一些事后来看浪费时间的事情&lt;/td&gt;
+          &lt;td&gt;302&lt;/td&gt;
+          &lt;td&gt;10.6%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;电影，剧集，bilibili 等&lt;/td&gt;
+          &lt;td&gt;245&lt;/td&gt;
+          &lt;td&gt;8%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;日语学习&lt;/td&gt;
+          &lt;td&gt;120&lt;/td&gt;
+          &lt;td&gt;4%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;Side Project&lt;/td&gt;
+          &lt;td&gt;112&lt;/td&gt;
+          &lt;td&gt;4%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;阅读&lt;/td&gt;
+          &lt;td&gt;85&lt;/td&gt;
+          &lt;td&gt;3%&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+          &lt;td&gt;博客&lt;/td&gt;
+          &lt;td&gt;33&lt;/td&gt;
+          &lt;td&gt;1%&lt;/td&gt;
+      &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;有打标签的能归类的大概占比 85%，剩下的 15% 就是健身，理财及整理资料这样其他琐碎的事情。&lt;/p&gt;
+&lt;h3 id=&#34;工作&#34;&gt;工作&lt;/h3&gt;
+&lt;p&gt;今年的工作范围随着项目变化缩小了很多，下半年又做回了独立贡献者。也是因为这样自己有了很多时间去摸索 AI 在实际工作的运用。最直观的变化就是从去年生产项目还不能用 AI agent，到今年年末持续几个月都没手动写过一行代码。心路历程也在过去的周记能有体现，简单来说就是从欣喜到迷茫到通过自圆其说寻找自我价值。&lt;/p&gt;
+&lt;p&gt;最近让自己对工作不那么迷茫，甚至平静的原因是看到了 Simon Willison 写的那段话：「&lt;a href=&#34;https://simonwillison.net/2025/Dec/18/code-proven-to-work/&#34;&gt;Almost anyone can prompt an LLM to generate a thousand-line patch and submit it for code review. That’s no longer valuable. What’s valuable is contributing &lt;em&gt;code that is proven to work&lt;/em&gt;&lt;/a&gt;」。诚然现在几乎每个人都生成海量高质量代码，但判断哪些代码&lt;strong&gt;有价值&lt;/strong&gt;还是需要一些软件工程师的能力。在 AI agent 做到这一点之前，就靠它保我安宁了。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>2025 week 41: 随他们去</title>
       <link>https://joeytat.github.io/posts/2025_week41/</link>
